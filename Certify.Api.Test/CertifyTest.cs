@@ -7,13 +7,14 @@ namespace Certify.Api.Test
 {
 	public abstract class CertifyTest
 	{
-		protected readonly CertifyClient CertifyClient { get; }
+		protected CertifyClient CertifyClient { get; }
 		public ILogger Logger { get; }
 
 		public CertifyTest(ITestOutputHelper iTestOutputHelper)
 		{
 			Logger = iTestOutputHelper.BuildLogger();
 			var testConfig = new TestConfig(Logger);
+			CertifyClient = testConfig.CertifyClient;
 		}
 	}
 }
