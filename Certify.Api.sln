@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Certify.Api", "Certify.Api\Certify.Api.csproj", "{7017D0C3-9CF7-4E15-84A9-BB42EC4D05A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Certify.Api", "Certify.Api\Certify.Api.csproj", "{7017D0C3-9CF7-4E15-84A9-BB42EC4D05A3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{272943EF-21C8-483D-973A-B972B61661C4}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,7 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Certify.Api.Test", "Certify.Api.Test\Certify.Api.Test.csproj", "{AC01327D-2D09-45F7-9A1C-5A4A7F9061FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Certify.Api.Test", "Certify.Api.Test\Certify.Api.Test.csproj", "{AC01327D-2D09-45F7-9A1C-5A4A7F9061FC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7017D0C3-9CF7-4E15-84A9-BB42EC4D05A3} = {7017D0C3-9CF7-4E15-84A9-BB42EC4D05A3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
