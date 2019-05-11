@@ -206,6 +206,5 @@ namespace Certify.Api.Models
 		[DataMember(Name = "GSAReimbursementMethodID")]
 		public int GSAReimbursementMethodId { get; set; }
 
-
 	}
 }

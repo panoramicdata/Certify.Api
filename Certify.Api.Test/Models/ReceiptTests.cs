@@ -15,7 +15,7 @@ namespace Certify.Api.Test.Models
 		{
 			var result = await CertifyClient
 				.Receipts
-				.GetAllAsync()
+				.GetPageAsync()
 				.ConfigureAwait(false);
 			Assert.NotNull(result);
 		}

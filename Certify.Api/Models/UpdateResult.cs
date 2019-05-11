@@ -11,7 +11,7 @@ namespace Certify.Api.Models
 		/// <summary>
 		/// Returns status of "Updated" or "Error".
 		/// </summary>
-		[DataMember(Name ="Status")]
+		[DataMember(Name = "Status")]
 		public string Status { get; set; }
 
 		/// <summary>

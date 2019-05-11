@@ -23,5 +23,4 @@ namespace Certify.Api.Models
 		/// </summary>
 		public string ExpenseCategoryId { get; set; }
 	}
-
 }

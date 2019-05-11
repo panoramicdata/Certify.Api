@@ -18,6 +18,8 @@ namespace Certify.Api.Test.Models
 				.GetPageAsync()
 				.ConfigureAwait(false);
 			Assert.NotNull(result);
+
+			if (result.)
 		}
 	}
 }

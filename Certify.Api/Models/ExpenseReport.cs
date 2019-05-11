@@ -9,184 +9,188 @@ namespace Certify.Api.Models
 	public class ExpenseReport : IdentifiedItem
 	{
 		/// <summary>
-		///  EmployeeDepartment
+		///  Department of the employee who the expense report belongs to.
 		/// </summary>
 		[DataMember(Name = "EmployeeDepartment")]
 		public string EmployeeDepartment { get; set; }
 
 		/// <summary>
-		///  FirstName
+		///  First name of the employee who the expense report belongs to.
 		/// </summary>
 		[DataMember(Name = "FirstName")]
 		public string FirstName { get; set; }
 
 		/// <summary>
-		///  LastName
+		///  Last name of the employee who the expense report belongs to.
 		/// </summary>
 		[DataMember(Name = "LastName")]
 		public string LastName { get; set; }
 
 		/// <summary>
-		///  EmployeeID
+		///  EmployeeID of the employee who the expense report belongs to.
 		/// </summary>
 		[DataMember(Name = "EmployeeID")]
 		public string EmployeeId { get; set; }
 
 		/// <summary>
-		///  NonReimAmount
+		///  Total non-reimbursable amount of the expense report.
 		/// </summary>
 		[DataMember(Name = "NonReimAmount")]
 		public decimal NonReimAmount { get; set; }
 
 		/// <summary>
-		///  ReimAmount
+		///  Total reimbursable amount of the expense report.
 		/// </summary>
 		[DataMember(Name = "ReimAmount")]
 		public decimal ReimAmount { get; set; }
 
 		/// <summary>
-		///  TotalAmount
+		///  Total amount, non-reimbursable + non-reimbursable amounts.
 		/// </summary>
 		[DataMember(Name = "TotalAmount")]
 		public decimal TotalAmount { get; set; }
 
 		/// <summary>
-		///  Currency
+		///  	Three letter code of the currency of the expense report. ISO 4217 format.
 		/// </summary>
 		[DataMember(Name = "Currency")]
 		public string Currency { get; set; }
 
 		/// <summary>
-		///  SubmittedDate
+		///  	The date the expense report was submitted for approval (yyyy-MM-dd).
 		/// </summary>
 		[DataMember(Name = "SubmittedDate")]
 		public string SubmittedDate { get; set; }
 
 		/// <summary>
-		///  InitialApprovalDate
+		///  	Date the first user approved the expense report.
 		/// </summary>
 		[DataMember(Name = "InitialApprovalDate")]
 		public string InitialApprovalDate { get; set; }
 
 		/// <summary>
-		///  ProcessedDate
+		/// Indicates whether the expense report has been processed. (true/false)
+		/// </summary>
+		public bool Processed { get; set; }
+
+		/// <summary>
+		///  Date on which the expense report was processed. (YYYY-MM-DD)
 		/// </summary>
 		[DataMember(Name = "ProcessedDate")]
 		public string ProcessedDate { get; set; }
 
 		/// <summary>
-		///  ApprovalCode
+		///  	Email address of the first user to approve the expense report.
 		/// </summary>
 		[DataMember(Name = "ApprovalCode")]
 		public int ApprovalCode { get; set; }
 
 		/// <summary>
-		///  InitialApproverEmail
+		///  	Approval code of the expense report.
 		/// </summary>
 		[DataMember(Name = "InitialApproverEmail")]
 		public string InitialApproverEmail { get; set; }
 
 		/// <summary>
-		///  StartDate
+		///	Start date of the expense report. (YYYY-MM-DD)
 		/// </summary>
 		[DataMember(Name = "StartDate")]
 		public string StartDate { get; set; }
 
 		/// <summary>
-		///  EndDate
+		///  End date of the expense report. (YYYY-MM-DD)
 		/// </summary>
 		[DataMember(Name = "EndDate")]
 		public string EndDate { get; set; }
 
 		/// <summary>
-		///  ExpenseReportName
+		///  	Name of the expense report.
 		/// </summary>
 		[DataMember(Name = "ExpenseReportName")]
-		public string ExpenseReportName { get; set; }
+		public string Name { get; set; }
 
 		/// <summary>
-		///  APSyncComplete
+		///  Indicates whether the expense report has been synchronized with a third party AP system. (true/false)
 		/// </summary>
 		[DataMember(Name = "APSyncComplete")]
 		public bool APSyncComplete { get; set; }
 
 		/// <summary>
-		///  Reimbursed
+		///  	Indicates whether the expense report has been reimbursed. (true/false)
 		/// </summary>
 		[DataMember(Name = "Reimbursed")]
 		public bool Reimbursed { get; set; }
 
 		/// <summary>
-		///  ReimbursedDate
+		///  Indicates date the expense report was reimbursed. (YYYY-MM-DD)
 		/// </summary>
 		[DataMember(Name = "ReimbursedDate")]
 		public string ReimbursedDate { get; set; }
 
 		/// <summary>
-		///  ReimbursementTransactionID
+		///  The numeric ACH transaction ID or 'Manual Pay'.
 		/// </summary>
 		[DataMember(Name = "ReimbursementTransactionID")]
 		public string ReimbursementTransactionId { get; set; }
 
 		/// <summary>
-		///  EmpGLD1Name
+		///  	The name of the value of the Employee General Ledger Dimension 1.
 		/// </summary>
 		[DataMember(Name = "EmpGLD1Name")]
 		public string EmpGld1Name { get; set; }
 
 		/// <summary>
-		///  EmpGLD1Code
+		///  The code of the value of the Employee General Ledger Dimension 1.
 		/// </summary>
 		[DataMember(Name = "EmpGLD1Code")]
 		public string EmpGld1Code { get; set; }
 
 		/// <summary>
-		///  EmpGLD2Name
+		///  The name of the value of the Employee General Ledger Dimension 2.
 		/// </summary>
 		[DataMember(Name = "EmpGLD2Name")]
 		public string EmpGld2Name { get; set; }
 
 		/// <summary>
-		///  EmpGLD2Code
+		///  The code of the value of the Employee General Ledger Dimension 2.
 		/// </summary>
 		[DataMember(Name = "EmpGLD2Code")]
 		public string EmpGld2Code { get; set; }
 
 		/// <summary>
-		///  EmpGLD3Name
+		///  The name of the value of the Employee General Ledger Dimension 3.
 		/// </summary>
 		[DataMember(Name = "EmpGLD3Name")]
 		public string EmpGld3Name { get; set; }
 
 		/// <summary>
-		///  EmpGLD3Code
+		///  The code of the value of the Employee General Ledger Dimension 3.
 		/// </summary>
 		[DataMember(Name = "EmpGLD3Code")]
 		public string EmpGld3Code { get; set; }
 
 		/// <summary>
-		///  EmpGLD4Name
+		///  The name of the value of the Employee General Ledger Dimension 4.
 		/// </summary>
 		[DataMember(Name = "EmpGLD4Name")]
 		public string EmpGld4Name { get; set; }
 
 		/// <summary>
-		///  EmpGLD4Code
+		///  The code of the value of the Employee General Ledger Dimension 4.
 		/// </summary>
 		[DataMember(Name = "EmpGLD4Code")]
 		public string EmpGld4Code { get; set; }
 
 		/// <summary>
-		///  EmpGLD5Name
+		///  The name of the value of the Employee General Ledger Dimension 5.
 		/// </summary>
 		[DataMember(Name = "EmpGLD5Name")]
 		public string EmpGld5Name { get; set; }
 
 		/// <summary>
-		///  EmpGLD5Code
+		///  The code of the value of the Employee General Ledger Dimension 5.
 		/// </summary>
 		[DataMember(Name = "EmpGLD5Code")]
 		public string EmpGld5Code { get; set; }
 	}
-
 }

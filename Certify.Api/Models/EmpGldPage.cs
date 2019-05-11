@@ -7,7 +7,7 @@ namespace Certify.Api.Models
 	/// A container for a list of EmpGlds
 	/// </summary>
 	[DataContract]
-	public class EmpGldContainer : Container
+	public class EmpGldPage : Page
 	{
 		/// <summary>
 		/// The Employee GLDs

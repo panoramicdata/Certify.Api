@@ -1,28 +1,38 @@
 ﻿using Certify.Api.Models;
 using Refit;
+using System;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
 {
+	/// <summary>
+	/// A User interface
+	/// </summary>
 	public interface IUsers
 	{
-		[Post("/users")]
-		Task PostAsync([Body] User user);
-
-		[Get("/users/{id}")]
-		Task<User> GetAsync(int id);
-
+		/// <summary>
+		/// This method will return a list of one or more users.
+		/// </summary>
+		/// <param name="username"></param>
+		/// <param name="active"></param>
+		/// <param name="role"></param>
+		/// <param name="page"></param>
+		/// <returns></returns>
 		[Get("/users")]
-		Task<MileageRatePage> GetAllAsync(
-			[AliasAs("name")] string name = null,
-			[AliasAs("code")] string code = null,
+		Task<UserPage> GetPageAsync(
+			[AliasAs("username")] string username = null,
 			[AliasAs("active")] uint? active = null,
+			[AliasAs("role")] string role = null,
 			[AliasAs("page")] uint? page = null);
 
-		[Put("/users")]
-		Task PutAsync([Body] User user);
-
-		[Delete("/users/{id}")]
-		Task DeleteAsync(int id);
+		/// <summary>
+		/// This method should return a specific user associated with the supplied ID value.
+		/// </summary>
+		/// <param name="id">The User ID</param>
+		/// <returns></returns>
+		[Get("/users/{id}")]
+		Task<UserPage> GetAsync(
+			Guid id
+			);
 	}
 }

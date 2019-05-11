@@ -1,28 +1,39 @@
 ﻿using Certify.Api.Models;
 using Refit;
+using System;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
 {
+	/// <summary>
+	/// An Invoice interface
+	/// </summary>
 	public interface IInvoices
 	{
-		[Post("/invoices")]
-		Task PostAsync([Body] Expense cpd);
-
-		[Get("/invoices/{id}")]
-		Task<Expense> GetAsync(int id);
-
+		/// <summary>
+		/// This method returns a list of one or more invoices from a processed invoice report.
+		/// </summary>
+		/// <param name="startDate">Starting point for the processed date range. (YYYY-MM-DD)</param>
+		/// <param name="endDate">Ending point for the processed date range. (YYYY-MM-DD)</param>
+		/// <param name="page">Desired page of result</param>
+		/// <param name="processed">Invoice report has been processed</param>
+		/// <returns></returns>
 		[Get("/invoices")]
-		Task<ExpensePage> GetAllAsync(
-			[AliasAs("name")] string name = null,
-			[AliasAs("code")] string code = null,
-			[AliasAs("active")] uint? active = null,
-			[AliasAs("page")] uint? page = null);
+		Task<InvoicePage> GetAllAsync(
+			[AliasAs("startdate")] string startDate = null,
+			[AliasAs("enddate")] string endDate = null,
+			[AliasAs("page")] uint? page = null,
+			[AliasAs("processed")] uint? processed = null
+			);
 
-		[Put("/invoices")]
-		Task PutAsync([Body] Expense cpd);
-
-		[Delete("/invoices/{id}")]
-		Task DeleteAsync(int id);
+		/// <summary>
+		/// This method returns a specific invoice associated with the supplied ID value.
+		/// </summary>
+		/// <param name="id">Invoice Report/Invoice ID	</param>
+		/// <returns></returns>
+		[Get("/invoices/{id}")]
+		Task<InvoicePage> GetAsync(
+			[AliasAs("id")] Guid id
+			);
 	}
 }

@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Certify.Api.Models
 {
-
 	/// <summary>
 	/// A page container
 	/// </summary>

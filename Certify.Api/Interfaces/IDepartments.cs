@@ -1,6 +1,7 @@
 ﻿using Certify.Api.Models;
 using Refit;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -38,7 +39,7 @@ namespace Certify.Api.Interfaces
 		/// <param name="cancellationToken"></param>
 		/// <returns>A separate status should be returned for each record, either "Updated" or "Error" with a detailed error message.</returns>
 		[Post("/departments")]
-		Task UpdateAsync(
+		Task<List<UpdateResult>> UpdateAsync(
 			[Body] Department department,
 			CancellationToken cancellationToken = default
 			);
@@ -50,7 +51,7 @@ namespace Certify.Api.Interfaces
 		/// <param name="cancellationToken">An optional cancellation token</param>
 		/// <returns>If successful, this method should return the ID of the new department.</returns>
 		[Put("/departments")]
-		Task CreateAsync(
+		Task<CreateResult> CreateAsync(
 			[Body] Department department,
 			CancellationToken cancellationToken = default
 			);
@@ -62,7 +63,7 @@ namespace Certify.Api.Interfaces
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
 		[Get("/departments/{id}")]
-		Task<Department> GetAsync(
+		Task<DepartmentPage> GetAsync(
 			Guid id,
 			CancellationToken cancellationToken = default
 			);

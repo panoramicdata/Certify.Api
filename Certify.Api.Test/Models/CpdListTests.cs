@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -18,6 +19,18 @@ namespace Certify.Api.Test.Models
 				.GetPageAsync()
 				.ConfigureAwait(false);
 			Assert.NotNull(result);
+
+			var firstItem = result.CpdLists.FirstOrDefault();
+
+			if (firstItem != null)
+			{
+				var refetch = await CertifyClient
+				.CpdLists
+				.GetAsync(firstItem.Id)
+				.ConfigureAwait(false);
+
+				Assert.Equal(firstItem.Id, refetch.Id);
+			}
 		}
 	}
 }

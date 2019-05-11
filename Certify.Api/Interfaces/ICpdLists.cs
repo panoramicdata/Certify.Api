@@ -1,5 +1,6 @@
 ﻿using Certify.Api.Models;
 using Refit;
+using System;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
@@ -9,14 +10,6 @@ namespace Certify.Api.Interfaces
 	/// </summary>
 	public interface ICpdLists
 	{
-		/// <summary>
-		/// This method should return a custom per-diem list associated with the supplied ID value, returning the same elements as the GET /cpdlists method.
-		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
-		[Get("/cpdlists/{id}")]
-		Task<CpdList> GetAsync(int id);
-
 		/// <summary>
 		/// This method will return a list of one or more custom per-diem lists for the current company.
 		/// </summary>
@@ -29,5 +22,13 @@ namespace Certify.Api.Interfaces
 			[AliasAs("name")] string name = null,
 			[AliasAs("active")] uint? active = null,
 			[AliasAs("page")] uint? page = null);
+
+		/// <summary>
+		/// This method should return a custom per-diem list associated with the supplied ID value, returning the same elements as the GET /cpdlists method.
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		[Get("/cpdlists/{id}")]
+		Task<CpdList> GetAsync(Guid id);
 	}
 }

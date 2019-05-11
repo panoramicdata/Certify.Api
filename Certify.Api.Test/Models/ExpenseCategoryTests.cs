@@ -11,13 +11,23 @@ namespace Certify.Api.Test.Models
 		}
 
 		[Fact]
-		public async Task GetAll()
+		public async Task GetPage()
 		{
-			var result = await CertifyClient
+			var page = await CertifyClient
 				.ExpenseCategories
-				.GetAllAsync()
+				.GetPageAsync()
 				.ConfigureAwait(false);
-			Assert.NotNull(result);
+			Assert.NotNull(page);
+			Assert.NotEmpty(page.ExpenseCategories);
+
+			var pageFirstItem = page.ExpenseCategories[0];
+			var refetch = await CertifyClient
+				.ExpenseCategories
+				.GetAsync(pageFirstItem.Id)
+				.ConfigureAwait(false);
+			Assert.NotNull(refetch);
+			Assert.Equal(pageFirstItem.Id, refetch.Id);
+			Assert.Equal(pageFirstItem.Name, refetch.Name);
 		}
 	}
 }
