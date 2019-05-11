@@ -11,11 +11,11 @@ namespace Certify.Api.Test.Models
 		}
 
 		[Fact]
-		public async Task GetAll()
+		public async Task GetPage_Succeeds()
 		{
 			var result = await CertifyClient
 				.Expenses
-				.GetAllAsync()
+				.GetPageAsync()
 				.ConfigureAwait(false);
 			Assert.NotNull(result);
 		}

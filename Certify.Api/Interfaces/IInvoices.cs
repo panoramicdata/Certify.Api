@@ -19,7 +19,7 @@ namespace Certify.Api.Interfaces
 		/// <param name="processed">Invoice report has been processed</param>
 		/// <returns></returns>
 		[Get("/invoices")]
-		Task<InvoicePage> GetAllAsync(
+		Task<InvoicePage> GetPageAsync(
 			[AliasAs("startdate")] string startDate = null,
 			[AliasAs("enddate")] string endDate = null,
 			[AliasAs("page")] uint? page = null,

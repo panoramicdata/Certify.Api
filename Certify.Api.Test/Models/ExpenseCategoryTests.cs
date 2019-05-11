@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -11,7 +12,7 @@ namespace Certify.Api.Test.Models
 		}
 
 		[Fact]
-		public async Task GetPage()
+		public async Task GetPage_Succeeds()
 		{
 			var page = await CertifyClient
 				.ExpenseCategories
@@ -26,8 +27,11 @@ namespace Certify.Api.Test.Models
 				.GetAsync(pageFirstItem.Id)
 				.ConfigureAwait(false);
 			Assert.NotNull(refetch);
-			Assert.Equal(pageFirstItem.Id, refetch.Id);
-			Assert.Equal(pageFirstItem.Name, refetch.Name);
+			Assert.NotNull(refetch.ExpenseCategories);
+			Assert.Single(refetch.ExpenseCategories);
+			var firstItem = refetch.ExpenseCategories.First();
+			Assert.Equal(pageFirstItem.Id, firstItem.Id);
+			Assert.Equal(pageFirstItem.Name, firstItem.Name);
 		}
 	}
 }

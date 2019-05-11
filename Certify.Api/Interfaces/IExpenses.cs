@@ -20,7 +20,7 @@ namespace Certify.Api.Interfaces
 		/// <param name="page">Desired page of result</param>
 		/// <returns></returns>
 		[Get("/expenses")]
-		Task<ExpensePage> GetAllAsync(
+		Task<ExpensePage> GetPageAsync(
 			[AliasAs("startdate")] string startDate = null,
 			[AliasAs("enddate")] string endDate = null,
 			[AliasAs("batchid")] string batchId = null,

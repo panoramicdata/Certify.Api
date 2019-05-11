@@ -63,7 +63,7 @@ namespace Certify.Api.Interfaces
 			[AliasAs("approvalcode")] string approvalCode,
 			[AliasAs("startdate")] string startDate,
 			[AliasAs("enddate")] string endDate,
-			[AliasAs("id")] string batchId
+			[AliasAs("batchid")] string batchId
 			);
 	}
 }

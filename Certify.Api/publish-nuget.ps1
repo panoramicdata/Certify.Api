@@ -13,10 +13,10 @@ $apiKey = Get-Content $apiKeyFilename;
 dotnet build -c Release
 dotnet build ..\Certify.Api.Test -c Debug
 dotnet test ..\Certify.Api.Test -c Debug
-#if ($lastexitcode -ne 0) {
-#	Write-Error "One or more tests failed. Aborting..."
-#	exit 1;
-#}
+if ($lastexitcode -ne 0) {
+	Write-Error "One or more tests failed. Aborting..."
+	exit 1;
+}
 
 dotnet pack -c Release
 

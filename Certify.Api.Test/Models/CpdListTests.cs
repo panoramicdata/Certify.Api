@@ -12,7 +12,7 @@ namespace Certify.Api.Test.Models
 		}
 
 		[Fact]
-		public async Task GetAll()
+		public async Task GetPage_Succeeds()
 		{
 			var result = await CertifyClient
 				.CpdLists

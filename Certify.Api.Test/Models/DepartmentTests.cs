@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -11,7 +12,7 @@ namespace Certify.Api.Test.Models
 		}
 
 		[Fact]
-		public async Task GetAll()
+		public async Task GetPage()
 		{
 			var result = await CertifyClient
 				.Departments
@@ -19,7 +20,17 @@ namespace Certify.Api.Test.Models
 				.ConfigureAwait(false);
 			Assert.NotNull(result);
 
-			if (result.)
+			var firstDepartment = result
+				.Departments
+				.FirstOrDefault();
+			if (firstDepartment != null)
+			{
+				var refetch = await CertifyClient
+				.Departments
+				.GetAsync(firstDepartment.Id)
+				.ConfigureAwait(false);
+				Assert.NotNull(refetch);
+			}
 		}
 	}
 }

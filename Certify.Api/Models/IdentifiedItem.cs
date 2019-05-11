@@ -12,7 +12,7 @@ namespace Certify.Api.Models
 		/// <summary>
 		/// The unique ID
 		/// </summary>
-		[DataMember(Name ="ID")]
+		[DataMember(Name = "ID")]
 		public Guid Id { get; set; }
 	}
 }
