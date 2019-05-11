@@ -7,7 +7,7 @@ namespace Certify.Api.Models
 	/// A container for a list of ExpenseCategories
 	/// </summary>
 	[DataContract]
-	public class ExpenseCategoryContainer
+	public class ExpenseCategoryPage : Page
 	{
 		[DataMember(Name = "ExpenseCategories")]
 		public List<ExpenseCategory> ExpenseCategories { get; set; }
