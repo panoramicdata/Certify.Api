@@ -1,10 +1,9 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace Certify.Api.Models
 {
 	/// <summary>
-	///  Emp general ledger dimension
+	///  Employee General Ledger Dimension
 	/// </summary>
 	[DataContract]
 	public class EmpGld : NamedDescribedIdentifiedItem
@@ -13,13 +12,13 @@ namespace Certify.Api.Models
 		/// The index
 		/// </summary>
 		[DataMember(Name = "EmpGLDIndex")]
-		public int EmpGldIndex { get; set; }
+		public int EmployeeGldIndex { get; set; }
 
 		/// <summary>
 		/// The label assigned the GLD by the client in Configuration.
 		/// </summary>
 		[DataMember(Name = "EmpGLDLabel")]
-		public string EmpGldLabel { get; set; }
+		public string EmployeeGldLabel { get; set; }
 
 		/// <summary>
 		/// 	The internal code used to identify the expense report GLD in your organization.

@@ -13,7 +13,7 @@ namespace Certify.Api.Interfaces
 		Task<ExpenseReport> GetAsync(int id);
 
 		[Get("/invoicereports")]
-		Task<ExpenseReportContainer> GetAllAsync(
+		Task<InvoiceReportPage> GetAllAsync(
 			[AliasAs("name")] string name = null,
 			[AliasAs("code")] string code = null,
 			[AliasAs("active")] uint? active = null,

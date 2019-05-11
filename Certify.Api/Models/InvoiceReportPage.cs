@@ -7,8 +7,11 @@ namespace Certify.Api.Models
 	/// A container for a list of InvoiceReports
 	/// </summary>
 	[DataContract]
-	public class InvoiceReportContainer : Container
+	public class InvoiceReportPage : Page
 	{
+		/// <summary>
+		/// The InvoiceReports
+		/// </summary>
 		[DataMember(Name = "InvoiceReports")]
 		public List<InvoiceReport> InvoiceReports { get; set; }
 	}

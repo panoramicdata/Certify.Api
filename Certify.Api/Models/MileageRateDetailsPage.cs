@@ -4,12 +4,12 @@ using System.Runtime.Serialization;
 namespace Certify.Api.Models
 {
 	/// <summary>
-	/// A container for a list of MileageRates
+	/// A MileageRatesDetails page
 	/// </summary>
 	[DataContract]
-	public class MileageRateContainer : Container
+	public class MileageRateDetailsPage : Page
 	{
 		[DataMember(Name = "MileageRates")]
-		public List<MileageRate> MileageRates { get; set; }
+		public List<MileageRateDetails> MileageRates { get; set; }
 	}
 }

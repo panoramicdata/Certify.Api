@@ -16,19 +16,19 @@ namespace Certify.Api.Models
 		public string Code { get; set; }
 
 		/// <summary>
-		/// Indicates that second level approval is required for all expenses in this department (1 = yes, 0 = no)	
+		/// Indicates that second level approval is required for all expenses in this department (1 = yes, 0 = no)
 		/// </summary>
 		[DataMember(Name = "ObtainSecondLevelApproval")]
 		public int ObtainSecondLevelApproval { get; set; }
 
 		/// <summary>
-		/// Indicates that this department will only display those expense categories linked with it (1 = yes, 0 = no)	
+		/// Indicates that this department will only display those expense categories linked with it (1 = yes, 0 = no)
 		/// </summary>
 		[DataMember(Name = "UseStrictFiltering")]
 		public int UseStrictFiltering { get; set; }
 
 		/// <summary>
-		/// Indicates that users in this department don’t need to select a department (1 = yes, 0 = no)	
+		/// Indicates that users in this department don’t need to select a department (1 = yes, 0 = no)
 		/// </summary>
 		[DataMember(Name = "HideDepartment")]
 		public int HideDepartment { get; set; }
@@ -40,7 +40,7 @@ namespace Certify.Api.Models
 		public int HideBillable { get; set; }
 
 		/// <summary>
-		/// Indicates the default billable value to use for this department (1 = billable, 0 = non-billable)	
+		/// Indicates the default billable value to use for this department (1 = billable, 0 = non-billable)
 		/// </summary>
 		[DataMember(Name = "HideBillableDefaultValue")]
 		public int HideBillableDefaultValue { get; set; }
@@ -52,7 +52,7 @@ namespace Certify.Api.Models
 		public int HideReimbursable { get; set; }
 
 		/// <summary>
-		/// Indicates the default reimbursable value to use for this department (1 = reimbursable, 0 = non-reimbursable)	
+		/// Indicates the default reimbursable value to use for this department (1 = reimbursable, 0 = non-reimbursable)
 		/// </summary>
 		[DataMember(Name = "HideReimbursableDefaultValue")]
 		public int HideReimbursableDefaultValue { get; set; }

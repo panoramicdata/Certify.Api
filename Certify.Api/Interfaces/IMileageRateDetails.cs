@@ -13,7 +13,7 @@ namespace Certify.Api.Interfaces
 		Task<MileageRateDetails> GetAsync(int id);
 
 		[Get("/mileageratedetails")]
-		Task<MileageRateDetailsContainer> GetAllAsync(
+		Task<MileageRateDetailsPage> GetAllAsync(
 			[AliasAs("name")] string name = null,
 			[AliasAs("code")] string code = null,
 			[AliasAs("active")] uint? active = null,
