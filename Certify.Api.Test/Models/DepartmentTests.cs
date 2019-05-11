@@ -13,7 +13,7 @@ namespace Certify.Api.Test.Cpd
 		[Fact]
 		public async Task GetAll()
 		{
-			var result = await CertifyClient.Departments.GetAllAsync();
+			var result = await CertifyClient.Departments.GetPageAsync();
 			Assert.NotNull(result);
 		}
 	}

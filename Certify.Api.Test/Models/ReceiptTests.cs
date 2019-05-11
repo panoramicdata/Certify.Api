@@ -4,16 +4,16 @@ using Xunit.Abstractions;
 
 namespace Certify.Api.Test.Cpd
 {
-	public class CpdListTests : CertifyTest
+	public class ReceiptTests : CertifyTest
 	{
-		public CpdListTests(ITestOutputHelper iTestOutputHelper) : base (iTestOutputHelper)
+		public ReceiptTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
 		{
 		}
 
 		[Fact]
 		public async Task GetAll()
 		{
-			var result = await CertifyClient.CpdLists.GetPageAsync();
+			var result = await CertifyClient.Receipts.GetAllAsync();
 			Assert.NotNull(result);
 		}
 	}

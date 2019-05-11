@@ -7,7 +7,7 @@ namespace Certify.Api.Models
 	/// A container for a list of ExpenseReport general ledger dimensions
 	/// </summary>
 	[DataContract]
-	public class ExpenseReportGldContainer
+	public class ExpenseReportGldContainer : Container
 	{
 		[DataMember(Name = "ExpenseReportGLDs")]
 		public List<ExpenseReportGld> ExpenseReportGlds { get; set; }

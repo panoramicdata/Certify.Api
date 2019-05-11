@@ -30,7 +30,7 @@ namespace Certify.Api.Models
 		///  EmployeeID
 		/// </summary>
 		[DataMember(Name = "EmployeeID")]
-		public string EmployeeID { get; set; }
+		public string EmployeeId { get; set; }
 
 		/// <summary>
 		///  NonReimAmount
@@ -126,7 +126,7 @@ namespace Certify.Api.Models
 		///  ReimbursementTransactionID
 		/// </summary>
 		[DataMember(Name = "ReimbursementTransactionID")]
-		public string ReimbursementTransactionID { get; set; }
+		public string ReimbursementTransactionId { get; set; }
 
 		/// <summary>
 		///  EmpGLD1Name

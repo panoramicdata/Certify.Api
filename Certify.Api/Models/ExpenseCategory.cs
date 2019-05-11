@@ -126,85 +126,85 @@ namespace Certify.Api.Models
 		///  Expense category used for CPD breakfast expenses (meal expense types for companies using CPD only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "CPDBreakfast")]
-		public int CustomPerDiemBreakfast { get; set; }
+		public int CpdBreakfast { get; set; }
 
 		/// <summary>
 		///  Expense category used for CPD lunch expenses (meal expense types for companies using CPD only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "CPDLunch")]
-		public int CustomPerDiemLunch { get; set; }
+		public int CpdLunch { get; set; }
 
 		/// <summary>
 		///  Expense category used for CPD dinner expenses (meal expense types for companies using CPD only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "CPDDinner")]
-		public int CustomPerDiemDinner { get; set; }
+		public int CpdDinner { get; set; }
 
 		/// <summary>
 		///  Expense category used for CPD incidental expenses (cash expense types for companies using CPD only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "CPDIncidentals")]
-		public int CustomPerDiemIncidentals { get; set; }
+		public int CpdIncidentals { get; set; }
 
 		/// <summary>
 		///  Expense category used for CPD lodging expenses (companies using CPD only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "CPDLodging")]
-		public int CustomPerDiemLodging { get; set; }
+		public int CpdLodging { get; set; }
 
 		/// <summary>
 		///  CPD reimbursement method (companies using CPD only; 0 = Expense Amount Capped, 1 = CPD Amount, 2 = CPD Amount No Expense Amount).
 		/// </summary>
 		[DataMember(Name = "CPDReimbursementMethodID")]
-		public int CustomPerDiemReimbursementMethodID { get; set; }
+		public int CpdReimbursementMethodId { get; set; }
 
 		/// <summary>
 		///  The unique ID of the Custom Per Diem List.
 		/// </summary>
 		[DataMember(Name = "CPDListID")]
-		public string CustomPerDiemListID { get; set; }
+		public string CpdListId { get; set; }
 
 		/// <summary>
 		///  Expense category uses GSA (companies using GSA only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "UseGSA")]
-		public int UseGSA { get; set; }
+		public int UseGsa { get; set; }
 
 		/// <summary>
 		///  	Expense category used for GSA breakfast expenses (meal expense types for companies using GSA only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "GSABreakfast")]
-		public int GSABreakfast { get; set; }
+		public int GsaBreakfast { get; set; }
 
 		/// <summary>
 		///  Expense category used for GSA lunch expenses (meal expense types for companies using GSA only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "GSALunch")]
-		public int GSALunch { get; set; }
+		public int GsaLunch { get; set; }
 
 		/// <summary>
 		///  Expense category used for GSA dinner expenses (meal expense types for companies using GSA only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "GSADinner")]
-		public int GSADinner { get; set; }
+		public int GsaDinner { get; set; }
 
 		/// <summary>
 		///  Expense category used for GSA incidental expenses (cash expense types for companies using GSA only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "GSAIncidentals")]
-		public int GSAIncidentals { get; set; }
+		public int GsaIncidentals { get; set; }
 
 		/// <summary>
 		///  Expense category used for GSA lodging expenses (companies using GSA only; 1 = true, 0 = false).
 		/// </summary>
 		[DataMember(Name = "GSALodging")]
-		public int GSALodging { get; set; }
+		public int GsaLodging { get; set; }
 
 		/// <summary>
 		///  GSA reimbursement method (companies using GSA only; 0 = Expense Amount Capped, 1 = GSA Amount, 2 = GSA Amount No Expense Amount).
 		/// </summary>
 		[DataMember(Name = "GSAReimbursementMethodID")]
-		public int GSAReimbursementMethodID { get; set; }
+		public int GSAReimbursementMethodId { get; set; }
 
 
 	}

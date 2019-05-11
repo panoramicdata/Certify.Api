@@ -4,25 +4,25 @@ using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
 {
-	public interface IMileageRates
+	public interface IUsers
 	{
-		[Post("/mileagerates")]
-		Task PostAsync([Body] MileageRate mileageRate);
+		[Post("/users")]
+		Task PostAsync([Body] User user);
 
-		[Get("/mileagerates/{id}")]
-		Task<MileageRate> GetAsync(int id);
+		[Get("/users/{id}")]
+		Task<User> GetAsync(int id);
 
-		[Get("/mileagerates")]
+		[Get("/users")]
 		Task<MileageRateContainer> GetAllAsync(
 			[AliasAs("name")] string name = null,
 			[AliasAs("code")] string code = null,
 			[AliasAs("active")] uint? active = null,
 			[AliasAs("page")] uint? page = null);
 
-		[Put("/mileagerates")]
-		Task PutAsync([Body] MileageRate mileageRate);
+		[Put("/users")]
+		Task PutAsync([Body] User user);
 
-		[Delete("/mileagerates/{id}")]
+		[Delete("/users/{id}")]
 		Task DeleteAsync(int id);
 	}
 }

@@ -7,7 +7,7 @@ namespace Certify.Api.Models
 	/// A container for a list of CpdLists
 	/// </summary>
 	[DataContract]
-	public class CpdListContainer
+	public class CpdListList : Container
 	{
 		[DataMember(Name ="CPDLists")]
 		public List<CpdList> CpdLists { get; set; }

@@ -38,6 +38,9 @@ namespace Certify.Api
 			InvoiceReports = RestService.For<IInvoiceReports>(httpClient);
 			Invoices = RestService.For<IInvoices>(httpClient);
 			MileageRates = RestService.For<IMileageRates>(httpClient);
+			MileageRateDetails = RestService.For<IMileageRateDetails>(httpClient);
+			Receipts = RestService.For<IReceipts>(httpClient);
+			Users = RestService.For<IUsers>(httpClient);
 		}
 
 		public ICpdLists CpdLists { get; }
@@ -59,5 +62,11 @@ namespace Certify.Api
 		public IInvoices Invoices { get; }
 
 		public IMileageRates MileageRates { get; }
+
+		public IMileageRateDetails MileageRateDetails { get; }
+
+		public IReceipts Receipts { get; }
+
+		public IUsers Users { get; }
 	}
 }

@@ -12,7 +12,7 @@ namespace Certify.Api.Models
 		///  InvoiceReportID
 		/// </summary>
 		[DataMember(Name = "InvoiceReportID")]
-		public string InvoiceReportID { get; set; }
+		public string InvoiceReportId { get; set; }
 
 		/// <summary>
 		///  EmployeeDepartment
@@ -42,7 +42,7 @@ namespace Certify.Api.Models
 		///  EmployeeID
 		/// </summary>
 		[DataMember(Name = "EmployeeID")]
-		public string EmployeeID { get; set; }
+		public string EmployeeId { get; set; }
 
 		/// <summary>
 		///  DepartmentName
@@ -168,7 +168,7 @@ namespace Certify.Api.Models
 		///  VendorID
 		/// </summary>
 		[DataMember(Name = "VendorID")]
-		public string VendorID { get; set; }
+		public string VendorId { get; set; }
 
 		/// <summary>
 		///  VendorCode
@@ -222,7 +222,7 @@ namespace Certify.Api.Models
 		///  VendorTaxpayerID
 		/// </summary>
 		[DataMember(Name = "VendorTaxpayerID")]
-		public string VendorTaxpayerID { get; set; }
+		public string VendorTaxpayerId { get; set; }
 
 		/// <summary>
 		///  Vendor1099
