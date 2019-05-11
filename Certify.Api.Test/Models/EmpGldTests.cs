@@ -6,14 +6,17 @@ namespace Certify.Api.Test.Cpd
 {
 	public class EmpGldTests : CertifyTest
 	{
-		public EmpGldTests(ITestOutputHelper iTestOutputHelper) : base (iTestOutputHelper)
+		public EmpGldTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
 		{
 		}
 
 		[Fact]
-		public async Task GetAll()
+		public async Task GetFirst()
 		{
-			var result = await CertifyClient.EmpGlds.GetAllAsync();
+			var result = await CertifyClient
+				.EmpGlds
+				.GetAsync(1)
+				.ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}

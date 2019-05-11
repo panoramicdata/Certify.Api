@@ -6,14 +6,17 @@ namespace Certify.Api.Test.Cpd
 {
 	public class ExpenseCategoryTests : CertifyTest
 	{
-		public ExpenseCategoryTests(ITestOutputHelper iTestOutputHelper) : base (iTestOutputHelper)
+		public ExpenseCategoryTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
 		{
 		}
 
 		[Fact]
 		public async Task GetAll()
 		{
-			var result = await CertifyClient.ExpenseCategories.GetAllAsync();
+			var result = await CertifyClient
+				.ExpenseCategories
+				.GetAllAsync()
+				.ConfigureAwait(false);
 			Assert.NotNull(result);
 		}
 	}
