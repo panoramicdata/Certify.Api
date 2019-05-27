@@ -6,7 +6,7 @@ namespace Certify.Api.Models
 	///  Expense report general ledger dimension
 	/// </summary>
 	[DataContract]
-	public class ExpenseReportGld : IdentifiedItem
+	public class ExpenseReportGld : NamedDescribedIdentifiedItem
 	{
 		/// <summary>
 		/// The index
