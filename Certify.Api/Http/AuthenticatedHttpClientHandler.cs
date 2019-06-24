@@ -39,9 +39,10 @@ namespace Certify.Api.Http
 					var result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
 					Debug.WriteLine($"{requestId} Content:");
-					Debug.WriteLine($"{requestId} {result}");
+					// Use below for the whole thing
+					//Debug.WriteLine($"{requestId} {result}");
 					// Use below for more truncated version
-					//Debug.WriteLine($"{requestId} {string.Join("", result.Cast<char>().Take(255))}...");
+					Debug.WriteLine($"{requestId} {string.Join("", result.Cast<char>().Take(1024))}...");
 				}
 			}
 #endif
