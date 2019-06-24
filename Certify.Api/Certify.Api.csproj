@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>David Bond</Authors>
+    <Authors>David Bond, Daniel Abbatt</Authors>
     <Company>Panoramic Data Limited</Company>
     <Description>An API for Certify</Description>
     <Copyright>Panoramic Data Limited 2019</Copyright>
