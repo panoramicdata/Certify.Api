@@ -26,10 +26,10 @@ namespace Certify.Api.Test.ModelTests
 			if (firstItem != null)
 			{
 				// There was at least one entry so none of these should be zero
-				//result.TotalRecordCount.Should().BeGreaterThan(0);
-				//result.TotalPageCount.Should().BeGreaterThan(0);
-				//result.PageNumber.Should().BeGreaterThan(0);
-				//result.PageRecordCount.Should().BeGreaterThan(0);
+				result.TotalRecordCount.Should().BeGreaterThan(0);
+				result.TotalPageCount.Should().BeGreaterThan(0);
+				result.PageNumber.Should().BeGreaterThan(0);
+				result.PageRecordCount.Should().BeGreaterThan(0);
 
 				var refetch = await CertifyClient
 				.CpdLists

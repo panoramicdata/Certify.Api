@@ -4,10 +4,10 @@ using System.Runtime.Serialization;
 namespace Certify.Api.Models
 {
 	/// <summary>
-	/// A container for a list of CpdLists
+	/// A CpdLists page
 	/// </summary>
 	[DataContract]
-	public class CpdListContainer : Container
+	public class CpdListPage : Page
 	{
 		/// <summary>
 		/// The CPD Lists

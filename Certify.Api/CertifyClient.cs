@@ -26,21 +26,24 @@ namespace Certify.Api
 				new AuthenticatedHttpClientHandler(
 					apiKey ?? throw new ArgumentNullException(nameof(apiKey)),
 					apiSecret ?? throw new ArgumentNullException(nameof(apiSecret))
-					)) { BaseAddress = new Uri("https://api.certify.com/v1/") };
+					))
+			{
+				BaseAddress = new Uri("https://api.certify.com/v1/")
+			};
 
-			CpdLists = RestService.For<ICpdLists>(httpClient);
-			Departments = RestService.For<IDepartments>(httpClient);
-			EmpGlds = RestService.For<IEmpGlds>(httpClient);
-			ExpenseCategories = RestService.For<IExpenseCategories>(httpClient);
-			ExpenseReports = RestService.For<IExpenseReports>(httpClient);
-			Expenses = RestService.For<IExpenses>(httpClient);
-			ExpenseReportGlds = RestService.For<IExpenseReportGlds>(httpClient);
-			InvoiceReports = RestService.For<IInvoiceReports>(httpClient);
-			Invoices = RestService.For<IInvoices>(httpClient);
-			MileageRates = RestService.For<IMileageRates>(httpClient);
-			MileageRateDetails = RestService.For<IMileageRateDetails>(httpClient);
-			Receipts = RestService.For<IReceipts>(httpClient);
-			Users = RestService.For<IUsers>(httpClient);
+			CpdLists = RestService.For<ICpdLists>(httpClient, refitSettings);
+			Departments = RestService.For<IDepartments>(httpClient, refitSettings);
+			EmpGlds = RestService.For<IEmpGlds>(httpClient, refitSettings);
+			ExpenseCategories = RestService.For<IExpenseCategories>(httpClient, refitSettings);
+			ExpenseReports = RestService.For<IExpenseReports>(httpClient, refitSettings);
+			Expenses = RestService.For<IExpenses>(httpClient, refitSettings);
+			ExpenseReportGlds = RestService.For<IExpenseReportGlds>(httpClient, refitSettings);
+			InvoiceReports = RestService.For<IInvoiceReports>(httpClient, refitSettings);
+			Invoices = RestService.For<IInvoices>(httpClient, refitSettings);
+			MileageRates = RestService.For<IMileageRates>(httpClient, refitSettings);
+			MileageRateDetails = RestService.For<IMileageRateDetails>(httpClient, refitSettings);
+			Receipts = RestService.For<IReceipts>(httpClient, refitSettings);
+			Users = RestService.For<IUsers>(httpClient, refitSettings);
 		}
 
 		public ICpdLists CpdLists { get; }
