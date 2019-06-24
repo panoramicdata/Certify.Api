@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Certify.Api.Test.Models
+namespace Certify.Api.Test.ModelTests
 {
 	public class ExpenseReportGldTests : CertifyTest
 	{

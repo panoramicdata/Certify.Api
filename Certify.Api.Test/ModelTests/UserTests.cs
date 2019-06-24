@@ -2,11 +2,11 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Certify.Api.Test.Models
+namespace Certify.Api.Test.ModelTests
 {
-	public class ExpenseTests : CertifyTest
+	public class UserTests : CertifyTest
 	{
-		public ExpenseTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
+		public UserTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
 		{
 		}
 
@@ -14,7 +14,7 @@ namespace Certify.Api.Test.Models
 		public async Task GetPage_Succeeds()
 		{
 			var result = await CertifyClient
-				.Expenses
+				.Users
 				.GetPageAsync()
 				.ConfigureAwait(false);
 			Assert.NotNull(result);
