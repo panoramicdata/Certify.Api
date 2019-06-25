@@ -1,4 +1,5 @@
 using Certify.Api.Models;
+using FluentAssertions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
@@ -17,15 +18,16 @@ namespace Certify.Api.Test.ModelTests
 		{
 			var results = new List<ExpenseReportGldPage>();
 
-			for(uint i = 1; i <= 5; i++)
+			for (uint i = 1; i <= 5; i++)
 			{
 				var result = await CertifyClient
 					.ExpenseReportGlds
 					.GetPageAsync(i)
 					.ConfigureAwait(false);
-				Assert.NotNull(result);
-				Assert.NotNull(result.ExpenseReportGlds);
-				Assert.NotEmpty(result.ExpenseReportGlds);
+
+				result.Should().NotBeNull();
+				result.ExpenseReportGlds.Should().NotBeNullOrEmpty();
+
 				results.Add(result);
 			}
 		}

@@ -47,7 +47,6 @@ namespace Certify.Api.Interfaces
 			[AliasAs("batchid")] string batchId
 			);
 
-
 		/// <summary>
 		/// This method returns all expenses for the processed expense report associated with the supplied ID value.
 		/// </summary>

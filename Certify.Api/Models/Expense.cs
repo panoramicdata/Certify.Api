@@ -235,6 +235,5 @@ namespace Certify.Api.Models
 		/// </summary>
 		[DataMember(Name = "CCLast")]
 		public string CcLast { get; set; }
-
 	}
 }

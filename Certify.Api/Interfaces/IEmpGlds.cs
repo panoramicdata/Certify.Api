@@ -11,6 +11,8 @@ namespace Certify.Api.Interfaces
 	/// </summary>
 	public interface IEmpGlds
 	{
+		// TODO - This should be paged
+
 		/// <summary>
 		/// This method will return a list of one or more employee GLD records for the current company.
 		/// </summary>

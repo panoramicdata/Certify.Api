@@ -10,6 +10,6 @@ namespace Certify.Api.Models
 	public class ReceiptPage : Page
 	{
 		[DataMember(Name = "Receipts")]
-		public List<Receipt> Receipt { get; set; }
+		public List<Receipt> Receipts { get; set; }
 	}
 }

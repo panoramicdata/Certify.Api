@@ -46,7 +46,6 @@ namespace Certify.Api.Models
 
 		/// <summary>
 		///  User access role (‘Accountants’, ‘Employees’, ‘Executives’, ‘Guests’, ‘Managers’)
-
 		/// </summary>
 		[DataMember(Name = "Role")]
 		public string Role { get; set; }
