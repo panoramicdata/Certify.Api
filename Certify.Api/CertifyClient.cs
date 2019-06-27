@@ -28,7 +28,7 @@ namespace Certify.Api
 					apiSecret ?? throw new ArgumentNullException(nameof(apiSecret))
 					))
 			{
-				BaseAddress = new Uri("https://api.certify.com/v1/")
+				BaseAddress = new Uri("https://api.certify.com/v1")
 			};
 
 			CpdLists = RestService.For<ICpdLists>(httpClient, refitSettings);

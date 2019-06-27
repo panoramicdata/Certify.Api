@@ -46,7 +46,7 @@ namespace Certify.Api.Interfaces
 		/// <param name="index"></param>
 		/// <param name="expenseReportGld"></param>
 		/// <returns>If successful, this method should return the ID of the new expense report GLD.</returns>
-		[Put("/exprptglds")]
+		[Put("/exprptglds/{index}")]
 		Task<CreateResult> CreateAsync(
 			[AliasAs("index")] uint index,
 			[Body] ExpenseReportGld expenseReportGld)

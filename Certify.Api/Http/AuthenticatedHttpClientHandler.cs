@@ -21,14 +21,38 @@ namespace Certify.Api.Http
 
 		protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
+			// The default content header being set by refit seems to be "Content-Type: application/json; charset=utf-8"
+			// Certify does NOT like this - needs to just be "application/json" otherwise you'll get an HTML response with "HTTP Error 400. The request has an invalid header name."
+			request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
 			request.Headers.Add("x-api-key", apiKey);
 			request.Headers.Add("x-api-secret", apiSecret);
-			var response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
+
 #if DEBUG
 			var requestId = Guid.NewGuid();
+			Debug.WriteLine($"{requestId} REQUEST ({request.Method} - {request.RequestUri})");
+			Debug.WriteLine($"{requestId} ** Headers");
+			foreach (var header in request.Headers)
+			{
+				Debug.WriteLine($"{requestId} {header.Key}: {string.Join(", ", header.Value)}");
+			}
+			Debug.WriteLine($"{requestId} ** Content Headers:");
+			foreach (var header in request.Content.Headers)
+			{
+				Debug.WriteLine($"{requestId} {header.Key}: {string.Join(", ", header.Value)}");
+			}
+			Debug.WriteLine($"{requestId} ** Content:");
+			var requestContent = await request.Content.ReadAsStringAsync().ConfigureAwait(false);
+			Debug.WriteLine($"{requestId} {requestContent}");
+#endif
+
+			var response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
+#if DEBUG
+			Debug.WriteLine($"{requestId} RESPONSE");
 			Debug.WriteLine($"{requestId} - {response.StatusCode} ({(int)response.StatusCode}) '{response.ReasonPhrase}'");
 			if (response.Content != null)
 			{
+				Debug.WriteLine($"{requestId} ** Content Headers:");
 				foreach (var header in response.Content.Headers)
 				{
 					Debug.WriteLine($"{requestId} {header.Key}: {string.Join(", ", header.Value)}");
@@ -38,7 +62,7 @@ namespace Certify.Api.Http
 				{
 					var result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-					Debug.WriteLine($"{requestId} Content:");
+					Debug.WriteLine($"{requestId} ** Content:");
 					// Use below for the whole thing
 					//Debug.WriteLine($"{requestId} {result}");
 					// Use below for more truncated version

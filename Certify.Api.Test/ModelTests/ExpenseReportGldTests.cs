@@ -37,11 +37,11 @@ namespace Certify.Api.Test.ModelTests
 		//{
 		//	var result = await CertifyClient
 		//		.ExpenseReportGlds
-		//		.CreateAsync(1, new ExpenseReportGld
+		//		.CreateAsync(3, new ExpenseReportGld
 		//		{
-		//			Name = "Ticket",
-		//			Code = "Ticket",
-		//			Description = "Ticket",
+		//			Name = "PDL-Test01-Name",
+		//			Code = "PDL-Test01-Code",
+		//			Description = "PDL-Test01-Description",
 		//			Active = 1
 		//		})
 		//		.ConfigureAwait(false);
