@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics;
+using System.Runtime.Serialization;
 
 namespace Certify.Api.Models
 {
@@ -6,6 +7,7 @@ namespace Certify.Api.Models
 	///  Expense report general ledger dimension
 	/// </summary>
 	[DataContract]
+	[DebuggerDisplay("{" + nameof(Name) + "} {" + nameof(Code) + "} {" + nameof(Id) + "}")]
 	public class ExpenseReportGld : NamedDescribedIdentifiedItem
 	{
 		/// <summary>
