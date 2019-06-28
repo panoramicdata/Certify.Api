@@ -18,20 +18,22 @@ namespace Certify.Api
 	{
 		public CertifyClient(string apiKey, string apiSecret, CertifyClientOptions options = default)
 		{
-			var jsonSerializerSettings = new JsonSerializerSettings
-			{
-				MissingMemberHandling = MissingMemberHandling.Ignore,
-			};
 			var refitSettings = new RefitSettings
 			{
-				ContentSerializer = new JsonContentSerializer(jsonSerializerSettings),
+				ContentSerializer = new JsonContentSerializer(
+					new JsonSerializerSettings
+					{
+						MissingMemberHandling = MissingMemberHandling.Ignore,
+					}),
 			};
+
 			var httpClient = new HttpClient(
 				new AuthenticatedHttpClientHandler(
 					apiKey ?? throw new ArgumentNullException(nameof(apiKey)),
 					apiSecret ?? throw new ArgumentNullException(nameof(apiSecret))
 					))
 			{
+				// This address should NOT end in "/" as the interface method paths are added to the end of this and Refit requires they start with "/"
 				BaseAddress = new Uri("https://api.certify.com/v1")
 			};
 
