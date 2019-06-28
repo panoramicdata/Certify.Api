@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Certify.Api.Interfaces;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 
 namespace Certify.Api.Models
@@ -8,7 +9,7 @@ namespace Certify.Api.Models
 	/// </summary>
 	[DataContract]
 	[DebuggerDisplay("{" + nameof(Name) + "} {" + nameof(Code) + "} {" + nameof(Id) + "}")]
-	public class ExpenseReportGld : NamedDescribedIdentifiedItem
+	public class ExpenseReportGld : NamedDescribedIdentifiedItem, ISupportsPaging
 	{
 		/// <summary>
 		/// The index

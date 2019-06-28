@@ -1,9 +1,13 @@
-﻿using Certify.Api.Http;
+﻿using Certify.Api.Exceptions;
+using Certify.Api.Http;
 using Certify.Api.Interfaces;
+using Certify.Api.Models;
 using Newtonsoft.Json;
 using Refit;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Certify.Api
 {
@@ -71,5 +75,39 @@ namespace Certify.Api
 		public IReceipts Receipts { get; }
 
 		public IUsers Users { get; }
+
+		/// <summary>
+		/// This is used by extension methods to get all pages for those types that support it
+		/// </summary>
+		/// <typeparam name="T">Something that supports paging in Certify</typeparam>
+		/// <param name="getPageFuncAsync">The function that will return a GenericPage of the type</param>
+		/// <returns>A final list of all results</returns>
+		internal static async Task<List<T>> GetAllAsync<T>(Func<uint, Task<GenericPage<T>>> getPageFuncAsync) where T : ISupportsPaging
+		{
+			// Test getting the first 5 indexes
+			var results = new List<T>();
+
+			uint pageNumber = 1;
+			GenericPage<T> page;
+			do
+			{
+				page = await getPageFuncAsync(pageNumber).ConfigureAwait(false);
+
+				// Did we get any?
+				if (page.Items.Count > 0)
+				{
+					// YES - Add to the list of results
+					results.AddRange(page.Items);
+				}
+			} while (pageNumber++ < page.TotalPageCount);
+
+			if (results.Count != page.TotalRecordCount)
+			{
+				// TODO - Could do a retry a few times, it just might be that the contents changed during paging
+				throw new PageCountMismatchException("Number of records retrieved does not match page TotalRecordCount");
+			}
+
+			return results;
+		}
 	}
 }

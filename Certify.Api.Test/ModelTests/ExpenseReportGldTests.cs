@@ -1,3 +1,4 @@
+using Certify.Api.Extensions;
 using Certify.Api.Models;
 using FluentAssertions;
 using System.Collections.Generic;
@@ -10,8 +11,6 @@ namespace Certify.Api.Test.ModelTests
 {
 	public class ExpenseReportGldTests : CertifyTest
 	{
-
-
 		public ExpenseReportGldTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
 		{
 		}
@@ -19,13 +18,14 @@ namespace Certify.Api.Test.ModelTests
 		[Fact]
 		public async Task GetPage_Succeeds()
 		{
+			// Test getting the first 5 indexes
 			var results = new List<ExpenseReportGldPage>();
 
-			for (uint i = 1; i <= 5; i++)
+			for (uint index = 1; index <= 5; index++)
 			{
 				var result = await CertifyClient
 					.ExpenseReportGlds
-					.GetPageAsync(i)
+					.GetPageAsync(index)
 					.ConfigureAwait(false);
 
 				result.Should().NotBeNull();
@@ -33,6 +33,13 @@ namespace Certify.Api.Test.ModelTests
 
 				results.Add(result);
 			}
+		}
+
+		[Fact]
+		public async Task GetAll_Succeeds()
+		{
+			var results2 = await CertifyClient.ExpenseReportGlds.GetAllAsync(2).ConfigureAwait(false);
+			results2.Should().NotBeNullOrEmpty();
 		}
 
 		[Fact(Skip = "Only run manually")]
