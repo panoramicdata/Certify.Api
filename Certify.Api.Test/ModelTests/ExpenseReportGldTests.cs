@@ -38,7 +38,10 @@ namespace Certify.Api.Test.ModelTests
 		[Fact]
 		public async Task GetAll_Succeeds()
 		{
-			var results2 = await CertifyClient.ExpenseReportGlds.GetAllAsync(2).ConfigureAwait(false);
+			var results2 = await CertifyClient
+				.ExpenseReportGlds
+				.GetAllAsync(2)
+				.ConfigureAwait(false);
 			results2.Should().NotBeNullOrEmpty();
 		}
 

@@ -8,10 +8,10 @@ namespace Certify.Api.Interfaces
 	/// <summary>
 	/// An Expense interface
 	/// </summary>
-	public interface IExpenses
+	public interface IExpenses : ISupportsPaging
 	{
 		/// <summary>
-		/// This method returns a list of one or more expenses from a procesed expense report.
+		/// This method returns a list of one or more expenses from a processed expense report.
 		/// </summary>
 		/// <param name="startDate">Starting point for the processed date range. (YYYY-MM-DD)</param>
 		/// <param name="endDate">Ending point for the processed date range. (YYYY-MM-DD)</param>

@@ -9,7 +9,7 @@ namespace Certify.Api.Models
 	[DataContract]
 	public class ExpensePage : Page
 	{
-		[DataMember(Name = "Expense")]
+		[DataMember(Name = "expenses")]
 		public List<Expense> Expenses { get; set; }
 	}
 }

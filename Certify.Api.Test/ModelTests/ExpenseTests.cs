@@ -1,3 +1,4 @@
+using Certify.Api.Extensions;
 using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
@@ -12,19 +13,14 @@ namespace Certify.Api.Test.ModelTests
 		}
 
 		[Fact]
-		public async Task GetPage_Succeeds()
+		public async Task GetAllAsync_Succeeds()
 		{
-			var page = await CertifyClient
+			var list = await CertifyClient
 				.Expenses
-				.GetPageAsync()
+				.GetAllAsync()
 				.ConfigureAwait(false);
-			page.Should().NotBeNull();
-			// TODO - Enable below once expenses are in a test system
-			//page.Expenses.Should().NotBeNullOrEmpty();
-			//page.TotalRecordCount.Should().BeGreaterThan(0);
-			//page.TotalPageCount.Should().BeGreaterThan(0);
-			//page.PageNumber.Should().BeGreaterThan(0);
-			//page.PageRecordCount.Should().BeGreaterThan(0);
+			list.Should().NotBeNullOrEmpty();
+			list.Count.Should().BeGreaterThan(0);
 		}
 	}
 }
