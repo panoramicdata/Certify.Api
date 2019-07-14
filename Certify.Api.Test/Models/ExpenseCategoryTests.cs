@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -29,7 +28,7 @@ namespace Certify.Api.Test.Models
 			Assert.NotNull(refetch);
 			Assert.NotNull(refetch.ExpenseCategories);
 			Assert.Single(refetch.ExpenseCategories);
-			var firstItem = refetch.ExpenseCategories.First();
+			var firstItem = refetch.ExpenseCategories[0];
 			Assert.Equal(pageFirstItem.Id, firstItem.Id);
 			Assert.Equal(pageFirstItem.Name, firstItem.Name);
 		}

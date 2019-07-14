@@ -1,6 +1,5 @@
 ﻿using Certify.Api.Http;
 using Certify.Api.Interfaces;
-using Newtonsoft.Json;
 using Refit;
 using System;
 using System.Net.Http;
@@ -12,21 +11,32 @@ namespace Certify.Api
 	/// </summary>
 	public class CertifyClient
 	{
-		public CertifyClient(string apiKey, string apiSecret, CertifyClientOptions options = default)
+		public CertifyClient(
+			string apiKey,
+			string apiSecret,
+			CertifyClientOptions options = default)
 		{
-			var jsonSerializerSettings = new JsonSerializerSettings
-			{
-				MissingMemberHandling = MissingMemberHandling.Ignore,
-			};
-			var refitSettings = new RefitSettings
-			{
-				ContentSerializer = new JsonContentSerializer(jsonSerializerSettings),
-			};
+			//var jsonSerializerSettings = new JsonSerializerSettings
+			//{
+			//	MissingMemberHandling = MissingMemberHandling.Ignore,
+			//};
+			//var refitSettings = new RefitSettings
+			//{
+			//	ContentSerializer = new JsonContentSerializer(jsonSerializerSettings),
+			//};
 			var httpClient = new HttpClient(
 				new AuthenticatedHttpClientHandler(
 					apiKey ?? throw new ArgumentNullException(nameof(apiKey)),
 					apiSecret ?? throw new ArgumentNullException(nameof(apiSecret))
-					)) { BaseAddress = new Uri("https://api.certify.com/v1/") };
+					))
+			{
+				BaseAddress = new Uri("https://api.certify.com/v1/")
+			};
+
+			if (options?.Timeout != null)
+			{
+				httpClient.Timeout = options.Timeout;
+			}
 
 			CpdLists = RestService.For<ICpdLists>(httpClient);
 			Departments = RestService.For<IDepartments>(httpClient);

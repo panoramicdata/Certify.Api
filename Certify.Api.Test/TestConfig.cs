@@ -17,7 +17,10 @@ namespace Certify.Api.Test
 			var configuration = builder.Build();
 
 			CertifyClient = new CertifyClient(configuration["Config:Credentials:ApiKey"], configuration["Config:Credentials:ApiSecret"]);
+			Logger = logger;
 		}
+
+		public ILogger Logger { get; }
 
 		internal CertifyClient CertifyClient { get; }
 	}

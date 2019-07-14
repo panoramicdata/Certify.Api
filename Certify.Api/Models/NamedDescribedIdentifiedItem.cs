@@ -17,8 +17,8 @@ namespace Certify.Api.Models
 		/// The internal description
 		/// </summary>
 		[DataMember(Name = "Description")]
-
 		public string Description { get; set; }
+
 		/// <summary>
 		/// Used to store various internal code values.
 		/// </summary>

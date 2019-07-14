@@ -25,7 +25,8 @@ namespace Certify.Api.Interfaces
 			[AliasAs("enddate")] string endDate = null,
 			[AliasAs("batchid")] string batchId = null,
 			[AliasAs("processed")] uint? processed = null,
-			[AliasAs("page")] uint? page = null
+			[AliasAs("page")] uint? page = null,
+			[AliasAs("includedisapproved")] uint? includeDisapproved = null
 			);
 
 		/// <summary>
