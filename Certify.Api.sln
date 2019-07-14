@@ -9,7 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
-		global.json = global.json
+		Certify.Api\publish-nuget.ps1 = Certify.Api\publish-nuget.ps1
+		version.json = version.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Certify.Api.Test", "Certify.Api.Test\Certify.Api.Test.csproj", "{AC01327D-2D09-45F7-9A1C-5A4A7F9061FC}"

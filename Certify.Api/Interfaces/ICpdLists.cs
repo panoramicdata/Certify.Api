@@ -18,7 +18,7 @@ namespace Certify.Api.Interfaces
 		/// <param name="page"></param>
 		/// <returns></returns>
 		[Get("/cpdlists")]
-		Task<CpdListContainer> GetPageAsync(
+		Task<CpdListPage> GetPageAsync(
 			[AliasAs("name")] string name = null,
 			[AliasAs("active")] uint? active = null,
 			[AliasAs("page")] uint? page = null);

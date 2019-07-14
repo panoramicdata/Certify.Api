@@ -1,8 +1,13 @@
-﻿using Certify.Api.Http;
+﻿using Certify.Api.Exceptions;
+using Certify.Api.Http;
 using Certify.Api.Interfaces;
+using Certify.Api.Models;
+using Newtonsoft.Json;
 using Refit;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Certify.Api
 {
@@ -16,41 +21,38 @@ namespace Certify.Api
 			string apiSecret,
 			CertifyClientOptions options = default)
 		{
-			//var jsonSerializerSettings = new JsonSerializerSettings
-			//{
-			//	MissingMemberHandling = MissingMemberHandling.Ignore,
-			//};
-			//var refitSettings = new RefitSettings
-			//{
-			//	ContentSerializer = new JsonContentSerializer(jsonSerializerSettings),
-			//};
+			var refitSettings = new RefitSettings
+			{
+				ContentSerializer = new JsonContentSerializer(
+					new JsonSerializerSettings
+					{
+						MissingMemberHandling = MissingMemberHandling.Ignore,
+					}),
+			};
+
 			var httpClient = new HttpClient(
 				new AuthenticatedHttpClientHandler(
 					apiKey ?? throw new ArgumentNullException(nameof(apiKey)),
 					apiSecret ?? throw new ArgumentNullException(nameof(apiSecret))
 					))
 			{
-				BaseAddress = new Uri("https://api.certify.com/v1/")
+				// This address should NOT end in "/" as the interface method paths are added to the end of this and Refit requires they start with "/"
+				BaseAddress = new Uri("https://api.certify.com/v1")
 			};
 
-			if (options?.Timeout != null)
-			{
-				httpClient.Timeout = options.Timeout;
-			}
-
-			CpdLists = RestService.For<ICpdLists>(httpClient);
-			Departments = RestService.For<IDepartments>(httpClient);
-			EmpGlds = RestService.For<IEmpGlds>(httpClient);
-			ExpenseCategories = RestService.For<IExpenseCategories>(httpClient);
-			ExpenseReports = RestService.For<IExpenseReports>(httpClient);
-			Expenses = RestService.For<IExpenses>(httpClient);
-			ExpenseReportGlds = RestService.For<IExpenseReportGlds>(httpClient);
-			InvoiceReports = RestService.For<IInvoiceReports>(httpClient);
-			Invoices = RestService.For<IInvoices>(httpClient);
-			MileageRates = RestService.For<IMileageRates>(httpClient);
-			MileageRateDetails = RestService.For<IMileageRateDetails>(httpClient);
-			Receipts = RestService.For<IReceipts>(httpClient);
-			Users = RestService.For<IUsers>(httpClient);
+			CpdLists = RestService.For<ICpdLists>(httpClient, refitSettings);
+			Departments = RestService.For<IDepartments>(httpClient, refitSettings);
+			EmpGlds = RestService.For<IEmpGlds>(httpClient, refitSettings);
+			ExpenseCategories = RestService.For<IExpenseCategories>(httpClient, refitSettings);
+			ExpenseReports = RestService.For<IExpenseReports>(httpClient, refitSettings);
+			Expenses = RestService.For<IExpenses>(httpClient, refitSettings);
+			ExpenseReportGlds = RestService.For<IExpenseReportGlds>(httpClient, refitSettings);
+			InvoiceReports = RestService.For<IInvoiceReports>(httpClient, refitSettings);
+			Invoices = RestService.For<IInvoices>(httpClient, refitSettings);
+			MileageRates = RestService.For<IMileageRates>(httpClient, refitSettings);
+			MileageRateDetails = RestService.For<IMileageRateDetails>(httpClient, refitSettings);
+			Receipts = RestService.For<IReceipts>(httpClient, refitSettings);
+			Users = RestService.For<IUsers>(httpClient, refitSettings);
 		}
 
 		public ICpdLists CpdLists { get; }
@@ -78,5 +80,39 @@ namespace Certify.Api
 		public IReceipts Receipts { get; }
 
 		public IUsers Users { get; }
+
+		/// <summary>
+		/// This is used by extension methods to get all pages for those types that support it
+		/// </summary>
+		/// <typeparam name="T">Something that supports paging in Certify</typeparam>
+		/// <param name="getPageFuncAsync">The function that will return a GenericPage of the type</param>
+		/// <returns>A final list of all results</returns>
+		internal static async Task<List<T>> GetAllAsync<T>(Func<uint, Task<GenericPage<T>>> getPageFuncAsync) where T : ISupportsPaging
+		{
+			// Test getting the first 5 indexes
+			var results = new List<T>();
+
+			uint pageNumber = 1;
+			GenericPage<T> page;
+			do
+			{
+				page = await getPageFuncAsync(pageNumber).ConfigureAwait(false);
+
+				// Did we get any?
+				if (page.Items.Count > 0)
+				{
+					// YES - Add to the list of results
+					results.AddRange(page.Items);
+				}
+			} while (pageNumber++ < page.TotalPageCount);
+
+			if (results.Count != page.TotalRecordCount)
+			{
+				// TODO - Could do a retry a few times, it just might be that the contents changed during paging
+				throw new PageCountMismatchException("Number of records retrieved does not match page TotalRecordCount");
+			}
+
+			return results;
+		}
 	}
 }

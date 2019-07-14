@@ -9,13 +9,14 @@ namespace Certify.Api.Test
 	{
 		public TestConfig(ILogger logger)
 		{
+			logger.LogDebug("Loading config...");
 			var location = typeof(TestConfig).GetTypeInfo().Assembly.Location;
 			var dirPath = Path.Combine(Path.GetDirectoryName(location), "../../..");
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(dirPath)
 				.AddJsonFile("appsettings.json");
 			var configuration = builder.Build();
-
+			logger.LogDebug("Creating client...");
 			CertifyClient = new CertifyClient(configuration["Config:Credentials:ApiKey"], configuration["Config:Credentials:ApiSecret"]);
 			Logger = logger;
 		}
