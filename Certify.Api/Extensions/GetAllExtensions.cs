@@ -36,7 +36,6 @@ namespace Certify.Api.Extensions
 			string endDate = null,
 			string batchId = null,
 			uint? processed = null,
-			uint? page = null,
 			uint? includeDisapproved = null
 			)
 		=>
@@ -48,7 +47,7 @@ namespace Certify.Api.Extensions
 						endDate,
 						batchId,
 						processed,
-						page,
+						pageNumber,
 						includeDisapproved)
 					.ConfigureAwait(false);
 				return new GenericPage<Expense>
