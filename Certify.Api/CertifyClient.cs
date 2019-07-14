@@ -40,6 +40,11 @@ namespace Certify.Api
 				BaseAddress = new Uri("https://api.certify.com/v1")
 			};
 
+			if (options?.Timeout != null)
+			{
+				httpClient.Timeout = options.Timeout;
+			}
+
 			CpdLists = RestService.For<ICpdLists>(httpClient, refitSettings);
 			Departments = RestService.For<IDepartments>(httpClient, refitSettings);
 			EmpGlds = RestService.For<IEmpGlds>(httpClient, refitSettings);
