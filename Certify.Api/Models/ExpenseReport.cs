@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using Certify.Api.Interfaces;
+using System.Runtime.Serialization;
 
 namespace Certify.Api.Models
 {
@@ -6,7 +7,7 @@ namespace Certify.Api.Models
 	///  Expense category
 	/// </summary>
 	[DataContract]
-	public class ExpenseReport : IdentifiedItem
+	public class ExpenseReport : IdentifiedItem, ISupportsPaging
 	{
 		/// <summary>
 		///  Department of the employee who the expense report belongs to.

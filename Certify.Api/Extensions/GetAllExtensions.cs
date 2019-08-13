@@ -1,5 +1,6 @@
 using Certify.Api.Interfaces;
 using Certify.Api.Models;
+using Refit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -55,6 +56,38 @@ namespace Certify.Api.Extensions
 					TotalPageCount = actualPage.TotalPageCount,
 					TotalRecordCount = actualPage.TotalRecordCount,
 					Items = actualPage.Expenses
+				};
+			});
+
+		public static Task<List<ExpenseReport>> GetAllAsync(this IExpenseReports expenseReports,
+			string approvalCode = null,
+			string startDate = null,
+			string endDate = null,
+			string batchId = null,
+			uint? processed = null,
+			string reimbursed = null,
+			string reimbursedstartdate = null,
+			string reimbursedenddate = null)
+		=>
+			CertifyClient.GetAllAsync(async (pageNumber) =>
+			{
+				var actualPage = await expenseReports
+				.GetPageAsync(
+					approvalCode,
+					startDate,
+					endDate,
+					batchId,
+					pageNumber,
+					processed,
+					reimbursed,
+					reimbursedstartdate,
+					reimbursedenddate)
+				.ConfigureAwait(false);
+				return new GenericPage<ExpenseReport>
+				{
+					TotalPageCount = actualPage.TotalPageCount,
+					TotalRecordCount = actualPage.TotalRecordCount,
+					Items = actualPage.ExpenseReports
 				};
 			});
 	}
