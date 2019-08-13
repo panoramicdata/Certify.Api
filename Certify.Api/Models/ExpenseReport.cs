@@ -72,6 +72,7 @@ namespace Certify.Api.Models
 		/// <summary>
 		/// Indicates whether the expense report has been processed. (true/false)
 		/// </summary>
+		[DataMember(Name = "Processed")]
 		public bool Processed { get; set; }
 
 		/// <summary>

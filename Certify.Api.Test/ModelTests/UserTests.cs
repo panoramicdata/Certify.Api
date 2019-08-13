@@ -2,6 +2,7 @@ using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
+using Certify.Api.Extensions;
 
 namespace Certify.Api.Test.ModelTests
 {
@@ -24,6 +25,17 @@ namespace Certify.Api.Test.ModelTests
 			page.TotalPageCount.Should().BeGreaterThan(0);
 			page.PageNumber.Should().BeGreaterThan(0);
 			page.PageRecordCount.Should().BeGreaterThan(0);
+		}
+
+		[Fact]
+		public async Task GetAll_Succeeds()
+		{
+			var users = await CertifyClient
+				.Users
+				.GetAllAsync()
+				.ConfigureAwait(false);
+			users.Should().NotBeNull();
+			users.Should().NotBeNullOrEmpty();
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using Certify.Api.Interfaces;
+using System.Runtime.Serialization;
 
 namespace Certify.Api.Models
 {
@@ -6,7 +7,7 @@ namespace Certify.Api.Models
 	/// User
 	/// </summary>
 	[DataContract]
-	public class User : IdentifiedItem
+	public class User : IdentifiedItem, ISupportsPaging
 	{
 		/// <summary>
 		///  Login name of the user

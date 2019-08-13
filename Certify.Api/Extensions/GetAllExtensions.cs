@@ -90,5 +90,27 @@ namespace Certify.Api.Extensions
 					Items = actualPage.ExpenseReports
 				};
 			});
+
+		public static Task<List<User>> GetAllAsync(this IUsers users,
+			string username = null,
+			uint? active = null,
+			string role = null)
+		=>
+			CertifyClient.GetAllAsync(async (pageNumber) =>
+			{
+				var actualPage = await users
+				.GetPageAsync(
+					username,
+					active,
+					role,
+					pageNumber)
+				.ConfigureAwait(false);
+				return new GenericPage<User>
+				{
+					TotalPageCount = actualPage.TotalPageCount,
+					TotalRecordCount = actualPage.TotalRecordCount,
+					Items = actualPage.Users
+				};
+			});
 	}
 }
