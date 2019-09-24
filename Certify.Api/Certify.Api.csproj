@@ -1,27 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>David Bond, Daniel Abbatt</Authors>
-    <Company>Panoramic Data Limited</Company>
-    <Description>An API for Certify</Description>
-    <Copyright>Panoramic Data Limited 2019</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/panoramicdata/Certify.Api</PackageProjectUrl>
-    <RepositoryUrl>git@github.com:panoramicdata/Certify.Api.git</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>certify api</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageIconUrl>https://pbs.twimg.com/profile_images/1042119787252510720/Ez2aVlzC_400x400.jpg</PackageIconUrl>
-    <PackageReleaseNotes>Added Users.GetAllAsync()</PackageReleaseNotes>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Authors>David Bond, Daniel Abbatt</Authors>
+		<Company>Panoramic Data Limited</Company>
+		<Description>An API for Certify</Description>
+		<Copyright>Panoramic Data Limited 2019</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/panoramicdata/Certify.Api</PackageProjectUrl>
+		<RepositoryUrl>git@github.com:panoramicdata/Certify.Api.git</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<LangVersion>latest</LangVersion>
+		<PackageTags>certify api</PackageTags>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageIconUrl>https://pbs.twimg.com/profile_images/1042119787252510720/Ez2aVlzC_400x400.jpg</PackageIconUrl>
+		<PackageReleaseNotes>Added Users.GetAllAsync()</PackageReleaseNotes>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Nerdbank.GitVersioning" Version="2.3.183">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Refit" Version="4.6.107" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Nerdbank.GitVersioning" Version="2.3.183">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Refit" Version="4.6.107" />
+	</ItemGroup>
 
 </Project>

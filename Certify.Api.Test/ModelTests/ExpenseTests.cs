@@ -17,7 +17,13 @@ namespace Certify.Api.Test.ModelTests
 		{
 			var list = await CertifyClient
 				.Expenses
-				.GetAllAsync()
+				.GetAllAsync(
+				"2019-07-30",
+				null,
+				null,
+				1,
+				1
+				)
 				.ConfigureAwait(false);
 			list.Should().NotBeNullOrEmpty();
 			list.Count.Should().BeGreaterThan(0);
