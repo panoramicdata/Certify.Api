@@ -1,9 +1,10 @@
 using Microsoft.Extensions.Logging;
+using System;
 using Xunit.Abstractions;
 
 namespace Certify.Api.Test
 {
-	public abstract class CertifyTest
+	public abstract class CertifyTest : IDisposable
 	{
 		protected CertifyClient CertifyClient { get; }
 		public ILogger Logger { get; }
@@ -14,5 +15,8 @@ namespace Certify.Api.Test
 			var testConfig = new TestConfig(Logger);
 			CertifyClient = testConfig.CertifyClient;
 		}
+
+		public void Dispose()
+			=> CertifyClient.Dispose();
 	}
 }

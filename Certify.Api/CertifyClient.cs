@@ -14,8 +14,10 @@ namespace Certify.Api
 	/// <summary>
 	/// The main Certify Client
 	/// </summary>
-	public class CertifyClient
+	public class CertifyClient : IDisposable
 	{
+		private readonly HttpClient _httpClient;
+
 		public CertifyClient(
 			string apiKey,
 			string apiSecret,
@@ -30,7 +32,7 @@ namespace Certify.Api
 					}),
 			};
 
-			var httpClient = new HttpClient(
+			_httpClient = new HttpClient(
 				new AuthenticatedHttpClientHandler(
 					apiKey ?? throw new ArgumentNullException(nameof(apiKey)),
 					apiSecret ?? throw new ArgumentNullException(nameof(apiSecret))
@@ -42,22 +44,22 @@ namespace Certify.Api
 
 			if (options?.Timeout != null)
 			{
-				httpClient.Timeout = options.Timeout;
+				_httpClient.Timeout = options.Timeout;
 			}
 
-			CpdLists = RestService.For<ICpdLists>(httpClient, refitSettings);
-			Departments = RestService.For<IDepartments>(httpClient, refitSettings);
-			EmpGlds = RestService.For<IEmpGlds>(httpClient, refitSettings);
-			ExpenseCategories = RestService.For<IExpenseCategories>(httpClient, refitSettings);
-			ExpenseReports = RestService.For<IExpenseReports>(httpClient, refitSettings);
-			Expenses = RestService.For<IExpenses>(httpClient, refitSettings);
-			ExpenseReportGlds = RestService.For<IExpenseReportGlds>(httpClient, refitSettings);
-			InvoiceReports = RestService.For<IInvoiceReports>(httpClient, refitSettings);
-			Invoices = RestService.For<IInvoices>(httpClient, refitSettings);
-			MileageRates = RestService.For<IMileageRates>(httpClient, refitSettings);
-			MileageRateDetails = RestService.For<IMileageRateDetails>(httpClient, refitSettings);
-			Receipts = RestService.For<IReceipts>(httpClient, refitSettings);
-			Users = RestService.For<IUsers>(httpClient, refitSettings);
+			CpdLists = RestService.For<ICpdLists>(_httpClient, refitSettings);
+			Departments = RestService.For<IDepartments>(_httpClient, refitSettings);
+			EmpGlds = RestService.For<IEmpGlds>(_httpClient, refitSettings);
+			ExpenseCategories = RestService.For<IExpenseCategories>(_httpClient, refitSettings);
+			ExpenseReports = RestService.For<IExpenseReports>(_httpClient, refitSettings);
+			Expenses = RestService.For<IExpenses>(_httpClient, refitSettings);
+			ExpenseReportGlds = RestService.For<IExpenseReportGlds>(_httpClient, refitSettings);
+			InvoiceReports = RestService.For<IInvoiceReports>(_httpClient, refitSettings);
+			Invoices = RestService.For<IInvoices>(_httpClient, refitSettings);
+			MileageRates = RestService.For<IMileageRates>(_httpClient, refitSettings);
+			MileageRateDetails = RestService.For<IMileageRateDetails>(_httpClient, refitSettings);
+			Receipts = RestService.For<IReceipts>(_httpClient, refitSettings);
+			Users = RestService.For<IUsers>(_httpClient, refitSettings);
 		}
 
 		public ICpdLists CpdLists { get; }
@@ -119,5 +121,8 @@ namespace Certify.Api
 
 			return results;
 		}
+
+		public void Dispose()
+			=> _httpClient.Dispose();
 	}
 }
