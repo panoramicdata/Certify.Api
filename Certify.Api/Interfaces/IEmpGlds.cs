@@ -2,6 +2,7 @@
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
@@ -26,7 +27,8 @@ namespace Certify.Api.Interfaces
 			[AliasAs("index")] uint index,
 			[AliasAs("name")] string name = null,
 			[AliasAs("code")] string code = null,
-			[AliasAs("active")] uint? active = null
+			[AliasAs("active")] uint? active = null,
+			CancellationToken cancellationToken = default
 			);
 
 		/// <summary>
@@ -38,7 +40,8 @@ namespace Certify.Api.Interfaces
 		/// <returns>A separate status should be returned for each record, either "Updated" or "Error" with a detailed error message.</returns>
 		[Post("/empglds/{index}")]
 		Task<List<UpdateResult>> UpdateAsync(
-			[AliasAs("index")] uint index
+			[AliasAs("index")] uint index,
+			CancellationToken cancellationToken = default
 			);
 
 		/// <summary>
@@ -48,7 +51,8 @@ namespace Certify.Api.Interfaces
 		/// <returns>A CreateResponse containing the ID of the new employee GLD.</returns>
 		[Put("/empglds")]
 		Task<CreateResult> CreateAsync(
-			[Body] EmpGld employeeGld
+			[Body] EmpGld employeeGld,
+			CancellationToken cancellationToken = default
 			);
 
 		/// <summary>
@@ -60,7 +64,8 @@ namespace Certify.Api.Interfaces
 		[Get("/empglds/{index}/{id}")]
 		Task<EmpGldPage> GetAsync(
 			[AliasAs("index")] uint index,
-			[AliasAs("id")] Guid Id
+			[AliasAs("id")] Guid Id,
+			CancellationToken cancellationToken = default
 			);
 	}
 }

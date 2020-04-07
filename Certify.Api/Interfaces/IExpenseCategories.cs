@@ -2,6 +2,7 @@
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
@@ -28,7 +29,9 @@ namespace Certify.Api.Interfaces
 			[AliasAs("expensetypeid")] string expenseTypeId = null,
 			[AliasAs("departmentfilterid")] string departmentFilterId = null,
 			[AliasAs("active")] uint? active = null,
-			[AliasAs("page")] uint? page = null);
+			[AliasAs("page")] uint? page = null,
+			CancellationToken cancellationToken = default
+			);
 
 		/// <summary>
 		/// For each expense category element in the POST body, this method will update expense
@@ -39,7 +42,8 @@ namespace Certify.Api.Interfaces
 		/// <returns>A separate status should be returned for each record, either "Updated" or "Error" with a detailed error message.</returns>
 		[Post("/expensecategories")]
 		Task<UpdateResult> UpdateAsync(
-			[Body] List<ExpenseCategory> expenseCategories
+			[Body] List<ExpenseCategory> expenseCategories,
+			CancellationToken cancellationToken = default
 			);
 
 		/// <summary>
@@ -48,15 +52,18 @@ namespace Certify.Api.Interfaces
 		/// <param name="expenseCategory">The ExpenseCategory to create.</param>
 		/// <returns>The ID of the new expense category</returns>
 		[Put("/expensecategories")]
-		Task<CreateResult> CreateAsync([Body] ExpenseCategory expenseCategory);
+		Task<CreateResult> CreateAsync([Body] ExpenseCategory expenseCategory,
+			CancellationToken cancellationToken = default
+			);
 
 		/// <summary>
 		/// This method returns an expense categories for the current company.
 		/// </summary>
 		/// <param name="id">Expense category ID</param>
 		/// <returns>an expense categories for the current company.</returns>
-
 		[Get("/expensecategories/{id}")]
-		Task<ExpenseCategoryPage> GetAsync(Guid id);
+		Task<ExpenseCategoryPage> GetAsync(Guid id,
+			CancellationToken cancellationToken = default
+			);
 	}
 }

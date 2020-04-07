@@ -1,6 +1,7 @@
 ﻿using Certify.Api.Models;
 using Refit;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
@@ -31,7 +32,8 @@ namespace Certify.Api.Interfaces
 			[AliasAs("processed")] uint? processed = null,
 			[AliasAs("reimbursed")] uint? reimbursed = null,
 			[AliasAs("reimbursedstartdate")] string reimbursedStartDate = null,
-			[AliasAs("reimbursedenddate")] string reimbursedEndDate = null
+			[AliasAs("reimbursedenddate")] string reimbursedEndDate = null,
+			CancellationToken cancellationToken = default
 			);
 
 		/// <summary>
@@ -41,7 +43,8 @@ namespace Certify.Api.Interfaces
 		/// <returns>The invoice report</returns>
 		[Get("/invoicereports/{id}")]
 		Task<InvoiceReportPage> GetAsync(
-			[AliasAs("id")] Guid id
+			[AliasAs("id")] Guid id,
+			CancellationToken cancellationToken = default
 			);
 	}
 }

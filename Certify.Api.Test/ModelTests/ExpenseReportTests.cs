@@ -1,8 +1,8 @@
+using Certify.Api.Extensions;
 using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
-using Certify.Api.Extensions;
 
 namespace Certify.Api.Test.ModelTests
 {

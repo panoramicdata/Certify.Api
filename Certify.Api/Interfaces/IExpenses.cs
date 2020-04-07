@@ -1,6 +1,7 @@
 ﻿using Certify.Api.Models;
 using Refit;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
@@ -26,7 +27,8 @@ namespace Certify.Api.Interfaces
 			[AliasAs("batchid")] string batchId = null,
 			[AliasAs("processed")] uint? processed = null,
 			[AliasAs("page")] uint? page = null,
-			[AliasAs("includedisapproved")] uint? includeDisapproved = null
+			[AliasAs("includedisapproved")] uint? includeDisapproved = null,
+			CancellationToken cancellationToken = default
 			);
 
 		/// <summary>
@@ -38,7 +40,8 @@ namespace Certify.Api.Interfaces
 		[Get("/expenses/{id}")]
 		Task<ExpensePage> GetAsync(
 			[AliasAs("id")] Guid id,
-			[AliasAs("batchid")] string batchId = null
+			[AliasAs("batchid")] string batchId = null,
+			CancellationToken cancellationToken = default
 			);
 	}
 }

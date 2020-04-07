@@ -23,6 +23,8 @@ namespace Certify.Api
 			string apiSecret,
 			CertifyClientOptions options = default)
 		{
+			options ??= new CertifyClientOptions();
+
 			var refitSettings = new RefitSettings
 			{
 				ContentSerializer = new JsonContentSerializer(
@@ -39,13 +41,9 @@ namespace Certify.Api
 					))
 			{
 				// This address should NOT end in "/" as the interface method paths are added to the end of this and Refit requires they start with "/"
-				BaseAddress = new Uri("https://api.certify.com/v1")
+				BaseAddress = new Uri("https://api.certify.com/v1"),
+				Timeout = options.Timeout
 			};
-
-			if (options?.Timeout != null)
-			{
-				_httpClient.Timeout = options.Timeout;
-			}
 
 			CpdLists = RestService.For<ICpdLists>(_httpClient, refitSettings);
 			Departments = RestService.For<IDepartments>(_httpClient, refitSettings);

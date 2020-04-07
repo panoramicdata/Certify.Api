@@ -1,6 +1,7 @@
 ﻿using Certify.Api.Models;
 using Refit;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
@@ -27,7 +28,9 @@ namespace Certify.Api.Interfaces
 			[AliasAs("startdate")] string startDate = null,
 			[AliasAs("enddate")] string endDate = null,
 			[AliasAs("batchid")] string batchId = null,
-			[AliasAs("page")] uint? page = null);
+			[AliasAs("page")] uint? page = null,
+			CancellationToken cancellationToken = default
+			);
 
 		/// <summary>
 		/// This method returns one receipt from a processed expense report.
@@ -36,7 +39,8 @@ namespace Certify.Api.Interfaces
 		/// <returns></returns>
 		[Get("/receipts/{id}")]
 		Task<ReceiptPage> GetAsync(
-			Guid id
+			Guid id,
+			CancellationToken cancellationToken = default
 			);
 	}
 }

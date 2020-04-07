@@ -2,6 +2,7 @@
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
@@ -26,7 +27,8 @@ namespace Certify.Api.Interfaces
 			[AliasAs("name")] string name = null,
 			[AliasAs("code")] string code = null,
 			[AliasAs("active")] uint? active = null,
-			[AliasAs("page")] uint page = 1
+			[AliasAs("page")] uint page = 1,
+			CancellationToken cancellationToken = default
 			);
 
 		/// <summary>
@@ -39,7 +41,8 @@ namespace Certify.Api.Interfaces
 		[Post("/exprptglds/{index}")]
 		Task<List<UpdateResult>> UpdateAsync(
 			[AliasAs("index")] uint index,
-			[Body] ExpenseReportGld expenseReportGld
+			[Body] ExpenseReportGld expenseReportGld,
+			CancellationToken cancellationToken = default
 			);
 
 		/// <summary>
@@ -51,8 +54,9 @@ namespace Certify.Api.Interfaces
 		[Put("/exprptglds/{index}")]
 		Task<CreateResult> CreateAsync(
 			[AliasAs("index")] uint index,
-			[Body] ExpenseReportGld expenseReportGld)
-			;
+			[Body] ExpenseReportGld expenseReportGld,
+			CancellationToken cancellationToken = default
+			);
 
 		/// <summary>
 		/// This method returns an expense report GLD record associated with the supplied ID value.
@@ -63,7 +67,8 @@ namespace Certify.Api.Interfaces
 		[Get("/exprptglds/{index}/{id}")]
 		Task<ExpenseReportGldPage> GetAsync(
 			[AliasAs("index")] uint index,
-			[AliasAs("id")] Guid id
+			[AliasAs("id")] Guid id,
+			CancellationToken cancellationToken = default
 			);
 	}
 }

@@ -7,6 +7,6 @@ namespace Certify.Api
 	/// </summary>
 	public class CertifyClientOptions
 	{
-		public TimeSpan Timeout { get; set; }
+		public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(120);
 	}
 }

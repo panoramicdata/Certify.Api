@@ -1,6 +1,7 @@
 ﻿using Certify.Api.Models;
 using Refit;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
@@ -21,7 +22,9 @@ namespace Certify.Api.Interfaces
 		Task<CpdListPage> GetPageAsync(
 			[AliasAs("name")] string name = null,
 			[AliasAs("active")] uint? active = null,
-			[AliasAs("page")] uint? page = null);
+			[AliasAs("page")] uint? page = null,
+			CancellationToken cancellationToken = default
+			);
 
 		/// <summary>
 		/// This method should return a custom per-diem list associated with the supplied ID value, returning the same elements as the GET /cpdlists method.
@@ -29,6 +32,8 @@ namespace Certify.Api.Interfaces
 		/// <param name="id"></param>
 		/// <returns></returns>
 		[Get("/cpdlists/{id}")]
-		Task<CpdList> GetAsync(Guid id);
+		Task<CpdList> GetAsync(Guid id,
+			CancellationToken cancellationToken = default
+			);
 	}
 }

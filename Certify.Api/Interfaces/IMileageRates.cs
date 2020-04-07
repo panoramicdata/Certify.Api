@@ -1,6 +1,7 @@
 ﻿using Certify.Api.Models;
 using Refit;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
@@ -19,7 +20,9 @@ namespace Certify.Api.Interfaces
 		[Get("/mileagerates")]
 		Task<MileageRatePage> GetPageAsync(
 			[AliasAs("name")] string name = null,
-			[AliasAs("page")] uint? page = null);
+			[AliasAs("page")] uint? page = null,
+			CancellationToken cancellationToken = default
+			);
 
 		/// <summary>
 		/// For each mileage rate element in the POST body, this method will update mileage
@@ -30,7 +33,8 @@ namespace Certify.Api.Interfaces
 		/// <returns>A separate status should be returned for each record, either "Updated" or "Error" with a detailed error message.</returns>
 		[Post("/mileagerates")]
 		Task<List<UpdateResult>> UpdateAsync(
-			[Body] List<MileageRate> mileageRates
+			[Body] List<MileageRate> mileageRates,
+			CancellationToken cancellationToken = default
 			);
 
 		/// <summary>
@@ -40,7 +44,8 @@ namespace Certify.Api.Interfaces
 		/// <returns></returns>
 		[Put("/mileagerates")]
 		Task<CreateResult> CreateAsync(
-			[Body] MileageRate mileageRate
+			[Body] MileageRate mileageRate,
+			CancellationToken cancellationToken = default
 			);
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using Certify.Api.Models;
 using Refit;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Interfaces
@@ -20,7 +21,9 @@ namespace Certify.Api.Interfaces
 		Task<MileageRateDetailsPage> GetPageAsync(
 			[AliasAs("effectivedatestart")] string effectiveDateStart = null,
 			[AliasAs("effectivedateend")] string effectiveDateEnd = null,
-			[AliasAs("page")] uint? page = null);
+			[AliasAs("page")] uint? page = null,
+			CancellationToken cancellationToken = default
+			);
 
 		/// <summary>
 		/// This method creates a new mileage rate detail record for the user’s company.
@@ -31,6 +34,9 @@ namespace Certify.Api.Interfaces
 		/// <param name="mileageRateDetails">The MileageRateDetails to create</param>
 		/// <returns>If successful, this method should return the ID of the new mileage rate detail record.</returns>
 		[Put("/mileageratedetails")]
-		Task<CreateResult> CreateAsync([Body] MileageRateDetails mileageRateDetails);
+		Task<CreateResult> CreateAsync(
+			[Body] MileageRateDetails mileageRateDetails,
+			CancellationToken cancellationToken = default
+			);
 	}
 }
