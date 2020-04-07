@@ -13,16 +13,18 @@
 		<LangVersion>latest</LangVersion>
 		<PackageTags>certify api</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageIconUrl>https://pbs.twimg.com/profile_images/1042119787252510720/Ez2aVlzC_400x400.jpg</PackageIconUrl>
+		<PackageIcon>Icon.png</PackageIcon>
 		<PackageReleaseNotes>CertifyClient is now IDisposable</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Nerdbank.GitVersioning" Version="3.1.74">
-		<PrivateAssets>all</PrivateAssets>
-		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Refit" Version="5.1.54" />
+		<None Remove="Icon.png" />
+		<None Include="Icon.png" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 </Project>
