@@ -27,7 +27,7 @@ namespace Certify.Api
 
 			var refitSettings = new RefitSettings
 			{
-				ContentSerializer = new JsonContentSerializer(
+				ContentSerializer = new NewtonsoftJsonContentSerializer(
 					new JsonSerializerSettings
 					{
 						MissingMemberHandling = MissingMemberHandling.Ignore,
