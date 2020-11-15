@@ -26,15 +26,15 @@ namespace Certify.Api.Interfaces
 		/// <returns>Page of ExpenseReports</returns>
 		[Get("/expensereports")]
 		Task<ExpenseReportPage> GetPageAsync(
-			[AliasAs("approvalcode")] string approvalCode = null,
-			[AliasAs("startdate")] string startDate = null,
-			[AliasAs("enddate")] string endDate = null,
-			[AliasAs("batchid")] string batchId = null,
+			[AliasAs("approvalcode")] string? approvalCode = null,
+			[AliasAs("startdate")] string? startDate = null,
+			[AliasAs("enddate")] string? endDate = null,
+			[AliasAs("batchid")] string? batchId = null,
 			[AliasAs("page")] uint? page = null,
 			[AliasAs("processed")] uint? processed = null,
-			[AliasAs("reimbursed")] string reimbursed = null,
-			[AliasAs("reimbursedstartdate")] string reimbursedstartdate = null,
-			[AliasAs("reimbursedenddate")] string reimbursedenddate = null,
+			[AliasAs("reimbursed")] string? reimbursed = null,
+			[AliasAs("reimbursedstartdate")] string? reimbursedstartdate = null,
+			[AliasAs("reimbursedenddate")] string? reimbursedenddate = null,
 			CancellationToken cancellationToken = default
 			);
 
@@ -46,7 +46,7 @@ namespace Certify.Api.Interfaces
 		[Get("/expensereports/{id}")]
 		Task<ExpenseReportPage> GetAsync(
 			[AliasAs("id")] Guid id,
-			[AliasAs("batchid")] string batchId,
+			[AliasAs("batchid")] string? batchId,
 			CancellationToken cancellationToken = default
 			);
 
@@ -62,10 +62,10 @@ namespace Certify.Api.Interfaces
 		[Get("/expensereports/{id}/expenses")]
 		Task<ExpensePage> GetExpensesAsync(
 			[AliasAs("id")] Guid id,
-			[AliasAs("approvalcode")] string approvalCode,
-			[AliasAs("startdate")] string startDate,
-			[AliasAs("enddate")] string endDate,
-			[AliasAs("batchid")] string batchId,
+			[AliasAs("approvalcode")] string? approvalCode,
+			[AliasAs("startdate")] string? startDate,
+			[AliasAs("enddate")] string? endDate,
+			[AliasAs("batchid")] string? batchId,
 			CancellationToken cancellationToken = default
 			);
 	}

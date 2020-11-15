@@ -21,9 +21,9 @@ namespace Certify.Api.Interfaces
 		/// <returns></returns>
 		[Get("/users")]
 		Task<UserPage> GetPageAsync(
-			[AliasAs("username")] string username = null,
+			[AliasAs("username")] string? username = null,
 			[AliasAs("active")] uint? active = null,
-			[AliasAs("role")] string role = null,
+			[AliasAs("role")] string? role = null,
 			[AliasAs("page")] uint? page = null,
 			CancellationToken cancellationToken = default
 			);

@@ -24,8 +24,8 @@ namespace Certify.Api.Interfaces
 		[Get("/exprptglds/{index}")]
 		Task<ExpenseReportGldPage> GetPageAsync(
 			[AliasAs("index")] uint index,
-			[AliasAs("name")] string name = null,
-			[AliasAs("code")] string code = null,
+			[AliasAs("name")] string? name = null,
+			[AliasAs("code")] string? code = null,
 			[AliasAs("active")] uint? active = null,
 			[AliasAs("page")] uint page = 1,
 			CancellationToken cancellationToken = default

@@ -25,9 +25,9 @@ namespace Certify.Api.Interfaces
 		Task<ReceiptPage> GetPageAsync(
 			[AliasAs("expid")] Guid? expenseId = null,
 			[AliasAs("exprptid")] Guid? expenseReportId = null,
-			[AliasAs("startdate")] string startDate = null,
-			[AliasAs("enddate")] string endDate = null,
-			[AliasAs("batchid")] string batchId = null,
+			[AliasAs("startdate")] string? startDate = null,
+			[AliasAs("enddate")] string? endDate = null,
+			[AliasAs("batchid")] string? batchId = null,
 			[AliasAs("page")] uint? page = null,
 			CancellationToken cancellationToken = default
 			);

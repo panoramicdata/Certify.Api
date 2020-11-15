@@ -10,8 +10,8 @@ namespace Certify.Api.Extensions
 	{
 		public static Task<List<ExpenseReportGld>> GetAllAsync(this IExpenseReportGlds expenseReportGlds,
 			uint index,
-			string name = null,
-			string code = null,
+			string? name = null,
+			string? code = null,
 			uint? active = null)
 		=>
 			CertifyClient.GetAllAsync(async (pageNumber) =>
@@ -33,9 +33,9 @@ namespace Certify.Api.Extensions
 			});
 
 		public static Task<List<Expense>> GetAllAsync(this IExpenses expenses,
-			string startDate = null,
-			string endDate = null,
-			string batchId = null,
+			string? startDate = null,
+			string? endDate = null,
+			string? batchId = null,
 			uint? processed = null,
 			uint? includeDisapproved = null
 			)
@@ -60,14 +60,14 @@ namespace Certify.Api.Extensions
 			});
 
 		public static Task<List<ExpenseReport>> GetAllAsync(this IExpenseReports expenseReports,
-			string approvalCode = null,
-			string startDate = null,
-			string endDate = null,
-			string batchId = null,
+			string? approvalCode = null,
+			string? startDate = null,
+			string? endDate = null,
+			string? batchId = null,
 			uint? processed = null,
-			string reimbursed = null,
-			string reimbursedstartdate = null,
-			string reimbursedenddate = null)
+			string? reimbursed = null,
+			string? reimbursedstartdate = null,
+			string? reimbursedenddate = null)
 		=>
 			CertifyClient.GetAllAsync(async (pageNumber) =>
 			{
@@ -92,9 +92,9 @@ namespace Certify.Api.Extensions
 			});
 
 		public static Task<List<User>> GetAllAsync(this IUsers users,
-			string username = null,
+			string? username = null,
 			uint? active = null,
-			string role = null)
+			string? role = null)
 		=>
 			CertifyClient.GetAllAsync(async (pageNumber) =>
 			{

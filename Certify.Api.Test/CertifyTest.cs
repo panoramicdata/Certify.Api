@@ -6,6 +6,8 @@ namespace Certify.Api.Test
 {
 	public abstract class CertifyTest : IDisposable
 	{
+		private bool disposedValue;
+
 		protected CertifyClient CertifyClient { get; }
 		public ILogger Logger { get; }
 
@@ -16,7 +18,24 @@ namespace Certify.Api.Test
 			CertifyClient = testConfig.CertifyClient;
 		}
 
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!disposedValue)
+			{
+				if (disposing)
+				{
+					CertifyClient.Dispose();
+				}
+
+				disposedValue = true;
+			}
+		}
+
 		public void Dispose()
-			=> CertifyClient.Dispose();
+		{
+			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+			Dispose(disposing: true);
+			GC.SuppressFinalize(this);
+		}
 	}
 }

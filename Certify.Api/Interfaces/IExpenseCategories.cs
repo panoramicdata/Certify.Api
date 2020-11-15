@@ -24,10 +24,10 @@ namespace Certify.Api.Interfaces
 		/// <returns></returns>
 		[Get("/expensecategories")]
 		Task<ExpenseCategoryPage> GetPageAsync(
-			[AliasAs("name")] string name = null,
-			[AliasAs("glcode")] string glCode = null,
-			[AliasAs("expensetypeid")] string expenseTypeId = null,
-			[AliasAs("departmentfilterid")] string departmentFilterId = null,
+			[AliasAs("name")] string? name = null,
+			[AliasAs("glcode")] string? glCode = null,
+			[AliasAs("expensetypeid")] string? expenseTypeId = null,
+			[AliasAs("departmentfilterid")] string? departmentFilterId = null,
 			[AliasAs("active")] uint? active = null,
 			[AliasAs("page")] uint? page = null,
 			CancellationToken cancellationToken = default

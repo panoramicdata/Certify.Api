@@ -19,7 +19,7 @@ namespace Certify.Api.Interfaces
 		/// <returns></returns>
 		[Get("/mileagerates")]
 		Task<MileageRatePage> GetPageAsync(
-			[AliasAs("name")] string name = null,
+			[AliasAs("name")] string? name = null,
 			[AliasAs("page")] uint? page = null,
 			CancellationToken cancellationToken = default
 			);

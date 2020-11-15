@@ -10,19 +10,20 @@
 		<PackageProjectUrl>https://github.com/panoramicdata/Certify.Api</PackageProjectUrl>
 		<RepositoryUrl>git@github.com:panoramicdata/Certify.Api.git</RepositoryUrl>
 		<RepositoryType>Git</RepositoryType>
+		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
 		<PackageTags>certify api</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageIcon>Icon.png</PackageIcon>
-		<PackageReleaseNotes>CertifyClient is now IDisposable</PackageReleaseNotes>
+		<PackageReleaseNotes>Updated to nullable enable.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Nerdbank.GitVersioning" Version="3.1.74">
+		<PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Refit" Version="5.1.54" />
+		<PackageReference Include="Refit" Version="5.2.1" />
 		<None Remove="Icon.png" />
 		<None Include="Icon.png" Pack="true" PackagePath="" />
 	</ItemGroup>

@@ -11,7 +11,7 @@ namespace Certify.Api.Test
 		{
 			logger.LogDebug("Loading config...");
 			var location = typeof(TestConfig).GetTypeInfo().Assembly.Location;
-			var dirPath = Path.Combine(Path.GetDirectoryName(location), "../../..");
+			var dirPath = Path.Combine(Path.GetDirectoryName(location) ?? string.Empty, "../../..");
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(dirPath)
 				.AddJsonFile("appsettings.json");

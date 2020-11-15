@@ -23,8 +23,8 @@ namespace Certify.Api.Interfaces
 		/// <returns></returns>
 		[Get("/departments")]
 		Task<DepartmentPage> GetPageAsync(
-			[AliasAs("name")] string name = null,
-			[AliasAs("code")] string code = null,
+			[AliasAs("name")] string? name = null,
+			[AliasAs("code")] string? code = null,
 			[AliasAs("active")] uint? active = null,
 			[AliasAs("page")] uint? page = null,
 			CancellationToken cancellationToken = default

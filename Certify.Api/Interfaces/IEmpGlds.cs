@@ -25,8 +25,8 @@ namespace Certify.Api.Interfaces
 		[Get("/empglds/{index}")]
 		Task<EmpGldPage> GetAsync(
 			[AliasAs("index")] uint index,
-			[AliasAs("name")] string name = null,
-			[AliasAs("code")] string code = null,
+			[AliasAs("name")] string? name = null,
+			[AliasAs("code")] string? code = null,
 			[AliasAs("active")] uint? active = null,
 			CancellationToken cancellationToken = default
 			);

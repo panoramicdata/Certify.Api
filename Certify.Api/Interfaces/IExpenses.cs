@@ -22,9 +22,9 @@ namespace Certify.Api.Interfaces
 		/// <returns></returns>
 		[Get("/expenses")]
 		Task<ExpensePage> GetPageAsync(
-			[AliasAs("startdate")] string startDate = null,
-			[AliasAs("enddate")] string endDate = null,
-			[AliasAs("batchid")] string batchId = null,
+			[AliasAs("startdate")] string? startDate = null,
+			[AliasAs("enddate")] string? endDate = null,
+			[AliasAs("batchid")] string? batchId = null,
 			[AliasAs("processed")] uint? processed = null,
 			[AliasAs("page")] uint? page = null,
 			[AliasAs("includedisapproved")] uint? includeDisapproved = null,
@@ -40,7 +40,7 @@ namespace Certify.Api.Interfaces
 		[Get("/expenses/{id}")]
 		Task<ExpensePage> GetAsync(
 			[AliasAs("id")] Guid id,
-			[AliasAs("batchid")] string batchId = null,
+			[AliasAs("batchid")] string? batchId = null,
 			CancellationToken cancellationToken = default
 			);
 	}

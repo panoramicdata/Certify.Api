@@ -19,8 +19,8 @@ namespace Certify.Api.Interfaces
 		/// <returns></returns>
 		[Get("/mileageratedetails")]
 		Task<MileageRateDetailsPage> GetPageAsync(
-			[AliasAs("effectivedatestart")] string effectiveDateStart = null,
-			[AliasAs("effectivedateend")] string effectiveDateEnd = null,
+			[AliasAs("effectivedatestart")] string? effectiveDateStart = null,
+			[AliasAs("effectivedateend")] string? effectiveDateEnd = null,
 			[AliasAs("page")] uint? page = null,
 			CancellationToken cancellationToken = default
 			);

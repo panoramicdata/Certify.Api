@@ -21,9 +21,9 @@ namespace Certify.Api
 		public CertifyClient(
 			string apiKey,
 			string apiSecret,
-			CertifyClientOptions options = default)
+			CertifyClientOptions? options = null)
 		{
-			options ??= new CertifyClientOptions();
+			options ??= new();
 
 			var refitSettings = new RefitSettings
 			{

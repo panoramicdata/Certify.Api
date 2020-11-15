@@ -25,14 +25,14 @@ namespace Certify.Api.Interfaces
 		/// <returns></returns>
 		[Get("/invoicereports")]
 		Task<InvoiceReportPage> GetPageAsync(
-			[AliasAs("approvalcode")] string approvalCode = null,
-			[AliasAs("startdate")] string startDate = null,
-			[AliasAs("enddate")] string endDate = null,
+			[AliasAs("approvalcode")] string? approvalCode = null,
+			[AliasAs("startdate")] string? startDate = null,
+			[AliasAs("enddate")] string? endDate = null,
 			[AliasAs("page")] uint? page = null,
 			[AliasAs("processed")] uint? processed = null,
 			[AliasAs("reimbursed")] uint? reimbursed = null,
-			[AliasAs("reimbursedstartdate")] string reimbursedStartDate = null,
-			[AliasAs("reimbursedenddate")] string reimbursedEndDate = null,
+			[AliasAs("reimbursedstartdate")] string? reimbursedStartDate = null,
+			[AliasAs("reimbursedenddate")] string? reimbursedEndDate = null,
 			CancellationToken cancellationToken = default
 			);
 
