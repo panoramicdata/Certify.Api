@@ -11,19 +11,19 @@ namespace Certify.Api.Models
 		/// The name
 		/// </summary>
 		[DataMember(Name = "Name")]
-		public string Name { get; set; }
+		public string? Name { get; set; }
 
 		/// <summary>
 		/// The internal description
 		/// </summary>
 		[DataMember(Name = "Description")]
-		public string Description { get; set; }
+		public string? Description { get; set; }
 
 		/// <summary>
 		/// Used to store various internal code values.
 		/// </summary>
 		[DataMember(Name = "Data")]
-		public string Data { get; set; }
+		public string? Data { get; set; }
 
 		/// <summary>
 		/// The active status (1 = active, 0 = inactive)

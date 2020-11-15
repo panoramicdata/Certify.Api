@@ -10,6 +10,6 @@ namespace Certify.Api.Models
 	public class ExpenseReportGldPage : Page
 	{
 		[DataMember(Name = "ExpRptGLDs")]
-		public List<ExpenseReportGld> ExpenseReportGlds { get; set; }
+		public List<ExpenseReportGld> ExpenseReportGlds { get; set; } = new();
 	}
 }

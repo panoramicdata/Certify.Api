@@ -10,6 +10,6 @@ namespace Certify.Api.Models
 	public class InvoicePage : Page
 	{
 		[DataMember(Name = "Invoices")]
-		public List<Invoice> Invoices { get; set; }
+		public List<Invoice> Invoices { get; set; } = new();
 	}
 }

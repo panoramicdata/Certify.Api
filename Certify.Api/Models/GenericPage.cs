@@ -22,6 +22,6 @@ namespace Certify.Api.Models
 		public uint TotalRecordCount { get; set; }
 
 		[DataMember(Name = "Items")]
-		public List<T> Items { get; set; }
+		public List<T> Items { get; set; } = new();
 	}
 }

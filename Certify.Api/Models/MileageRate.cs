@@ -11,7 +11,7 @@ namespace Certify.Api.Models
 		/// <summary>
 		/// Name
 		/// </summary>
-		public string Name { get; set; }
+		public string? Name { get; set; }
 
 		/// <summary>
 		/// Indicates the standard United States Federal mileage rate type (0 = None, 1 = Business, 2 = Medical and Moving, 3 = Charitable)
@@ -21,6 +21,6 @@ namespace Certify.Api.Models
 		/// <summary>
 		/// The expense category ID
 		/// </summary>
-		public string ExpenseCategoryId { get; set; }
+		public string? ExpenseCategoryId { get; set; }
 	}
 }

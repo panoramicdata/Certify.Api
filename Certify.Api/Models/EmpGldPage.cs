@@ -13,6 +13,6 @@ namespace Certify.Api.Models
 		/// The Employee GLDs
 		/// </summary>
 		[DataMember(Name = "EmpGLDs")]
-		public List<EmpGld> EmployeeGlds { get; set; }
+		public List<EmpGld> EmployeeGlds { get; set; } = new();
 	}
 }

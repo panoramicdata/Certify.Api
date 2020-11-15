@@ -13,6 +13,6 @@ namespace Certify.Api.Models
 		/// The ExpenseReports
 		/// </summary>
 		[DataMember(Name = "ExpenseReports")]
-		public List<ExpenseReport> ExpenseReports { get; set; }
+		public List<ExpenseReport> ExpenseReports { get; set; } = new();
 	}
 }

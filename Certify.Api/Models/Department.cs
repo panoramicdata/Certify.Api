@@ -13,7 +13,7 @@ namespace Certify.Api.Models
 		/// The internal code used to identify the department in your organization.
 		/// </summary>
 		[DataMember(Name = "Code")]
-		public string Code { get; set; }
+		public string? Code { get; set; }
 
 		/// <summary>
 		/// Indicates that second level approval is required for all expenses in this department (1 = yes, 0 = no)

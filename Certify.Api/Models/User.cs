@@ -13,43 +13,43 @@ namespace Certify.Api.Models
 		///  Login name of the user
 		/// </summary>
 		[DataMember(Name = "UserName")]
-		public string UserName { get; set; }
+		public string? UserName { get; set; }
 
 		/// <summary>
 		///  First name of the user
 		/// </summary>
 		[DataMember(Name = "FirstName")]
-		public string FirstName { get; set; }
+		public string? FirstName { get; set; }
 
 		/// <summary>
 		///  Last name of the user
 		/// </summary>
 		[DataMember(Name = "LastName")]
-		public string LastName { get; set; }
+		public string? LastName { get; set; }
 
 		/// <summary>
 		///  Email address of the user
 		/// </summary>
 		[DataMember(Name = "Email")]
-		public string Email { get; set; }
+		public string? Email { get; set; }
 
 		/// <summary>
 		///  User employee ID
 		/// </summary>
 		[DataMember(Name = "EmployeeID")]
-		public string EmployeeId { get; set; }
+		public string? EmployeeId { get; set; }
 
 		/// <summary>
 		///  User mobile phone number
 		/// </summary>
 		[DataMember(Name = "MobilePhone")]
-		public string MobilePhone { get; set; }
+		public string? MobilePhone { get; set; }
 
 		/// <summary>
 		///  User access role (‘Accountants’, ‘Employees’, ‘Executives’, ‘Guests’, ‘Managers’)
 		/// </summary>
 		[DataMember(Name = "Role")]
-		public string Role { get; set; }
+		public string? Role { get; set; }
 
 		/// <summary>
 		///  Indicates whether or not the user is a Treasurer (1 = yes, 0 = no)
@@ -73,61 +73,61 @@ namespace Certify.Api.Models
 		///  Department ID for the user
 		/// </summary>
 		[DataMember(Name = "DepartmentID")]
-		public string DepartmentId { get; set; }
+		public string? DepartmentId { get; set; }
 
 		/// <summary>
 		///  Employee GLD1 ID for the user
 		/// </summary>
 		[DataMember(Name = "EmpGLD1ID")]
-		public string EmpGLD1Id { get; set; }
+		public string? EmpGLD1Id { get; set; }
 
 		/// <summary>
 		///  Employee GLD2 ID for the user
 		/// </summary>
 		[DataMember(Name = "EmpGLD2ID")]
-		public string EmpGLD2Id { get; set; }
+		public string? EmpGLD2Id { get; set; }
 
 		/// <summary>
 		///  Employee GLD3 ID for the user
 		/// </summary>
 		[DataMember(Name = "EmpGLD3ID")]
-		public string EmpGLD3Id { get; set; }
+		public string? EmpGLD3Id { get; set; }
 
 		/// <summary>
 		///  Employee GLD4 ID for the user
 		/// </summary>
 		[DataMember(Name = "EmpGLD4ID")]
-		public string EmpGLD4Id { get; set; }
+		public string? EmpGLD4Id { get; set; }
 
 		/// <summary>
 		///  Employee GLD5 ID for the user
 		/// </summary>
 		[DataMember(Name = "EmpGLD5ID")]
-		public string EmpGLD5Id { get; set; }
+		public string? EmpGLD5Id { get; set; }
 
 		/// <summary>
 		///  User culture ISO code (e.g.: ‘en-US')
 		/// </summary>
 		[DataMember(Name = "Culture")]
-		public string Culture { get; set; }
+		public string? Culture { get; set; }
 
 		/// <summary>
 		///  User two-character ISO language code (e.g.: ‘de’)
 		/// </summary>
 		[DataMember(Name = "Language")]
-		public string Language { get; set; }
+		public string? Language { get; set; }
 
 		/// <summary>
 		///  	User three-character ISO currency code (e.g.: ‘USD’)
 		/// </summary>
 		[DataMember(Name = "Currency")]
-		public string Currency { get; set; }
+		public string? Currency { get; set; }
 
 		/// <summary>
 		///  	Date the user was last updated (YYYY-MM-DD)
 		/// </summary>
 		[DataMember(Name = "LastModifiedDate")]
-		public string LastModifiedDate { get; set; }
+		public string? LastModifiedDate { get; set; }
 
 		/// <summary>
 		///  	The active status of the user (1 = active, 0 = inactive)

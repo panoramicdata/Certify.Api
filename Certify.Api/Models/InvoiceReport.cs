@@ -12,25 +12,25 @@ namespace Certify.Api.Models
 		///  EmployeeDepartment
 		/// </summary>
 		[DataMember(Name = "EmployeeDepartment")]
-		public string EmployeeDepartment { get; set; }
+		public string? EmployeeDepartment { get; set; }
 
 		/// <summary>
 		///  FirstName
 		/// </summary>
 		[DataMember(Name = "FirstName")]
-		public string FirstName { get; set; }
+		public string? FirstName { get; set; }
 
 		/// <summary>
 		///  LastName
 		/// </summary>
 		[DataMember(Name = "LastName")]
-		public string LastName { get; set; }
+		public string? LastName { get; set; }
 
 		/// <summary>
 		///  EmployeeID
 		/// </summary>
 		[DataMember(Name = "EmployeeID")]
-		public string EmployeeId { get; set; }
+		public string? EmployeeId { get; set; }
 
 		/// <summary>
 		///  TotalAmount
@@ -42,13 +42,13 @@ namespace Certify.Api.Models
 		///  Currency
 		/// </summary>
 		[DataMember(Name = "Currency")]
-		public string Currency { get; set; }
+		public string? Currency { get; set; }
 
 		/// <summary>
 		///  ProcessedDate
 		/// </summary>
 		[DataMember(Name = "ProcessedDate")]
-		public string ProcessedDate { get; set; }
+		public string? ProcessedDate { get; set; }
 
 		/// <summary>
 		///  ApprovalCode
@@ -60,19 +60,19 @@ namespace Certify.Api.Models
 		///  StartDate
 		/// </summary>
 		[DataMember(Name = "StartDate")]
-		public string StartDate { get; set; }
+		public string? StartDate { get; set; }
 
 		/// <summary>
 		///  EndDate
 		/// </summary>
 		[DataMember(Name = "EndDate")]
-		public string EndDate { get; set; }
+		public string? EndDate { get; set; }
 
 		/// <summary>
 		///  InvoiceReportName
 		/// </summary>
 		[DataMember(Name = "InvoiceReportName")]
-		public string InvoiceReportName { get; set; }
+		public string? InvoiceReportName { get; set; }
 
 		/// <summary>
 		///  APSyncComplete
@@ -90,12 +90,12 @@ namespace Certify.Api.Models
 		///  ReimbursedDate
 		/// </summary>
 		[DataMember(Name = "ReimbursedDate")]
-		public string ReimbursedDate { get; set; }
+		public string? ReimbursedDate { get; set; }
 
 		/// <summary>
 		///  ReimbursementTransactionID
 		/// </summary>
 		[DataMember(Name = "ReimbursementTransactionID")]
-		public string ReimbursementTransactionId { get; set; }
+		public string? ReimbursementTransactionId { get; set; }
 	}
 }

@@ -13,6 +13,6 @@ namespace Certify.Api.Models
 		/// The Departments
 		/// </summary>
 		[DataMember(Name = "Departments")]
-		public List<Department> Departments { get; set; }
+		public List<Department> Departments { get; set; } = new();
 	}
 }

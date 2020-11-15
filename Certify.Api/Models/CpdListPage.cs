@@ -13,6 +13,6 @@ namespace Certify.Api.Models
 		/// The CPD Lists
 		/// </summary>
 		[DataMember(Name = "CPDLists")]
-		public List<CpdList> CpdLists { get; set; }
+		public List<CpdList> CpdLists { get; set; } = new();
 	}
 }

@@ -148,7 +148,7 @@ namespace Certify.Api.Test.ModelTests
 				.GetPageAsync(3, active: 1)
 				.ConfigureAwait(false);
 
-			var targets = page.ExpenseReportGlds.Where(e => e.Name.StartsWith("PDL")).ToList();
+			var targets = page.ExpenseReportGlds.Where(e => e.Name?.StartsWith("PDL") == true).ToList();
 			foreach (var item in targets)
 			{
 				item.Active = 0;

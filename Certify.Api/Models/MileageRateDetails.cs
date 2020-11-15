@@ -13,7 +13,7 @@ namespace Certify.Api.Models
 		///  Unique ID of the mileage rate detail record
 		/// </summary>
 		[DataMember(Name = "MileageRateID")]
-		public string MileageRateId { get; set; }
+		public string? MileageRateId { get; set; }
 
 		/// <summary>
 		///  The date upon which the rate will take effect
@@ -25,13 +25,13 @@ namespace Certify.Api.Models
 		///  Three letter code of the currency of the invoice report. ISO 4217 format
 		/// </summary>
 		[DataMember(Name = "MileageRateCurrency")]
-		public string MileageRateCurrency { get; set; }
+		public string? MileageRateCurrency { get; set; }
 
 		/// <summary>
 		///  The mileage unit of measure (mi or km)
 		/// </summary>
 		[DataMember(Name = "DistanceUnits")]
-		public string DistanceUnits { get; set; }
+		public string? DistanceUnits { get; set; }
 
 		/// <summary>
 		///  The primary mileage rate

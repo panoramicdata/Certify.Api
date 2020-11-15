@@ -24,25 +24,25 @@ namespace Certify.Api.Models
 		///  The currency code for the maximum amount (i.e. ‘GBP’, ‘USD’).
 		/// </summary>
 		[DataMember(Name = "MaxAmountCurrencyType")]
-		public string MaxAmountCurrencyType { get; set; }
+		public string? MaxAmountCurrencyType { get; set; }
 
 		/// <summary>
 		///  The general ledger code associated with this expense category.
 		/// </summary>
 		[DataMember(Name = "GLCode")]
-		public string GeneralLedgerCode { get; set; }
+		public string? GeneralLedgerCode { get; set; }
 
 		/// <summary>
 		///  The ID of the department associated with this expense category.
 		/// </summary>
 		[DataMember(Name = "FilterDepartmentID")]
-		public string FilterDepartmentId { get; set; }
+		public string? FilterDepartmentId { get; set; }
 
 		/// <summary>
 		///  The prepaid code associated with this expense category (cash expense types only).
 		/// </summary>
 		[DataMember(Name = "PrepaidCode")]
-		public string PrepaidCode { get; set; }
+		public string? PrepaidCode { get; set; }
 
 		/// <summary>
 		///  Determines whether this category will use the standard receipt requirement threshold amount, or override it (0 = Inherit From Policy, 1 = Use Threshold Amount).
@@ -162,7 +162,7 @@ namespace Certify.Api.Models
 		///  The unique ID of the Custom Per Diem List.
 		/// </summary>
 		[DataMember(Name = "CPDListID")]
-		public string CpdListId { get; set; }
+		public string? CpdListId { get; set; }
 
 		/// <summary>
 		///  Expense category uses GSA (companies using GSA only; 1 = true, 0 = false).

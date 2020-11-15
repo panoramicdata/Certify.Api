@@ -10,6 +10,6 @@ namespace Certify.Api.Models
 	public class ExpensePage : Page
 	{
 		[DataMember(Name = "expenses")]
-		public List<Expense> Expenses { get; set; }
+		public List<Expense> Expenses { get; set; } = new();
 	}
 }

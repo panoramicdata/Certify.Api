@@ -12,7 +12,7 @@ namespace Certify.Api.Models
 		/// <summary>
 		/// Filename of the receipt.
 		/// </summary>
-		public string Filename { get; set; }
+		public string? Filename { get; set; }
 
 		/// <summary>
 		/// Date the receipt was uploaded to the wallet.

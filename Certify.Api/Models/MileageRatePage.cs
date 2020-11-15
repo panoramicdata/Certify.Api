@@ -13,6 +13,6 @@ namespace Certify.Api.Models
 		/// The mileage rates
 		/// </summary>
 		[DataMember(Name = "MileageRates")]
-		public List<MileageRate> MileageRates { get; set; }
+		public List<MileageRate> MileageRates { get; set; } = new();
 	}
 }
