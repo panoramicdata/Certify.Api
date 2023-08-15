@@ -45,10 +45,6 @@ namespace Certify.Api.Test.ModelTests
 			results2.Should().NotBeNullOrEmpty();
 		}
 
-		//	// DELETE
-		//	// There is no real delete, the above update also tests delete by setting active to 0
-		//}
-
 		/// <summary>
 		/// This is a helper script for making all entries starting with PDL inactive
 		/// </summary>
