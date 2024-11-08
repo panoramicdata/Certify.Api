@@ -23,7 +23,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Refit" Version="5.2.1" />
+		<PackageReference Include="Refit" Version="7.2.22" />
 		<None Remove="Icon.png" />
 		<None Include="Icon.png" Pack="true" PackagePath="" />
 	</ItemGroup>
