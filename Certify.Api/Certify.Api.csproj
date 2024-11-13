@@ -15,15 +15,15 @@
 		<PackageTags>certify api</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageIcon>Icon.png</PackageIcon>
-		<PackageReleaseNotes>Updated to nullable enable.</PackageReleaseNotes>
+		<PackageReleaseNotes>Nuget package updaetes.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37">
+		<PackageReference Include="Nerdbank.GitVersioning" Version="3.6.146">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Refit" Version="5.2.1" />
+		<PackageReference Include="Refit" Version="8.0.0" />
 		<None Remove="Icon.png" />
 		<None Include="Icon.png" Pack="true" PackagePath="" />
 	</ItemGroup>
