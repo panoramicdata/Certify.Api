@@ -16,7 +16,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageIcon>Icon.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageReleaseNotes>Nuget package updaetes.</PackageReleaseNotes>
+		<PackageReleaseNotes>Nuget package updates.</PackageReleaseNotes>
 
 		<!-- Symbol package settings -->
 		<IncludeSymbols>true</IncludeSymbols>
