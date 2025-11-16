@@ -5,16 +5,18 @@
 [![NuGet](https://img.shields.io/nuget/dt/Certify.Api.svg)](https://www.nuget.org/packages/Certify.Api/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A .NET Standard 2.0 client library for the [Certify](https://www.certify.com/) Expense Management API.
+A modern .NET client library for the [Certify](https://www.certify.com/) Expense Management API, built with .NET 10 and C# 14.
 
 ## Features
 
-- Full support for Certify REST API v1
-- Strongly-typed models with XML documentation
-- Async/await support with cancellation tokens
-- Built on [Refit](https://github.com/reactiveui/refit) for easy maintenance
-- .NET Standard 2.0 compatible (works with .NET Framework 4.6.1+, .NET Core 2.0+, .NET 5+)
-- Symbol packages (`.snupkg`) for source-level debugging
+- ?? **Full .NET 10 Support** - Built with the latest .NET features and C# 14 syntax
+- ?? **Complete API Coverage** - Full support for Certify REST API v1
+- ?? **Strongly-Typed** - All models include comprehensive XML documentation
+- ? **Async/Await** - Modern async patterns with `CancellationToken` support
+- ?? **Built on Refit** - Leveraging [Refit](https://github.com/reactiveui/refit) for maintainable HTTP clients
+- ?? **Debugging Support** - Symbol packages (`.snupkg`) included for source-level debugging
+- ?? **Structured Logging** - Integrated `Microsoft.Extensions.Logging` support
+- ?? **Nullable Reference Types** - Full nullable annotations for better null-safety
 
 ## Installation
 
@@ -53,12 +55,40 @@ var department = await client.Departments.GetAsync(departmentId, cancellationTok
 
 ## Configuration Options
 
-You can customize the client behavior using `CertifyClientOptions`:
+Customize the client behavior using `CertifyClientOptions`:
 
 ```csharp
+using Microsoft.Extensions.Logging;
+
 var options = new CertifyClientOptions
 {
-    Timeout = TimeSpan.FromSeconds(60) // Default is 120 seconds
+    Timeout = TimeSpan.FromSeconds(60), // Default is 120 seconds
+    Logger = loggerInstance // Optional: add structured logging
+};
+
+using var client = new CertifyClient(apiKey, apiSecret, options);
+```
+
+### Logging Support
+
+The library supports `Microsoft.Extensions.Logging` for detailed request/response logging:
+
+```csharp
+using Microsoft.Extensions.Logging;
+
+// Create a logger factory
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder
+        .AddConsole()
+        .SetMinimumLevel(LogLevel.Debug);
+});
+
+var logger = loggerFactory.CreateLogger<CertifyClient>();
+
+var options = new CertifyClientOptions
+{
+    Logger = logger
 };
 
 using var client = new CertifyClient(apiKey, apiSecret, options);
@@ -97,6 +127,9 @@ var allUsers = await client.Users.GetAllAsync(cancellationToken: cancellationTok
 // Or manually page through results
 uint pageNumber = 1;
 var page = await client.Users.GetPageAsync(page: pageNumber, cancellationToken: cancellationToken);
+
+Console.WriteLine($"Page {page.PageNumber} of {page.TotalPageCount}");
+Console.WriteLine($"Total records: {page.TotalRecordCount}");
 ```
 
 ### Filtering
@@ -141,6 +174,8 @@ var createResult = await client.Departments.CreateAsync(
     cancellationToken: cancellationToken
 );
 
+Console.WriteLine($"Created department with ID: {createResult.Id}");
+
 // Update an existing department
 var department = new Department
 {
@@ -152,16 +187,23 @@ var updateResults = await client.Departments.UpdateAsync(
     department,
     cancellationToken: cancellationToken
 );
+
+foreach (var result in updateResults)
+{
+    Console.WriteLine($"Status: {result.Status}, Message: {result.Message}");
+}
 ```
 
 ### Error Handling
 
 ```csharp
+using Refit;
+
 try
 {
     var users = await client.Users.GetPageAsync(cancellationToken: cancellationToken);
 }
-catch (Refit.ApiException ex)
+catch (ApiException ex)
 {
     // Handle API errors
     Console.WriteLine($"API Error: {ex.StatusCode} - {ex.Content}");
@@ -171,6 +213,39 @@ catch (TaskCanceledException)
     // Handle timeout or cancellation
     Console.WriteLine("Request timed out or was cancelled");
 }
+catch (Exception ex)
+{
+    // Handle other errors
+    Console.WriteLine($"Error: {ex.Message}");
+}
+```
+
+### Using with Dependency Injection
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+
+var services = new ServiceCollection();
+
+// Register as singleton or scoped based on your needs
+services.AddSingleton<CertifyClient>(sp =>
+{
+    var logger = sp.GetRequiredService<ILogger<CertifyClient>>();
+    var options = new CertifyClientOptions
+    {
+        Timeout = TimeSpan.FromSeconds(120),
+        Logger = logger
+    };
+    
+    return new CertifyClient(
+        apiKey: "your-api-key",
+        apiSecret: "your-api-secret",
+        options: options
+    );
+});
+
+var serviceProvider = services.BuildServiceProvider();
+var certifyClient = serviceProvider.GetRequiredService<CertifyClient>();
 ```
 
 ## API Documentation
@@ -179,19 +254,58 @@ For detailed information about the Certify API endpoints and parameters, refer t
 
 ## Requirements
 
-- .NET Standard 2.0 or higher
-- .NET Framework 4.6.1 or higher
-- .NET Core 2.0 or higher
-- .NET 5, 6, 7, 8, 9, 10+
+- .NET 10 or higher (recommended)
+- .NET 5+ (compatible via .NET Standard 2.0)
+- .NET Core 2.0+ (compatible via .NET Standard 2.0)
+- .NET Framework 4.6.1+ (compatible via .NET Standard 2.0)
 
 ## Dependencies
 
-- [Refit](https://www.nuget.org/packages/Refit/) - HTTP client library
-- [Nerdbank.GitVersioning](https://www.nuget.org/packages/Nerdbank.GitVersioning/) - Automatic version management
+- [Refit 8.0.0](https://www.nuget.org/packages/Refit/) - The automatic type-safe REST library
+- [Microsoft.Extensions.Logging.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/) - Logging abstractions
+- [Nerdbank.GitVersioning](https://www.nuget.org/packages/Nerdbank.GitVersioning/) - Automatic version management from Git
+
+## Building from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/panoramicdata/Certify.Api.git
+cd Certify.Api
+
+# Restore dependencies
+dotnet restore
+
+# Build the solution
+dotnet build
+
+# Run tests (requires appsettings.json with valid credentials)
+dotnet test
+```
 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Testing
+
+The test suite uses xUnit and requires valid Certify API credentials. Create an `appsettings.json` file in the test project:
+
+```json
+{
+  "Config": {
+    "Credentials": {
+      "ApiKey": "your-api-key",
+      "ApiSecret": "your-api-secret"
+    }
+  }
+}
+```
 
 ## License
 
@@ -205,6 +319,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Support
 
 For issues, questions, or suggestions, please [open an issue](https://github.com/panoramicdata/Certify.Api/issues) on GitHub.
+
+## Acknowledgments
+
+- Built with [Refit](https://github.com/reactiveui/refit)
+- Uses [Microsoft.Extensions.Logging](https://docs.microsoft.com/en-us/dotnet/core/extensions/logging)
+- Versioned with [Nerdbank.GitVersioning](https://github.com/dotnet/Nerdbank.GitVersioning)
 
 ---
 
