@@ -15,6 +15,7 @@
 		<PackageTags>certify api</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageIcon>Icon.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageReleaseNotes>Nuget package updaetes.</PackageReleaseNotes>
 
 		<!-- Symbol package settings -->
@@ -33,6 +34,7 @@
 		<PackageReference Include="Refit" Version="8.0.0" />
 		<None Remove="Icon.png" />
 		<None Include="Icon.png" Pack="true" PackagePath="" />
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 </Project>
