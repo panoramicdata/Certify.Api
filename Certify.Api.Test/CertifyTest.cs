@@ -1,3 +1,4 @@
+using Certify.Api.Test.Testing;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
@@ -17,7 +18,7 @@ public abstract class CertifyTest : IDisposable
 
 	protected CertifyTest(ITestOutputHelper iTestOutputHelper)
 	{
-		Logger = iTestOutputHelper.BuildLogger();
+		Logger = iTestOutputHelper.CreateLogger();
 		var testConfig = new TestConfig(Logger);
 		CertifyClient = testConfig.CertifyClient;
 	}
