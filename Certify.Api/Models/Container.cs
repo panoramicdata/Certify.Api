@@ -1,9 +1,8 @@
-﻿namespace Certify.Api.Models
+﻿namespace Certify.Api.Models;
+
+/// <summary>
+/// A container
+/// </summary>
+public abstract class Container
 {
-	/// <summary>
-	/// A container
-	/// </summary>
-	public abstract class Container
-	{
-	}
 }

@@ -1,48 +1,40 @@
-using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Certify.Api.Test.ModelTests
+namespace Certify.Api.Test.ModelTests;
+
+public class ExpenseCategoryTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTestOutputHelper)
 {
-	public class ExpenseCategoryTests : CertifyTest
+	[Fact]
+	public async Task GetPage_Succeeds()
 	{
-		public ExpenseCategoryTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
-		{
-		}
+		var page = await CertifyClient
+			.ExpenseCategories
+			.GetPageAsync(cancellationToken: CancellationToken);
 
-		[Fact]
-		public async Task GetPage_Succeeds()
-		{
-			var page = await CertifyClient
-				.ExpenseCategories
-				.GetPageAsync()
-				.ConfigureAwait(false);
+		page.Should().NotBeNull();
+		page.TotalRecordCount.Should().BeGreaterThan(0);
+		page.TotalPageCount.Should().BeGreaterThan(0);
+		page.PageNumber.Should().BeGreaterThan(0);
+		page.PageRecordCount.Should().BeGreaterThan(0);
+		page.ExpenseCategories.Should().NotBeEmpty();
 
-			page.Should().NotBeNull();
-			page.TotalRecordCount.Should().BeGreaterThan(0);
-			page.TotalPageCount.Should().BeGreaterThan(0);
-			page.PageNumber.Should().BeGreaterThan(0);
-			page.PageRecordCount.Should().BeGreaterThan(0);
-			page.ExpenseCategories.Should().NotBeEmpty();
+		var pageFirstItem = page.ExpenseCategories[0];
 
-			var pageFirstItem = page.ExpenseCategories[0];
+		var refetch = await CertifyClient
+			.ExpenseCategories
+			.GetAsync(pageFirstItem.Id, cancellationToken: CancellationToken);
+		refetch.Should().NotBeNull();
+		refetch.ExpenseCategories.Should().NotBeNull();
+		refetch.ExpenseCategories.Should().ContainSingle();
+		refetch.TotalRecordCount.Should().Be(1);
+		refetch.TotalPageCount.Should().Be(1);
+		refetch.PageNumber.Should().Be(1);
+		refetch.PageRecordCount.Should().Be(1);
 
-			var refetch = await CertifyClient
-				.ExpenseCategories
-				.GetAsync(pageFirstItem.Id)
-				.ConfigureAwait(false);
-			refetch.Should().NotBeNull();
-			refetch.ExpenseCategories.Should().NotBeNull();
-			refetch.ExpenseCategories.Should().ContainSingle();
-			refetch.TotalRecordCount.Should().Be(1);
-			refetch.TotalPageCount.Should().Be(1);
-			refetch.PageNumber.Should().Be(1);
-			refetch.PageRecordCount.Should().Be(1);
-
-			var firstItem = refetch.ExpenseCategories[0];
-			firstItem.Id.Should().Be(pageFirstItem.Id);
-			firstItem.Name.Should().Be(pageFirstItem.Name);
-		}
+		var firstItem = refetch.ExpenseCategories[0];
+		firstItem.Id.Should().Be(pageFirstItem.Id);
+		firstItem.Name.Should().Be(pageFirstItem.Name);
 	}
 }
