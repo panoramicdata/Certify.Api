@@ -20,7 +20,7 @@ public interface ICpdLists
 	/// <returns></returns>
 	[Get("/cpdlists")]
 	Task<CpdListPage> GetPageAsync(
-		[AliasAs("name")] string name = null,
+		[AliasAs("name")] string? name = null,
 		[AliasAs("active")] uint? active = null,
 		[AliasAs("page")] uint? page = null,
 		CancellationToken cancellationToken = default

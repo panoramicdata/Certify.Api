@@ -1,4 +1,3 @@
-using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -12,12 +11,11 @@ public class EmpGldTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTes
 	{
 		var result = await CertifyClient
 			.EmpGlds
-			.GetAsync(1)
-			.ConfigureAwait(false);
-		result.Should().NotBeNull();
-		result.TotalRecordCount.Should().BeGreaterThan(0);
-		result.TotalPageCount.Should().BeGreaterThan(0);
-		result.PageNumber.Should().BeGreaterThan(0);
-		result.PageRecordCount.Should().BeGreaterThan(0);
+			.GetAsync(1, cancellationToken: CancellationToken);
+		_ = result.Should().NotBeNull();
+		_ = result.TotalRecordCount.Should().BePositive();
+		_ = result.TotalPageCount.Should().BePositive();
+		_ = result.PageNumber.Should().BePositive();
+		_ = result.PageRecordCount.Should().BePositive();
 	}
 }

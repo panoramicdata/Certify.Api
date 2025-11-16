@@ -1,4 +1,3 @@
-using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -12,13 +11,12 @@ public class MileageRateTests(ITestOutputHelper iTestOutputHelper) : CertifyTest
 	{
 		var page = await CertifyClient
 			.MileageRates
-			.GetPageAsync()
-			.ConfigureAwait(false);
+			.GetPageAsync(cancellationToken: CancellationToken);
 		page.Should().NotBeNull();
 		page.MileageRates.Should().NotBeNullOrEmpty();
-		page.TotalRecordCount.Should().BeGreaterThan(0);
-		page.TotalPageCount.Should().BeGreaterThan(0);
-		page.PageNumber.Should().BeGreaterThan(0);
-		page.PageRecordCount.Should().BeGreaterThan(0);
+		page.TotalRecordCount.Should().BePositive();
+		page.TotalPageCount.Should().BePositive();
+		page.PageNumber.Should().BePositive();
+		page.PageRecordCount.Should().BePositive();
 	}
 }

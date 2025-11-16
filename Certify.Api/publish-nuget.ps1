@@ -75,6 +75,16 @@ try {
 	Write-Host "Publishing $mostRecentPackage..."
 	# If you don't have nuget.exe - download from https://www.nuget.org/downloads and place in "C:\Users\xxx\AppData\Local\Microsoft\WindowsApps"
 	nuget.exe push -Source https://api.nuget.org/v3/index.json -ApiKey $apiKey "$mostRecentPackage"
+	
+	# Publish symbol package (.snupkg) if it exists
+	$mostRecentSymbolPackage = Get-ChildItem bin\Release\*.snupkg | Sort-Object LastWriteTime | Select-Object -last 1
+	if ($mostRecentSymbolPackage) {
+		Write-Host "Publishing symbol package $mostRecentSymbolPackage..."
+		nuget.exe push -Source https://api.nuget.org/v3/index.json -ApiKey $apiKey "$mostRecentSymbolPackage"
+	}
+	else {
+		Write-Host "No symbol package (.snupkg) found to publish."
+	}
 }
 finally
 {

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.IO;
 using System.Reflection;
+using System.Security.Authentication;
 
 namespace Certify.Api.Test;
 
@@ -17,7 +18,9 @@ internal class TestConfig
 			.AddJsonFile("appsettings.json");
 		var configuration = builder.Build();
 		logger.LogDebug("Creating client...");
-		CertifyClient = new CertifyClient(configuration["Config:Credentials:ApiKey"], configuration["Config:Credentials:ApiSecret"]);
+		CertifyClient = new CertifyClient(
+			configuration["Config:Credentials:ApiKey"] ?? throw new InvalidCredentialException("Missing ApiKey"),
+			configuration["Config:Credentials:ApiSecret"] ?? throw new InvalidCredentialException("Missing ApiSecret"));
 		Logger = logger;
 	}
 

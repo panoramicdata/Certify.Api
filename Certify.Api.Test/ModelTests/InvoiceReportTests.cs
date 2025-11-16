@@ -1,4 +1,3 @@
-using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -12,8 +11,7 @@ public class InvoiceReportTests(ITestOutputHelper iTestOutputHelper) : CertifyTe
 	{
 		var page = await CertifyClient
 			.InvoiceReports
-			.GetPageAsync()
-			.ConfigureAwait(false);
+			.GetPageAsync(cancellationToken: CancellationToken);
 		page.Should().NotBeNull();
 		// TODO - Enable below once expenses are in a test system
 		//page.InvoiceReports.Should().NotBeNullOrEmpty();

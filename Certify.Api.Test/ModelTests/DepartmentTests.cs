@@ -1,4 +1,3 @@
-using FluentAssertions;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -13,8 +12,7 @@ public class DepartmentTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(
 	{
 		var page = await CertifyClient
 			.Departments
-			.GetPageAsync()
-			.ConfigureAwait(false);
+			.GetPageAsync(cancellationToken: CancellationToken);
 		page.Should().NotBeNull();
 
 		var firstDepartment = page
@@ -23,15 +21,14 @@ public class DepartmentTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(
 		if (firstDepartment != null)
 		{
 			// There was at least one entry so none of these should be zero
-			page.TotalRecordCount.Should().BeGreaterThan(0);
-			page.TotalPageCount.Should().BeGreaterThan(0);
-			page.PageNumber.Should().BeGreaterThan(0);
-			page.PageRecordCount.Should().BeGreaterThan(0);
+			page.TotalRecordCount.Should().BePositive();
+			page.TotalPageCount.Should().BePositive();
+			page.PageNumber.Should().BePositive();
+			page.PageRecordCount.Should().BePositive();
 
 			var refetchSingle = await CertifyClient
 				.Departments
-				.GetAsync(firstDepartment.Id)
-				.ConfigureAwait(false);
+				.GetAsync(firstDepartment.Id, cancellationToken: CancellationToken);
 
 			refetchSingle.Should().NotBeNull();
 			refetchSingle.TotalRecordCount.Should().Be(1);

@@ -1,5 +1,4 @@
 using Certify.Api.Extensions;
-using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -18,10 +17,10 @@ public class ExpenseTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTe
 			null,
 			null,
 			1,
-			1
-			)
-			.ConfigureAwait(false);
-		list.Should().NotBeNullOrEmpty();
-		list.Count.Should().BeGreaterThan(0);
+			1,
+			cancellationToken: CancellationToken
+			);
+		_ = list.Should().NotBeNullOrEmpty();
+		_ = list.Count.Should().BePositive();
 	}
 }

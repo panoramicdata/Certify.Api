@@ -1,4 +1,3 @@
-using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -12,8 +11,7 @@ public class InvoiceTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTe
 	{
 		var page = await CertifyClient
 			.Invoices
-			.GetPageAsync()
-			.ConfigureAwait(false);
+			.GetPageAsync(cancellationToken: CancellationToken);
 		page.Should().NotBeNull();
 		//page.Invoices.Should().NotBeNullOrEmpty();
 		//page.TotalRecordCount.Should().BeGreaterThan(0);

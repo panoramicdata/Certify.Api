@@ -1,6 +1,5 @@
 using Certify.Api.Extensions;
 using Certify.Api.Models;
-using FluentAssertions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,8 +20,7 @@ public class ExpenseReportGldTests(ITestOutputHelper iTestOutputHelper) : Certif
 		{
 			var result = await CertifyClient
 				.ExpenseReportGlds
-				.GetPageAsync(index)
-				.ConfigureAwait(false);
+				.GetPageAsync(index, cancellationToken: CancellationToken);
 
 			result.Should().NotBeNull();
 			result.ExpenseReportGlds.Should().NotBeNullOrEmpty();
@@ -36,8 +34,7 @@ public class ExpenseReportGldTests(ITestOutputHelper iTestOutputHelper) : Certif
 	{
 		var results2 = await CertifyClient
 			.ExpenseReportGlds
-			.GetAllAsync(2)
-			.ConfigureAwait(false);
+			.GetAllAsync(2, cancellationToken: CancellationToken);
 		results2.Should().NotBeNullOrEmpty();
 	}
 

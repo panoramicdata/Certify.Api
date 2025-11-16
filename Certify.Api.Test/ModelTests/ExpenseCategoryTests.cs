@@ -13,12 +13,12 @@ public class ExpenseCategoryTests(ITestOutputHelper iTestOutputHelper) : Certify
 			.ExpenseCategories
 			.GetPageAsync(cancellationToken: CancellationToken);
 
-		page.Should().NotBeNull();
-		page.TotalRecordCount.Should().BeGreaterThan(0);
-		page.TotalPageCount.Should().BeGreaterThan(0);
-		page.PageNumber.Should().BeGreaterThan(0);
-		page.PageRecordCount.Should().BeGreaterThan(0);
-		page.ExpenseCategories.Should().NotBeEmpty();
+		_ = page.Should().NotBeNull();
+		_ = page.TotalRecordCount.Should().BePositive();
+		_ = page.TotalPageCount.Should().BePositive();
+		_ = page.PageNumber.Should().BePositive();
+		_ = page.PageRecordCount.Should().BePositive();
+		_ = page.ExpenseCategories.Should().NotBeEmpty();
 
 		var pageFirstItem = page.ExpenseCategories[0];
 

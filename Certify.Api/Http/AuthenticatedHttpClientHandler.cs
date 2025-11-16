@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,12 +12,9 @@ internal class AuthenticatedHttpClientHandler(string apiKey, string apiSecret) :
 
 	protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 	{
-		if (request.Content != null)
-		{
-			// The default content header being set by refit seems to be "Content-Type: application/json; charset=utf-8"
-			// Certify does NOT like this - needs to just be "application/json" otherwise you'll get an HTML response with "HTTP Error 400. The request has an invalid header name."
-			request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-		}
+		// The default content header being set by refit seems to be "Content-Type: application/json; charset=utf-8"
+		// Certify does NOT like this - needs to just be "application/json" otherwise you'll get an HTML response with "HTTP Error 400. The request has an invalid header name."
+		request.Content?.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 		request.Headers.Add("x-api-key", apiKey);
 		request.Headers.Add("x-api-secret", apiSecret);
