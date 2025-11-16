@@ -2,6 +2,7 @@
 using Certify.Api.Http;
 using Certify.Api.Interfaces;
 using Certify.Api.Models;
+using Microsoft.Extensions.Logging.Abstractions;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -38,12 +39,13 @@ public class CertifyClient : IDisposable
 		_httpClient = new HttpClient(
 			new AuthenticatedHttpClientHandler(
 				apiKey ?? throw new ArgumentNullException(nameof(apiKey)),
-				apiSecret ?? throw new ArgumentNullException(nameof(apiSecret))
+				apiSecret ?? throw new ArgumentNullException(nameof(apiSecret)),
+				options?.Logger ?? NullLogger<CertifyClient>.Instance
 				))
 		{
 			// This address should NOT end in "/" as the interface method paths are added to the end of this and Refit requires they start with "/"
 			BaseAddress = new Uri("https://api.certify.com/v1"),
-			Timeout = options.Timeout
+			Timeout = options?.Timeout ?? TimeSpan.FromSeconds(120)
 		};
 
 		CpdLists = RestService.For<ICpdLists>(_httpClient, refitSettings);
@@ -122,5 +124,8 @@ public class CertifyClient : IDisposable
 	}
 
 	public void Dispose()
-		=> _httpClient.Dispose();
+	{
+		_httpClient.Dispose();
+		GC.SuppressFinalize(this);
+	}
 }
