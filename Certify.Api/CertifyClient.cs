@@ -18,12 +18,17 @@ public class CertifyClient : IDisposable
 {
 	private readonly HttpClient _httpClient;
 
+	public CertifyClient(string apiKey, string apiSecret)
+		: this(apiKey, apiSecret, new CertifyClientOptions())
+	{
+	}
+
 	public CertifyClient(
 		string apiKey,
 		string apiSecret,
-		CertifyClientOptions? options = null)
+		CertifyClientOptions options)
 	{
-		options ??= new();
+		ArgumentNullException.ThrowIfNull(options);
 
 		var jsonSerializerOptions = new JsonSerializerOptions
 		{

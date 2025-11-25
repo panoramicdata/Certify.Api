@@ -19,10 +19,6 @@ public class InvoiceTests : CertifyTest
 			.GetPageAsync()
 			.ConfigureAwait(false);
 		page.Should().NotBeNull();
-		//page.Invoices.Should().NotBeNullOrEmpty();
-		//page.TotalRecordCount.Should().BeGreaterThan(0);
-		//page.TotalPageCount.Should().BeGreaterThan(0);
-		//page.PageNumber.Should().BeGreaterThan(0);
-		//page.PageRecordCount.Should().BeGreaterThan(0);
+		// TODO - Enable below once expenses are in a test system
 	}
 }
