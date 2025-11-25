@@ -1,7 +1,7 @@
 using Certify.Api.Interfaces;
 using Certify.Api.Models;
-using Refit;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Certify.Api.Extensions;
@@ -12,7 +12,8 @@ public static class Extensions
 		uint index,
 		string? name = null,
 		string? code = null,
-		uint? active = null)
+		uint? active = null,
+		CancellationToken cancellationToken = default)
 	=>
 		CertifyClient.GetAllAsync(async (pageNumber) =>
 		{
@@ -22,7 +23,8 @@ public static class Extensions
 				name,
 				code,
 				active,
-				pageNumber)
+				pageNumber,
+				cancellationToken)
 			.ConfigureAwait(false);
 			return new GenericPage<ExpenseReportGld>
 			{
@@ -37,7 +39,8 @@ public static class Extensions
 		string? endDate = null,
 		string? batchId = null,
 		uint? processed = null,
-		uint? includeDisapproved = null
+		uint? includeDisapproved = null,
+		CancellationToken cancellationToken = default
 		)
 	=>
 		CertifyClient.GetAllAsync(async (pageNumber) =>
@@ -49,7 +52,8 @@ public static class Extensions
 					batchId,
 					processed,
 					pageNumber,
-					includeDisapproved)
+					includeDisapproved,
+					cancellationToken: cancellationToken)
 				.ConfigureAwait(false);
 			return new GenericPage<Expense>
 			{
@@ -67,7 +71,8 @@ public static class Extensions
 		uint? processed = null,
 		string? reimbursed = null,
 		string? reimbursedstartdate = null,
-		string? reimbursedenddate = null)
+		string? reimbursedenddate = null,
+		CancellationToken cancellationToken = default)
 	=>
 		CertifyClient.GetAllAsync(async (pageNumber) =>
 		{
@@ -81,7 +86,8 @@ public static class Extensions
 				processed,
 				reimbursed,
 				reimbursedstartdate,
-				reimbursedenddate)
+				reimbursedenddate,
+				cancellationToken)
 			.ConfigureAwait(false);
 			return new GenericPage<ExpenseReport>
 			{
@@ -94,7 +100,8 @@ public static class Extensions
 	public static Task<List<User>> GetAllAsync(this IUsers users,
 		string? username = null,
 		uint? active = null,
-		string? role = null)
+		string? role = null,
+		CancellationToken cancellationToken = default)
 	=>
 		CertifyClient.GetAllAsync(async (pageNumber) =>
 		{
@@ -103,7 +110,8 @@ public static class Extensions
 				username,
 				active,
 				role,
-				pageNumber)
+				pageNumber,
+				cancellationToken)
 			.ConfigureAwait(false);
 			return new GenericPage<User>
 			{

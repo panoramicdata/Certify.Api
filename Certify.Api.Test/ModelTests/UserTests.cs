@@ -1,8 +1,7 @@
-using FluentAssertions;
+using AwesomeAssertions;
+using Certify.Api.Extensions;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
-using Certify.Api.Extensions;
 
 namespace Certify.Api.Test.ModelTests;
 
@@ -13,14 +12,13 @@ public class UserTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTestO
 	{
 		var page = await CertifyClient
 			.Users
-			.GetPageAsync()
-			.ConfigureAwait(false);
+			.GetPageAsync(cancellationToken: CancellationToken);
 		page.Should().NotBeNull();
 		page.Users.Should().NotBeNullOrEmpty();
-		page.TotalRecordCount.Should().BeGreaterThan(0);
-		page.TotalPageCount.Should().BeGreaterThan(0);
-		page.PageNumber.Should().BeGreaterThan(0);
-		page.PageRecordCount.Should().BeGreaterThan(0);
+		page.TotalRecordCount.Should().BePositive();
+		page.TotalPageCount.Should().BePositive();
+		page.PageNumber.Should().BePositive();
+		page.PageRecordCount.Should().BePositive();
 	}
 
 	[Fact]
@@ -28,8 +26,7 @@ public class UserTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTestO
 	{
 		var users = await CertifyClient
 			.Users
-			.GetAllAsync()
-			.ConfigureAwait(false);
+			.GetAllAsync(cancellationToken: CancellationToken);
 		users.Should().NotBeNull();
 		users.Should().NotBeNullOrEmpty();
 	}

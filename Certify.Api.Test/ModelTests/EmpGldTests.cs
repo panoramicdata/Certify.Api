@@ -1,7 +1,6 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Certify.Api.Test.ModelTests;
 
@@ -12,12 +11,11 @@ public class EmpGldTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTes
 	{
 		var result = await CertifyClient
 			.EmpGlds
-			.GetAsync(1)
-			.ConfigureAwait(false);
+			.GetAsync(1, cancellationToken: CancellationToken);
 		result.Should().NotBeNull();
-		result.TotalRecordCount.Should().BeGreaterThan(0);
-		result.TotalPageCount.Should().BeGreaterThan(0);
-		result.PageNumber.Should().BeGreaterThan(0);
-		result.PageRecordCount.Should().BeGreaterThan(0);
+		result.TotalRecordCount.Should().BePositive();
+		result.TotalPageCount.Should().BePositive();
+		result.PageNumber.Should().BePositive();
+		result.PageRecordCount.Should().BePositive();
 	}
 }

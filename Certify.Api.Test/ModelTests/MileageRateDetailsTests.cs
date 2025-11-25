@@ -1,7 +1,6 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Certify.Api.Test.ModelTests;
 
@@ -12,8 +11,7 @@ public class MileageRateDetailsTests(ITestOutputHelper iTestOutputHelper) : Cert
 	{
 		var page = await CertifyClient
 			.MileageRateDetails
-			.GetPageAsync()
-			.ConfigureAwait(false);
+			.GetPageAsync(cancellationToken: CancellationToken);
 		page.Should().NotBeNull();
 		// TODO - Enable below once expenses are in a test system
 	}

@@ -17,7 +17,9 @@ internal class TestConfig
 			.AddJsonFile("appsettings.json");
 		var configuration = builder.Build();
 		logger.LogDebug("Creating client...");
-		CertifyClient = new CertifyClient(configuration["Config:Credentials:ApiKey"], configuration["Config:Credentials:ApiSecret"]);
+		CertifyClient = new CertifyClient(
+			configuration["Config:Credentials:ApiKey"] ?? throw new InvalidDataException("ApiKey not found in configuration"),
+			configuration["Config:Credentials:ApiSecret"] ?? throw new InvalidDataException("ApiSecret not found in configuration"));
 		Logger = logger;
 	}
 

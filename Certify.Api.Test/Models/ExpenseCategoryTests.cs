@@ -1,6 +1,6 @@
+using AwesomeAssertions;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Certify.Api.Test.Models;
 
@@ -11,21 +11,19 @@ public class ExpenseCategoryTests(ITestOutputHelper iTestOutputHelper) : Certify
 	{
 		var page = await CertifyClient
 			.ExpenseCategories
-			.GetPageAsync()
-			.ConfigureAwait(false);
-		Assert.NotNull(page);
-		Assert.NotEmpty(page.ExpenseCategories);
+			.GetPageAsync(cancellationToken: CancellationToken);
+		page.Should().NotBeNull();
+		page.ExpenseCategories.Should().NotBeEmpty();
 
 		var pageFirstItem = page.ExpenseCategories[0];
 		var refetch = await CertifyClient
 			.ExpenseCategories
-			.GetAsync(pageFirstItem.Id)
-			.ConfigureAwait(false);
-		Assert.NotNull(refetch);
-		Assert.NotNull(refetch.ExpenseCategories);
-		Assert.Single(refetch.ExpenseCategories);
+			.GetAsync(pageFirstItem.Id, cancellationToken: CancellationToken);
+		refetch.Should().NotBeNull();
+		refetch.ExpenseCategories.Should().NotBeNull();
+		refetch.ExpenseCategories.Should().ContainSingle();
 		var firstItem = refetch.ExpenseCategories[0];
-		Assert.Equal(pageFirstItem.Id, firstItem.Id);
-		Assert.Equal(pageFirstItem.Name, firstItem.Name);
+		firstItem.Id.Should().Be(pageFirstItem.Id);
+		firstItem.Name.Should().Be(pageFirstItem.Name);
 	}
 }

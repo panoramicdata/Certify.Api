@@ -1,8 +1,7 @@
+using AwesomeAssertions;
 using Certify.Api.Extensions;
-using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Certify.Api.Test.ModelTests;
 
@@ -18,10 +17,9 @@ public class ExpenseTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTe
 			null,
 			null,
 			1,
-			1
-			)
-			.ConfigureAwait(false);
+			1,
+			cancellationToken: CancellationToken);
 		list.Should().NotBeNullOrEmpty();
-		list.Count.Should().BeGreaterThan(0);
+		list.Count.Should().BePositive();
 	}
 }

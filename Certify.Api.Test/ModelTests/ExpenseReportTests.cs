@@ -1,8 +1,7 @@
+using AwesomeAssertions;
 using Certify.Api.Extensions;
-using FluentAssertions;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Certify.Api.Test.ModelTests;
 
@@ -13,15 +12,14 @@ public class ExpenseReportTests(ITestOutputHelper iTestOutputHelper) : CertifyTe
 	{
 		var page = await CertifyClient
 			.ExpenseReports
-			.GetPageAsync()
-			.ConfigureAwait(false);
+			.GetPageAsync(cancellationToken: CancellationToken);
 
 		page.Should().NotBeNull();
 		page.ExpenseReports.Should().NotBeNullOrEmpty();
-		page.TotalRecordCount.Should().BeGreaterThan(0);
-		page.TotalPageCount.Should().BeGreaterThan(0);
-		page.PageNumber.Should().BeGreaterThan(0);
-		page.PageRecordCount.Should().BeGreaterThan(0);
+		page.TotalRecordCount.Should().BePositive();
+		page.TotalPageCount.Should().BePositive();
+		page.PageNumber.Should().BePositive();
+		page.PageRecordCount.Should().BePositive();
 	}
 
 	[Fact]
@@ -29,8 +27,7 @@ public class ExpenseReportTests(ITestOutputHelper iTestOutputHelper) : CertifyTe
 	{
 		var list = await CertifyClient
 			.ExpenseReports
-			.GetAllAsync()
-			.ConfigureAwait(false);
+			.GetAllAsync(cancellationToken: CancellationToken);
 
 		list.Should().NotBeNullOrEmpty();
 	}

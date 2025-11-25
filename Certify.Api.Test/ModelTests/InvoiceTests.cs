@@ -1,7 +1,6 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Certify.Api.Test.ModelTests;
 
@@ -12,8 +11,7 @@ public class InvoiceTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTe
 	{
 		var page = await CertifyClient
 			.Invoices
-			.GetPageAsync()
-			.ConfigureAwait(false);
+			.GetPageAsync(cancellationToken: CancellationToken);
 		page.Should().NotBeNull();
 		// TODO - Enable below once expenses are in a test system
 	}

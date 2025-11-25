@@ -1,7 +1,6 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Certify.Api.Test.ModelTests;
 
@@ -12,22 +11,20 @@ public class ExpenseCategoryTests(ITestOutputHelper iTestOutputHelper) : Certify
 	{
 		var page = await CertifyClient
 			.ExpenseCategories
-			.GetPageAsync()
-			.ConfigureAwait(false);
+			.GetPageAsync(cancellationToken: CancellationToken);
 
 		page.Should().NotBeNull();
-		page.TotalRecordCount.Should().BeGreaterThan(0);
-		page.TotalPageCount.Should().BeGreaterThan(0);
-		page.PageNumber.Should().BeGreaterThan(0);
-		page.PageRecordCount.Should().BeGreaterThan(0);
+		page.TotalRecordCount.Should().BePositive();
+		page.TotalPageCount.Should().BePositive();
+		page.PageNumber.Should().BePositive();
+		page.PageRecordCount.Should().BePositive();
 		page.ExpenseCategories.Should().NotBeEmpty();
 
 		var pageFirstItem = page.ExpenseCategories[0];
 
 		var refetch = await CertifyClient
 			.ExpenseCategories
-			.GetAsync(pageFirstItem.Id)
-			.ConfigureAwait(false);
+			.GetAsync(pageFirstItem.Id, cancellationToken: CancellationToken);
 		refetch.Should().NotBeNull();
 		refetch.ExpenseCategories.Should().NotBeNull();
 		refetch.ExpenseCategories.Should().ContainSingle();
