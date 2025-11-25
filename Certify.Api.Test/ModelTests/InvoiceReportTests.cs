@@ -5,12 +5,8 @@ using Xunit.Abstractions;
 
 namespace Certify.Api.Test.ModelTests;
 
-public class InvoiceReportTests : CertifyTest
+public class InvoiceReportTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTestOutputHelper)
 {
-	public InvoiceReportTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
-	{
-	}
-
 	[Fact]
 	public async Task GetPage_Succeeds()
 	{

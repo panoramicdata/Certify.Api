@@ -9,12 +9,8 @@ using Xunit.Abstractions;
 
 namespace Certify.Api.Test.ModelTests;
 
-public class ExpenseReportGldTests : CertifyTest
+public class ExpenseReportGldTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTestOutputHelper)
 {
-	public ExpenseReportGldTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
-	{
-	}
-
 	[Fact]
 	public async Task GetPage_Succeeds()
 	{

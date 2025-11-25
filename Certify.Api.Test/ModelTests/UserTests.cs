@@ -6,12 +6,8 @@ using Certify.Api.Extensions;
 
 namespace Certify.Api.Test.ModelTests;
 
-public class UserTests : CertifyTest
+public class UserTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTestOutputHelper)
 {
-	public UserTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
-	{
-	}
-
 	[Fact]
 	public async Task GetPage_Succeeds()
 	{

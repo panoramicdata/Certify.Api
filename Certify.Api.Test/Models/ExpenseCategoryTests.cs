@@ -4,12 +4,8 @@ using Xunit.Abstractions;
 
 namespace Certify.Api.Test.Models;
 
-public class ExpenseCategoryTests : CertifyTest
+public class ExpenseCategoryTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTestOutputHelper)
 {
-	public ExpenseCategoryTests(ITestOutputHelper iTestOutputHelper) : base(iTestOutputHelper)
-	{
-	}
-
 	[Fact]
 	public async Task GetPage_Succeeds()
 	{
