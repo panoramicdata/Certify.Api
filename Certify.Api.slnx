@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Certify.Api/publish-nuget.ps1" />
+    <File Path="global.json" />
+    <File Path="version.json" />
+  </Folder>
+  <Project Path="Certify.Api.Test/Certify.Api.Test.csproj">
+    <BuildDependency Project="Certify.Api/Certify.Api.csproj" />
+  </Project>
+  <Project Path="Certify.Api/Certify.Api.csproj" />
+</Solution>
