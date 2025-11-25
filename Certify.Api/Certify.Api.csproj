@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<Authors>David Bond, Daniel Abbatt</Authors>
+		<TargetFramework>net10.0</TargetFramework>
+		<Authors>Panoramic Data Limited</Authors>
 		<Company>Panoramic Data Limited</Company>
 		<Description>An API for Certify</Description>
-		<Copyright>Panoramic Data Limited 2019</Copyright>
+		<Copyright>Panoramic Data Limited 2025</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/panoramicdata/Certify.Api</PackageProjectUrl>
 		<RepositoryUrl>git@github.com:panoramicdata/Certify.Api.git</RepositoryUrl>
@@ -19,7 +19,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Nerdbank.GitVersioning" Version="3.6.146">
+		<PackageReference Include="Nerdbank.GitVersioning" Version="3.9.50">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

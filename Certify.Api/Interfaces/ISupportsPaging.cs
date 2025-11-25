@@ -1,6 +1,5 @@
-﻿namespace Certify.Api.Interfaces
+﻿namespace Certify.Api.Interfaces;
+
+public interface ISupportsPaging
 {
-	public interface ISupportsPaging
-	{
-	}
 }

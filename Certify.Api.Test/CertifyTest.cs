@@ -2,40 +2,39 @@ using Microsoft.Extensions.Logging;
 using System;
 using Xunit.Abstractions;
 
-namespace Certify.Api.Test
+namespace Certify.Api.Test;
+
+public abstract class CertifyTest : IDisposable
 {
-	public abstract class CertifyTest : IDisposable
+	private bool disposedValue;
+
+	protected CertifyClient CertifyClient { get; }
+	public ILogger Logger { get; }
+
+	protected CertifyTest(ITestOutputHelper iTestOutputHelper)
 	{
-		private bool disposedValue;
+		Logger = iTestOutputHelper.BuildLogger();
+		var testConfig = new TestConfig(Logger);
+		CertifyClient = testConfig.CertifyClient;
+	}
 
-		protected CertifyClient CertifyClient { get; }
-		public ILogger Logger { get; }
-
-		protected CertifyTest(ITestOutputHelper iTestOutputHelper)
+	protected virtual void Dispose(bool disposing)
+	{
+		if (!disposedValue)
 		{
-			Logger = iTestOutputHelper.BuildLogger();
-			var testConfig = new TestConfig(Logger);
-			CertifyClient = testConfig.CertifyClient;
-		}
-
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!disposedValue)
+			if (disposing)
 			{
-				if (disposing)
-				{
-					CertifyClient.Dispose();
-				}
-
-				disposedValue = true;
+				CertifyClient.Dispose();
 			}
-		}
 
-		public void Dispose()
-		{
-			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-			Dispose(disposing: true);
-			GC.SuppressFinalize(this);
+			disposedValue = true;
 		}
+	}
+
+	public void Dispose()
+	{
+		// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+		Dispose(disposing: true);
+		GC.SuppressFinalize(this);
 	}
 }

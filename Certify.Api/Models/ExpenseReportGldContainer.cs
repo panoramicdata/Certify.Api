@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Certify.Api.Models
+namespace Certify.Api.Models;
+
+/// <summary>
+/// A container for a list of ExpenseReport general ledger dimensions
+/// </summary>
+[DataContract]
+public class ExpenseReportGldPage : Page
 {
-	/// <summary>
-	/// A container for a list of ExpenseReport general ledger dimensions
-	/// </summary>
-	[DataContract]
-	public class ExpenseReportGldPage : Page
-	{
-		[DataMember(Name = "ExpRptGLDs")]
-		public List<ExpenseReportGld> ExpenseReportGlds { get; set; } = new();
-	}
+	[DataMember(Name = "ExpRptGLDs")]
+	public List<ExpenseReportGld> ExpenseReportGlds { get; set; } = new();
 }

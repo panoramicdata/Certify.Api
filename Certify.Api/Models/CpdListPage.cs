@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Certify.Api.Models
+namespace Certify.Api.Models;
+
+/// <summary>
+/// A CpdLists page
+/// </summary>
+[DataContract]
+public class CpdListPage : Page
 {
 	/// <summary>
-	/// A CpdLists page
+	/// The CPD Lists
 	/// </summary>
-	[DataContract]
-	public class CpdListPage : Page
-	{
-		/// <summary>
-		/// The CPD Lists
-		/// </summary>
-		[DataMember(Name = "CPDLists")]
-		public List<CpdList> CpdLists { get; set; } = new();
-	}
+	[DataMember(Name = "CPDLists")]
+	public List<CpdList> CpdLists { get; set; } = new();
 }
