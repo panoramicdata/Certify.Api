@@ -1,21 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
-		<Authors>Panoramic Data Limited</Authors>
-		<Company>Panoramic Data Limited</Company>
 		<Description>An API for Certify</Description>
-		<Copyright>Panoramic Data Limited 2025</Copyright>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/panoramicdata/Certify.Api</PackageProjectUrl>
-		<RepositoryUrl>git@github.com:panoramicdata/Certify.Api.git</RepositoryUrl>
-		<RepositoryType>Git</RepositoryType>
-		<Nullable>enable</Nullable>
-		<LangVersion>latest</LangVersion>
 		<PackageTags>certify api</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageIcon>Icon.png</PackageIcon>
-		<PackageReleaseNotes>Nuget package updaetes.</PackageReleaseNotes>
+		<PackageReleaseNotes>NuGet package updates.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
