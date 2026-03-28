@@ -11,15 +11,15 @@ if(-not (Test-Path($apiKeyFilename))){
 }
 $apiKey = Get-Content $apiKeyFilename;
 
-# Getting changes into master branch
+# Getting changes into main branch
 Write-Output "Fetching latest commits..."
 &git fetch
 
 $branch= &git rev-parse --abbrev-ref HEAD
-if ($branch -ne "master") {
-	$title = "Not on master branch - confirm that you want to merge the current branch into master and release."
+if ($branch -ne "main") {
+	$title = "Not on main branch - confirm that you want to merge the current branch into main and release."
 	$message = "Do you want to merge and publish?"
-	$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Merges current branch to master and publishes."
+	$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Merges current branch to main and publishes."
 	$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "Aborts execution."
 	$options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
 	$result = $host.ui.PromptForChoice($title, $message, $options, 0)
@@ -30,26 +30,26 @@ if ($branch -ne "master") {
 	}
 
 	try {
-		Write-Output "Checking out master..."
-		&git checkout master
+		Write-Output "Checking out main..."
+		&git checkout main
 		if (-not $?) {throw "Error with git checkout"}
 
 		Write-Output "Pulling..."
 		&git pull
 		if (-not $?) {throw "Error with git pull"}
 
-		Write-Output "Merging $branch into master..."
+		Write-Output "Merging $branch into main..."
 		&git merge $branch --no-edit
 		if (-not $?) {throw "Error with git merge"}
 
-		Write-Output "Pushing master..."
+		Write-Output "Pushing main..."
 		&git push
 		if (-not $?) {throw "Error with git push"}
 	}
 	catch
 	{
-		# If there was a problem and we were not on master then switch back
-		if ($branch -ne "master") {
+		# If there was a problem and we were not on main then switch back
+		if ($branch -ne "main") {
 			Write-Output "Switching back to $branch branch"
 			&git checkout $branch
 		}
@@ -73,13 +73,12 @@ try {
 
 	$mostRecentPackage = Get-ChildItem bin\Release\*.nupkg | Sort-Object LastWriteTime | Select-Object -last 1
 	Write-Output "Publishing $mostRecentPackage..."
-	# If you don't have nuget.exe - download from https://www.nuget.org/downloads and place in "C:\Users\xxx\AppData\Local\Microsoft\WindowsApps"
-	nuget.exe push -Source https://api.nuget.org/v3/index.json -ApiKey $apiKey "$mostRecentPackage"
+	dotnet nuget push "$mostRecentPackage" --source https://api.nuget.org/v3/index.json --api-key $apiKey
 }
 finally
 {
-	# If we were not on master then switch back
-	if ($branch -ne "master") {
+	# If we were not on main then switch back
+	if ($branch -ne "main") {
 		Write-Output "Switching back to $branch branch"
 		&git checkout $branch
 	}
