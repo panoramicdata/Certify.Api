@@ -57,8 +57,8 @@ internal class AuthenticatedHttpClientHandler(string apiKey, string apiSecret) :
 
 	private static async Task<Guid> LogRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 	{
-#if DEBUG
 		var requestId = Guid.NewGuid();
+#if DEBUG
 		Debug.WriteLine($"{requestId} REQUEST ({request.Method} - {request.RequestUri})");
 		Debug.WriteLine($"{requestId} ** Headers");
 		foreach (var header in request.Headers)

@@ -14,12 +14,21 @@ internal class TestConfig
 		var dirPath = Path.Combine(Path.GetDirectoryName(location) ?? string.Empty, "../../..");
 		var builder = new ConfigurationBuilder()
 			.SetBasePath(dirPath)
-			.AddJsonFile("appsettings.json");
+			.AddJsonFile("appsettings.json", optional: true)
+			.AddJsonFile("appsettings.example.json", optional: true);
 		var configuration = builder.Build();
+		var apiKey = configuration["Config:Credentials:ApiKey"];
+		var apiSecret = configuration["Config:Credentials:ApiSecret"];
+
+		if (string.IsNullOrWhiteSpace(apiKey) || string.IsNullOrWhiteSpace(apiSecret) || apiKey == "XXX" || apiSecret == "XXX")
+		{
+			throw new InvalidDataException("ApiKey/ApiSecret not configured. Add Certify.Api.Test/appsettings.json with valid credentials to run integration tests.");
+		}
+
 		logger.LogDebug("Creating client...");
 		CertifyClient = new CertifyClient(
-			configuration["Config:Credentials:ApiKey"] ?? throw new InvalidDataException("ApiKey not found in configuration"),
-			configuration["Config:Credentials:ApiSecret"] ?? throw new InvalidDataException("ApiSecret not found in configuration"));
+			apiKey,
+			apiSecret);
 		Logger = logger;
 	}
 

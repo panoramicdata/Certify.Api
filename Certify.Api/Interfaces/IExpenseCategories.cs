@@ -21,6 +21,7 @@ public interface IExpenseCategories
 	/// <param name="departmentFilterId">Associated Department ID</param>
 	/// <param name="active">Active status</param>
 	/// <param name="page">Desired page of result</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/expensecategories")]
 	Task<ExpenseCategoryPage> GetPageAsync(
@@ -39,6 +40,7 @@ public interface IExpenseCategories
 	/// Any elements where new values were not provided will retain their current value.
 	/// </summary>
 	/// <param name="expenseCategories">The ExpenseCategories to update.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>A separate status should be returned for each record, either "Updated" or "Error" with a detailed error message.</returns>
 	[Post("/expensecategories")]
 	Task<UpdateResult> UpdateAsync(
@@ -50,6 +52,7 @@ public interface IExpenseCategories
 	/// This method creates a new expense category record for the user’s company.
 	/// </summary>
 	/// <param name="expenseCategory">The ExpenseCategory to create.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>The ID of the new expense category</returns>
 	[Put("/expensecategories")]
 	Task<CreateResult> CreateAsync([Body] ExpenseCategory expenseCategory,
@@ -60,6 +63,7 @@ public interface IExpenseCategories
 	/// This method returns an expense categories for the current company.
 	/// </summary>
 	/// <param name="id">Expense category ID</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>an expense categories for the current company.</returns>
 	[Get("/expensecategories/{id}")]
 	Task<ExpenseCategoryPage> GetAsync(Guid id,

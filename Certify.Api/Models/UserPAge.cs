@@ -9,6 +9,9 @@ namespace Certify.Api.Models;
 [DataContract]
 public class UserPage : Page
 {
+	/// <summary>
+	/// Gets or sets the users.
+	/// </summary>
 	[DataMember(Name = "Users")]
 	public List<User> Users { get; set; } = new();
 }

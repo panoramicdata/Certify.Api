@@ -18,6 +18,7 @@ public interface IInvoices
 	/// <param name="endDate">Ending point for the processed date range. (YYYY-MM-DD)</param>
 	/// <param name="page">Desired page of result</param>
 	/// <param name="processed">Invoice report has been processed</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/invoices")]
 	Task<InvoicePage> GetPageAsync(
@@ -32,6 +33,7 @@ public interface IInvoices
 	/// This method returns a specific invoice associated with the supplied ID value.
 	/// </summary>
 	/// <param name="id">Invoice Report/Invoice ID	</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/invoices/{id}")]
 	Task<InvoicePage> GetAsync(

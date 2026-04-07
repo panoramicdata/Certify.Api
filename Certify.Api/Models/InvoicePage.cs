@@ -9,6 +9,9 @@ namespace Certify.Api.Models;
 [DataContract]
 public class InvoicePage : Page
 {
+	/// <summary>
+	/// Gets or sets the invoices.
+	/// </summary>
 	[DataMember(Name = "Invoices")]
 	public List<Invoice> Invoices { get; set; } = new();
 }

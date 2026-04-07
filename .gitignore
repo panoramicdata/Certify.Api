@@ -166,3 +166,5 @@ WixInstallerWp*.wxs
 
 /Certify.Api.Test/appsettings.json
 /Certify.Api/nuget-api-key.txt
+.vs/
+nuget-key.txt

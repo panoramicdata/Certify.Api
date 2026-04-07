@@ -20,6 +20,7 @@ public interface IReceipts
 	/// <param name="endDate">Ending point for the expense date range.</param>
 	/// <param name="batchId">Filter receipts returned to a specific Batch ID</param>
 	/// <param name="page">Desired page of result (1 for page 1, 2 for page 2, n for page n)</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/receipts")]
 	Task<ReceiptPage> GetPageAsync(
@@ -36,6 +37,7 @@ public interface IReceipts
 	/// This method returns one receipt from a processed expense report.
 	/// </summary>
 	/// <param name="id">The receipt Id</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/receipts/{id}")]
 	Task<ReceiptPage> GetAsync(

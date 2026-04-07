@@ -21,6 +21,7 @@ public interface IEmpGlds
 	/// <param name="name">Name of employee GLD</param>
 	/// <param name="code">Employee GLD code</param>
 	/// <param name="active">Active status</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/empglds/{index}")]
 	Task<EmpGldPage> GetAsync(
@@ -37,6 +38,7 @@ public interface IEmpGlds
 	/// Any elements where new values were not provided will retain their current value.
 	/// </summary>
 	/// <param name="index">Employee GLD index</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>A separate status should be returned for each record, either "Updated" or "Error" with a detailed error message.</returns>
 	[Post("/empglds/{index}")]
 	Task<List<UpdateResult>> UpdateAsync(
@@ -48,6 +50,7 @@ public interface IEmpGlds
 	/// This method creates a new employee GLD record for the current company.
 	/// </summary>
 	/// <param name="employeeGld"></param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>A CreateResponse containing the ID of the new employee GLD.</returns>
 	[Put("/empglds")]
 	Task<CreateResult> CreateAsync(
@@ -59,7 +62,8 @@ public interface IEmpGlds
 	/// This method returns an employee GLD record associated with the supplied ID value.
 	/// </summary>
 	/// <param name="index">Employee GLD index</param>
-	/// <param name="id">Employee GLD ID</param>
+	/// <param name="Id">Employee GLD ID</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/empglds/{index}/{id}")]
 	Task<EmpGldPage> GetAsync(

@@ -20,6 +20,7 @@ public interface IExpenseReportGlds : ISupportsPaging
 	/// <param name="code">Expense report GLD code</param>
 	/// <param name="active">Active status (1 for active records, 0 for inactive, NULL for all)</param>
 	/// <param name="page">Page, if not specified, page 1 will be retrieved.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/exprptglds/{index}")]
 	Task<ExpenseReportGldPage> GetPageAsync(
@@ -37,6 +38,8 @@ public interface IExpenseReportGlds : ISupportsPaging
 	/// Any elements where new values were not provided will retain their current value.
 	/// </summary>
 	/// <param name="expenseReportGld"></param>
+	/// <param name="index">Expense report GLD index</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Post("/exprptglds/{index}")]
 	Task<List<UpdateResult>> UpdateAsync(
@@ -50,6 +53,7 @@ public interface IExpenseReportGlds : ISupportsPaging
 	/// </summary>
 	/// <param name="index"></param>
 	/// <param name="expenseReportGld"></param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>If successful, this method should return the ID of the new expense report GLD.</returns>
 	[Put("/exprptglds/{index}")]
 	Task<CreateResult> CreateAsync(
@@ -63,6 +67,7 @@ public interface IExpenseReportGlds : ISupportsPaging
 	/// </summary>
 	/// <param name="index">Expense report GLD index</param>
 	/// <param name="id">Expense report GLD ID</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/exprptglds/{index}/{id}")]
 	Task<ExpenseReportGldPage> GetAsync(

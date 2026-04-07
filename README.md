@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/grade/Certify.Api)](https://app.codacy.com/gh/panoramicdata/Certify.Api/dashboard)
+
 # Certify.Api
 
 A .NET NuGet package for the [Certify](https://www.certify.com/) expense management API.

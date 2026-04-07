@@ -17,6 +17,7 @@ public interface ICpdLists
 	/// <param name="name"></param>
 	/// <param name="active"></param>
 	/// <param name="page"></param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/cpdlists")]
 	Task<CpdListPage> GetPageAsync(
@@ -30,6 +31,7 @@ public interface ICpdLists
 	/// This method should return a custom per-diem list associated with the supplied ID value, returning the same elements as the GET /cpdlists method.
 	/// </summary>
 	/// <param name="id"></param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/cpdlists/{id}")]
 	Task<CpdList> GetAsync(Guid id,

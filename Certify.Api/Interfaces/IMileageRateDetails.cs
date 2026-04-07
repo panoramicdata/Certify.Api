@@ -16,6 +16,7 @@ public interface IMileageRateDetails
 	/// <param name="effectiveDateStart">	Starting point for the mileage rate detail effective date.</param>
 	/// <param name="effectiveDateEnd">	Ending point for the mileage rate detail effective date.</param>
 	/// <param name="page">Desired page of result (1 for page 1, 2 for page 2, n for page n)</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/mileageratedetails")]
 	Task<MileageRateDetailsPage> GetPageAsync(
@@ -32,6 +33,7 @@ public interface IMileageRateDetails
 	/// You may overwrite an existing mileage rate detail record by sending a request with a matching MileageRateID and EffectiveDate.
 	/// </summary>
 	/// <param name="mileageRateDetails">The MileageRateDetails to create</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>If successful, this method should return the ID of the new mileage rate detail record.</returns>
 	[Put("/mileageratedetails")]
 	Task<CreateResult> CreateAsync(

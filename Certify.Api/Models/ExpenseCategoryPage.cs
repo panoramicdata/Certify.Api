@@ -9,6 +9,9 @@ namespace Certify.Api.Models;
 [DataContract]
 public class ExpenseCategoryPage : Page
 {
+	/// <summary>
+	/// Gets or sets the expense categories.
+	/// </summary>
 	[DataMember(Name = "ExpenseCategories")]
 	public List<ExpenseCategory> ExpenseCategories { get; set; } = new();
 }

@@ -7,5 +7,8 @@ namespace Certify.Api;
 /// </summary>
 public class CertifyClientOptions
 {
+	/// <summary>
+	/// Gets or sets the HTTP request timeout.
+	/// </summary>
 	public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(120);
 }

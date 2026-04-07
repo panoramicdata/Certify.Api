@@ -19,6 +19,8 @@ public interface IExpenses : ISupportsPaging
 	/// <param name="batchId">A unique ID provided by Certify, specifying a batched group of expenses for export.</param>
 	/// <param name="processed">Expense report has been processed</param>
 	/// <param name="page">Desired page of result</param>
+	/// <param name="includeDisapproved">Whether to include disapproved expenses.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/expenses")]
 	Task<ExpensePage> GetPageAsync(
@@ -36,6 +38,7 @@ public interface IExpenses : ISupportsPaging
 	/// </summary>
 	/// <param name="id">Expense Report/Expense ID	</param>
 	/// <param name="batchId">A unique ID provided by Certify, specifying a batched group of expenses for export.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/expenses/{id}")]
 	Task<ExpensePage> GetAsync(

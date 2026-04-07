@@ -16,6 +16,7 @@ public interface IMileageRates
 	/// </summary>
 	/// <param name="name"></param>
 	/// <param name="page"></param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/mileagerates")]
 	Task<MileageRatePage> GetPageAsync(
@@ -30,6 +31,7 @@ public interface IMileageRates
 	/// Any elements where new values were not provided will retain their current value.
 	/// </summary>
 	/// <param name="mileageRates">The MileageRates to update</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>A separate status should be returned for each record, either "Updated" or "Error" with a detailed error message.</returns>
 	[Post("/mileagerates")]
 	Task<List<UpdateResult>> UpdateAsync(
@@ -41,6 +43,7 @@ public interface IMileageRates
 	/// This method creates a new mileage rate record for the current company.
 	/// </summary>
 	/// <param name="mileageRate">The MileageRate</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Put("/mileagerates")]
 	Task<CreateResult> CreateAsync(

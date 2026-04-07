@@ -21,6 +21,9 @@ public class GenericPage<T>
 	[DataMember(Name = "RecordCount")]
 	public uint TotalRecordCount { get; set; }
 
+	/// <summary>
+	/// Gets or sets the items.
+	/// </summary>
 	[DataMember(Name = "Items")]
 	public List<T> Items { get; set; } = new();
 }

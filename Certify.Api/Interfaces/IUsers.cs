@@ -18,6 +18,7 @@ public interface IUsers
 	/// <param name="active"></param>
 	/// <param name="role"></param>
 	/// <param name="page"></param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/users")]
 	Task<UserPage> GetPageAsync(
@@ -32,6 +33,7 @@ public interface IUsers
 	/// This method should return a specific user associated with the supplied ID value.
 	/// </summary>
 	/// <param name="id">The User ID</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/users/{id}")]
 	Task<UserPage> GetAsync(

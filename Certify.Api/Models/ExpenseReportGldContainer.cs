@@ -9,6 +9,9 @@ namespace Certify.Api.Models;
 [DataContract]
 public class ExpenseReportGldPage : Page
 {
+	/// <summary>
+	/// Gets or sets the expense report GLDs.
+	/// </summary>
 	[DataMember(Name = "ExpRptGLDs")]
 	public List<ExpenseReportGld> ExpenseReportGlds { get; set; } = new();
 }

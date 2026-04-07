@@ -22,6 +22,7 @@ public interface IInvoiceReports
 	/// <param name="reimbursed">Invoice report has been reimbursed</param>
 	/// <param name="reimbursedStartDate">Starting point for the report reimbursement process. (YYYY-MM-DD)</param>
 	/// <param name="reimbursedEndDate">Ending point for the report reimbursement process. (YYYY-MM-DD)</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns></returns>
 	[Get("/invoicereports")]
 	Task<InvoiceReportPage> GetPageAsync(
@@ -40,6 +41,7 @@ public interface IInvoiceReports
 	/// This method returns a specific processed invoice report associated with the supplied ID value.
 	/// </summary>
 	/// <param name="id">	Invoice Report/Invoice ID</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>The invoice report</returns>
 	[Get("/invoicereports/{id}")]
 	Task<InvoiceReportPage> GetAsync(

@@ -18,11 +18,22 @@ public class CertifyClient : IDisposable
 {
 	private readonly HttpClient _httpClient;
 
+	/// <summary>
+	/// Initializes a new instance of the <see cref="CertifyClient"/> class with default options.
+	/// </summary>
+	/// <param name="apiKey">The Certify API key.</param>
+	/// <param name="apiSecret">The Certify API secret.</param>
 	public CertifyClient(string apiKey, string apiSecret)
 		: this(apiKey, apiSecret, new CertifyClientOptions())
 	{
 	}
 
+	/// <summary>
+	/// Initializes a new instance of the <see cref="CertifyClient"/> class.
+	/// </summary>
+	/// <param name="apiKey">The Certify API key.</param>
+	/// <param name="apiSecret">The Certify API secret.</param>
+	/// <param name="options">The client options.</param>
 	public CertifyClient(
 		string apiKey,
 		string apiSecret,
@@ -66,30 +77,69 @@ public class CertifyClient : IDisposable
 		Users = RestService.For<IUsers>(_httpClient, refitSettings);
 	}
 
+	/// <summary>
+	/// Gets the CPD lists API.
+	/// </summary>
 	public ICpdLists CpdLists { get; }
 
+	/// <summary>
+	/// Gets the departments API.
+	/// </summary>
 	public IDepartments Departments { get; }
 
+	/// <summary>
+	/// Gets the employee GLDs API.
+	/// </summary>
 	public IEmpGlds EmpGlds { get; }
 
+	/// <summary>
+	/// Gets the expense categories API.
+	/// </summary>
 	public IExpenseCategories ExpenseCategories { get; }
 
+	/// <summary>
+	/// Gets the expense reports API.
+	/// </summary>
 	public IExpenseReports ExpenseReports { get; }
 
+	/// <summary>
+	/// Gets the expenses API.
+	/// </summary>
 	public IExpenses Expenses { get; }
 
+	/// <summary>
+	/// Gets the expense report GLDs API.
+	/// </summary>
 	public IExpenseReportGlds ExpenseReportGlds { get; }
 
+	/// <summary>
+	/// Gets the invoice reports API.
+	/// </summary>
 	public IInvoiceReports InvoiceReports { get; }
 
+	/// <summary>
+	/// Gets the invoices API.
+	/// </summary>
 	public IInvoices Invoices { get; }
 
+	/// <summary>
+	/// Gets the mileage rates API.
+	/// </summary>
 	public IMileageRates MileageRates { get; }
 
+	/// <summary>
+	/// Gets the mileage rate details API.
+	/// </summary>
 	public IMileageRateDetails MileageRateDetails { get; }
 
+	/// <summary>
+	/// Gets the receipts API.
+	/// </summary>
 	public IReceipts Receipts { get; }
 
+	/// <summary>
+	/// Gets the users API.
+	/// </summary>
 	public IUsers Users { get; }
 
 	/// <summary>
@@ -126,6 +176,7 @@ public class CertifyClient : IDisposable
 		return results;
 	}
 
+	/// <inheritdoc />
 	public void Dispose()
 	{
 		_httpClient.Dispose();

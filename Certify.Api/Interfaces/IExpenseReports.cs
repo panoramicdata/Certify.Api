@@ -23,6 +23,7 @@ public interface IExpenseReports
 	/// <param name="reimbursed">Expense report has been reimbursed (1 for yes, 0 for no, 2 for both - default)</param>
 	/// <param name="reimbursedstartdate">Starting point for the report reimbursement process. (YYYY-MM-DD)</param>
 	/// <param name="reimbursedenddate">	Ending point for the report reimbursement process. (YYYY-MM-DD)</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>Page of ExpenseReports</returns>
 	[Get("/expensereports")]
 	Task<ExpenseReportPage> GetPageAsync(
@@ -42,6 +43,8 @@ public interface IExpenseReports
 	/// This method returns a specific processed expense report associated with the supplied ID value.
 	/// </summary>
 	/// <param name="id">The ExpenseReport ID</param>
+	/// <param name="batchId">A unique ID provided by Certify, specifying a batched group of expenses for export.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>a specific processed expense report</returns>
 	[Get("/expensereports/{id}")]
 	Task<ExpenseReportPage> GetAsync(
@@ -58,6 +61,7 @@ public interface IExpenseReports
 	/// <param name="startDate">Starting point for the processed date range.	</param>
 	/// <param name="endDate">Ending point for the processed date range.	</param>
 	/// <param name="batchId">A unique ID provided by Certify, specifying a batched group of expenses for export.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>all expenses for the processed expense report associated with the supplied ID value</returns>
 	[Get("/expensereports/{id}/expenses")]
 	Task<ExpensePage> GetExpensesAsync(
