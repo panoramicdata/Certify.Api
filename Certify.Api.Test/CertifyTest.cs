@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Logging;
 using System;
-using System.IO;
 using System.Threading;
 using Xunit;
 
@@ -20,15 +19,8 @@ public abstract class CertifyTest : IDisposable
 	{
 		Logger = new XunitLogger(iTestOutputHelper, GetType().Name);
 
-		try
-		{
-			var testConfig = new TestConfig(Logger);
-			CertifyClient = testConfig.CertifyClient;
-		}
-		catch (InvalidDataException ex)
-		{
-			throw Xunit.Sdk.SkipException.ForSkip(ex.Message);
-		}
+		var testConfig = new TestConfig(Logger);
+		CertifyClient = testConfig.CertifyClient;
 	}
 
 	protected virtual void Dispose(bool disposing)
