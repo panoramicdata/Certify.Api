@@ -13,12 +13,14 @@ public class ExpenseTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTe
 		var list = await CertifyClient
 			.Expenses
 			.GetAllAsync(
-			"2019-07-30",
-			null,
-			null,
-			1,
-			1,
-			cancellationToken: CancellationToken);
+				new ExpenseFilter
+				{
+					StartDate = "2019-07-30",
+					Processed = 1,
+					IncludeDisapproved = 1
+				},
+				CancellationToken);
+
 		list.Should().NotBeNullOrEmpty();
 		list.Count.Should().BePositive();
 	}

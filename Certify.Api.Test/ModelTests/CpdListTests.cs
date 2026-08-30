@@ -12,7 +12,7 @@ public class CpdListTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTe
 	{
 		var result = await CertifyClient
 			.CpdLists
-			.GetPageAsync(cancellationToken: CancellationToken);
+			.GetPageAsync(null, null, null, CancellationToken);
 		result.Should().NotBeNull();
 
 		var firstItem = result.CpdLists.FirstOrDefault();
@@ -20,10 +20,7 @@ public class CpdListTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTe
 		if (firstItem != null)
 		{
 			// There was at least one entry so none of these should be zero
-			result.TotalRecordCount.Should().BePositive();
-			result.TotalPageCount.Should().BePositive();
-			result.PageNumber.Should().BePositive();
-			result.PageRecordCount.Should().BePositive();
+			AssertPopulatedPage(result);
 
 			var refetch = await CertifyClient
 			.CpdLists

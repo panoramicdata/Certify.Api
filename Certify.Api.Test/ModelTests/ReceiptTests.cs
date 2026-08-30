@@ -12,11 +12,8 @@ public class ReceiptTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTe
 		var page = await CertifyClient
 			.Receipts
 			.GetPageAsync(cancellationToken: CancellationToken);
-		page.Should().NotBeNull();
+
+		AssertPopulatedPage(page);
 		page.Receipts.Should().NotBeNullOrEmpty();
-		page.TotalRecordCount.Should().BePositive();
-		page.TotalPageCount.Should().BePositive();
-		page.PageNumber.Should().BePositive();
-		page.PageRecordCount.Should().BePositive();
 	}
 }

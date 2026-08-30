@@ -13,12 +13,9 @@ public class UserTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTestO
 		var page = await CertifyClient
 			.Users
 			.GetPageAsync(cancellationToken: CancellationToken);
-		page.Should().NotBeNull();
+
+		AssertPopulatedPage(page);
 		page.Users.Should().NotBeNullOrEmpty();
-		page.TotalRecordCount.Should().BePositive();
-		page.TotalPageCount.Should().BePositive();
-		page.PageNumber.Should().BePositive();
-		page.PageRecordCount.Should().BePositive();
 	}
 
 	[Fact]
@@ -26,8 +23,8 @@ public class UserTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTestO
 	{
 		var users = await CertifyClient
 			.Users
-			.GetAllAsync(cancellationToken: CancellationToken);
-		users.Should().NotBeNull();
+			.GetAllAsync(CancellationToken);
+
 		users.Should().NotBeNullOrEmpty();
 	}
 }

@@ -19,18 +19,23 @@ internal class AuthenticatedHttpClientHandler(string apiKey, string apiSecret) :
 		request.Headers.Add("x-api-key", apiKey);
 		request.Headers.Add("x-api-secret", apiSecret);
 
-		Guid requestId = await LogRequestAsync(request, cancellationToken).ConfigureAwait(false);
+#if DEBUG
+		var requestId = Guid.NewGuid();
+		await LogRequestAsync(requestId, request, cancellationToken).ConfigureAwait(false);
+#endif
 
 		var response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
 
+#if DEBUG
 		await LogResponseAsync(requestId, response, cancellationToken).ConfigureAwait(false);
+#endif
 
 		return response;
 	}
 
+#if DEBUG
 	private async Task LogResponseAsync(Guid requestId, HttpResponseMessage response, CancellationToken cancellationToken)
 	{
-#if DEBUG
 		Debug.WriteLine($"{requestId} RESPONSE");
 		Debug.WriteLine($"{requestId} - {response.StatusCode} ({(int)response.StatusCode}) '{response.ReasonPhrase}'");
 		if (response.Content != null)
@@ -52,13 +57,10 @@ internal class AuthenticatedHttpClientHandler(string apiKey, string apiSecret) :
 				Debug.WriteLine($"{requestId} {string.Join("", result.Cast<char>().Take(1024))}...");
 			}
 		}
-#endif
 	}
 
-	private static async Task<Guid> LogRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+	private static async Task LogRequestAsync(Guid requestId, HttpRequestMessage request, CancellationToken cancellationToken)
 	{
-		var requestId = Guid.NewGuid();
-#if DEBUG
 		Debug.WriteLine($"{requestId} REQUEST ({request.Method} - {request.RequestUri})");
 		Debug.WriteLine($"{requestId} ** Headers");
 		foreach (var header in request.Headers)
@@ -82,11 +84,8 @@ internal class AuthenticatedHttpClientHandler(string apiKey, string apiSecret) :
 		{
 			Debug.WriteLine($"{requestId} ** No request content");
 		}
-#endif
-		return requestId;
 	}
 
-#if DEBUG
 	private readonly string[] types = ["html", "text", "xml", "json", "txt", "x-www-form-urlencoded"];
 
 	private bool IsTextBasedContentType(HttpHeaders headers)

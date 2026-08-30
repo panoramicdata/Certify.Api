@@ -1,4 +1,3 @@
-using AwesomeAssertions;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -12,10 +11,7 @@ public class EmpGldTests(ITestOutputHelper iTestOutputHelper) : CertifyTest(iTes
 		var result = await CertifyClient
 			.EmpGlds
 			.GetAsync(1, cancellationToken: CancellationToken);
-		result.Should().NotBeNull();
-		result.TotalRecordCount.Should().BePositive();
-		result.TotalPageCount.Should().BePositive();
-		result.PageNumber.Should().BePositive();
-		result.PageRecordCount.Should().BePositive();
+
+		AssertPopulatedPage(result);
 	}
 }

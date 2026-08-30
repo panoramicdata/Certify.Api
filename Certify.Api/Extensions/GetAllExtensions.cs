@@ -16,26 +16,37 @@ public static class Extensions
 	/// </summary>
 	/// <param name="expenseReportGlds">The expense report GLDs API.</param>
 	/// <param name="index">The GLD index.</param>
-	/// <param name="name">Optional name filter.</param>
-	/// <param name="code">Optional code filter.</param>
-	/// <param name="active">Optional active status filter.</param>
 	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>A list of all expense report GLDs.</returns>
-	public static Task<List<ExpenseReportGld>> GetAllAsync(this IExpenseReportGlds expenseReportGlds,
+	public static Task<List<ExpenseReportGld>> GetAllAsync(
+		this IExpenseReportGlds expenseReportGlds,
 		uint index,
-		string? name = null,
-		string? code = null,
-		uint? active = null,
-		CancellationToken cancellationToken = default)
+		CancellationToken cancellationToken)
+	=>
+		expenseReportGlds.GetAllAsync(index, new ExpenseReportGldFilter(), cancellationToken);
+
+	/// <summary>
+	/// Gets all expense report GLDs matching a filter, across all pages.
+	/// </summary>
+	/// <param name="expenseReportGlds">The expense report GLDs API.</param>
+	/// <param name="index">The GLD index.</param>
+	/// <param name="filter">The filter to apply.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
+	/// <returns>A list of all matching expense report GLDs.</returns>
+	public static Task<List<ExpenseReportGld>> GetAllAsync(
+		this IExpenseReportGlds expenseReportGlds,
+		uint index,
+		ExpenseReportGldFilter filter,
+		CancellationToken cancellationToken)
 	=>
 		CertifyClient.GetAllAsync(async (pageNumber) =>
 		{
 			var actualPage = await expenseReportGlds
 			.GetPageAsync(
 				index,
-				name,
-				code,
-				active,
+				filter.Name,
+				filter.Code,
+				filter.Active,
 				pageNumber,
 				cancellationToken)
 			.ConfigureAwait(false);
@@ -51,33 +62,37 @@ public static class Extensions
 	/// Gets all expenses across all pages.
 	/// </summary>
 	/// <param name="expenses">The expenses API.</param>
-	/// <param name="startDate">Optional start date filter.</param>
-	/// <param name="endDate">Optional end date filter.</param>
-	/// <param name="batchId">Optional batch ID filter.</param>
-	/// <param name="processed">Optional processed status filter.</param>
-	/// <param name="includeDisapproved">Optional include disapproved filter.</param>
 	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>A list of all expenses.</returns>
-	public static Task<List<Expense>> GetAllAsync(this IExpenses expenses,
-		string? startDate = null,
-		string? endDate = null,
-		string? batchId = null,
-		uint? processed = null,
-		uint? includeDisapproved = null,
-		CancellationToken cancellationToken = default
-		)
+	public static Task<List<Expense>> GetAllAsync(
+		this IExpenses expenses,
+		CancellationToken cancellationToken)
+	=>
+		expenses.GetAllAsync(new ExpenseFilter(), cancellationToken);
+
+	/// <summary>
+	/// Gets all expenses matching a filter, across all pages.
+	/// </summary>
+	/// <param name="expenses">The expenses API.</param>
+	/// <param name="filter">The filter to apply.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
+	/// <returns>A list of all matching expenses.</returns>
+	public static Task<List<Expense>> GetAllAsync(
+		this IExpenses expenses,
+		ExpenseFilter filter,
+		CancellationToken cancellationToken)
 	=>
 		CertifyClient.GetAllAsync(async (pageNumber) =>
 		{
 			var actualPage = await expenses
 				.GetPageAsync(
-					startDate,
-					endDate,
-					batchId,
-					processed,
+					filter.StartDate,
+					filter.EndDate,
+					filter.BatchId,
+					filter.Processed,
 					pageNumber,
-					includeDisapproved,
-					cancellationToken: cancellationToken)
+					filter.IncludeDisapproved,
+					cancellationToken)
 				.ConfigureAwait(false);
 			return new GenericPage<Expense>
 			{
@@ -91,40 +106,39 @@ public static class Extensions
 	/// Gets all expense reports across all pages.
 	/// </summary>
 	/// <param name="expenseReports">The expense reports API.</param>
-	/// <param name="approvalCode">Optional approval code filter.</param>
-	/// <param name="startDate">Optional start date filter.</param>
-	/// <param name="endDate">Optional end date filter.</param>
-	/// <param name="batchId">Optional batch ID filter.</param>
-	/// <param name="processed">Optional processed status filter.</param>
-	/// <param name="reimbursed">Optional reimbursed status filter.</param>
-	/// <param name="reimbursedstartdate">Optional reimbursed start date filter.</param>
-	/// <param name="reimbursedenddate">Optional reimbursed end date filter.</param>
 	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>A list of all expense reports.</returns>
-	public static Task<List<ExpenseReport>> GetAllAsync(this IExpenseReports expenseReports,
-		string? approvalCode = null,
-		string? startDate = null,
-		string? endDate = null,
-		string? batchId = null,
-		uint? processed = null,
-		string? reimbursed = null,
-		string? reimbursedstartdate = null,
-		string? reimbursedenddate = null,
-		CancellationToken cancellationToken = default)
+	public static Task<List<ExpenseReport>> GetAllAsync(
+		this IExpenseReports expenseReports,
+		CancellationToken cancellationToken)
+	=>
+		expenseReports.GetAllAsync(new ExpenseReportFilter(), cancellationToken);
+
+	/// <summary>
+	/// Gets all expense reports matching a filter, across all pages.
+	/// </summary>
+	/// <param name="expenseReports">The expense reports API.</param>
+	/// <param name="filter">The filter to apply.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
+	/// <returns>A list of all matching expense reports.</returns>
+	public static Task<List<ExpenseReport>> GetAllAsync(
+		this IExpenseReports expenseReports,
+		ExpenseReportFilter filter,
+		CancellationToken cancellationToken)
 	=>
 		CertifyClient.GetAllAsync(async (pageNumber) =>
 		{
 			var actualPage = await expenseReports
 			.GetPageAsync(
-				approvalCode,
-				startDate,
-				endDate,
-				batchId,
+				filter.ApprovalCode,
+				filter.StartDate,
+				filter.EndDate,
+				filter.BatchId,
 				pageNumber,
-				processed,
-				reimbursed,
-				reimbursedstartdate,
-				reimbursedenddate,
+				filter.Processed,
+				filter.Reimbursed,
+				filter.ReimbursedStartDate,
+				filter.ReimbursedEndDate,
 				cancellationToken)
 			.ConfigureAwait(false);
 			return new GenericPage<ExpenseReport>
@@ -139,24 +153,33 @@ public static class Extensions
 	/// Gets all users across all pages.
 	/// </summary>
 	/// <param name="users">The users API.</param>
-	/// <param name="username">Optional username filter.</param>
-	/// <param name="active">Optional active status filter.</param>
-	/// <param name="role">Optional role filter.</param>
 	/// <param name="cancellationToken">A cancellation token.</param>
 	/// <returns>A list of all users.</returns>
-	public static Task<List<User>> GetAllAsync(this IUsers users,
-		string? username = null,
-		uint? active = null,
-		string? role = null,
-		CancellationToken cancellationToken = default)
+	public static Task<List<User>> GetAllAsync(
+		this IUsers users,
+		CancellationToken cancellationToken)
+	=>
+		users.GetAllAsync(new UserFilter(), cancellationToken);
+
+	/// <summary>
+	/// Gets all users matching a filter, across all pages.
+	/// </summary>
+	/// <param name="users">The users API.</param>
+	/// <param name="filter">The filter to apply.</param>
+	/// <param name="cancellationToken">A cancellation token.</param>
+	/// <returns>A list of all matching users.</returns>
+	public static Task<List<User>> GetAllAsync(
+		this IUsers users,
+		UserFilter filter,
+		CancellationToken cancellationToken)
 	=>
 		CertifyClient.GetAllAsync(async (pageNumber) =>
 		{
 			var actualPage = await users
 			.GetPageAsync(
-				username,
-				active,
-				role,
+				filter.Username,
+				filter.Active,
+				filter.Role,
 				pageNumber,
 				cancellationToken)
 			.ConfigureAwait(false);

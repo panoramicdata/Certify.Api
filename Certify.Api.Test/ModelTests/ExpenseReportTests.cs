@@ -14,12 +14,8 @@ public class ExpenseReportTests(ITestOutputHelper iTestOutputHelper) : CertifyTe
 			.ExpenseReports
 			.GetPageAsync(cancellationToken: CancellationToken);
 
-		page.Should().NotBeNull();
+		AssertPopulatedPage(page);
 		page.ExpenseReports.Should().NotBeNullOrEmpty();
-		page.TotalRecordCount.Should().BePositive();
-		page.TotalPageCount.Should().BePositive();
-		page.PageNumber.Should().BePositive();
-		page.PageRecordCount.Should().BePositive();
 	}
 
 	[Fact]
@@ -27,7 +23,7 @@ public class ExpenseReportTests(ITestOutputHelper iTestOutputHelper) : CertifyTe
 	{
 		var list = await CertifyClient
 			.ExpenseReports
-			.GetAllAsync(cancellationToken: CancellationToken);
+			.GetAllAsync(CancellationToken);
 
 		list.Should().NotBeNullOrEmpty();
 	}

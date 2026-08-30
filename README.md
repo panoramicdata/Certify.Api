@@ -25,6 +25,19 @@ using var client = new CertifyClient("your-api-key", "your-api-secret");
 var departments = await client.Departments.GetPageAsync();
 ```
 
+Retrieve every page of a resource with the `GetAllAsync` extension methods, optionally
+passing a filter object:
+
+```csharp
+using Certify.Api.Extensions;
+
+var allUsers = await client.Users.GetAllAsync(cancellationToken);
+
+var activeUsers = await client.Users.GetAllAsync(
+	new UserFilter { Active = 1 },
+	cancellationToken);
+```
+
 ## Supported Resources
 
 - Departments

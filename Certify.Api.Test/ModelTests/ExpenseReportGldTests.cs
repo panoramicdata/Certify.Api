@@ -34,7 +34,7 @@ public class ExpenseReportGldTests(ITestOutputHelper iTestOutputHelper) : Certif
 	{
 		var results2 = await CertifyClient
 			.ExpenseReportGlds
-			.GetAllAsync(2, cancellationToken: CancellationToken);
+			.GetAllAsync(2, CancellationToken);
 		results2.Should().NotBeNullOrEmpty();
 	}
 
