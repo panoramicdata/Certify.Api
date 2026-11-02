@@ -8,10 +8,15 @@ using System.Threading.Tasks;
 
 namespace Certify.Api.Http;
 
-internal class AuthenticatedHttpClientHandler(string apiKey, string apiSecret) : HttpClientHandler
+internal class AuthenticatedHttpClientHandler(string apiKey, string apiSecret, CertifyClientOptions options) : HttpClientHandler
 {
 	protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 	{
+		if (options.IsReadOnly && request.Method != HttpMethod.Get && request.Method != HttpMethod.Head && request.Method != HttpMethod.Options)
+		{
+			throw new InvalidOperationException($"{request.Method} {request.RequestUri} is refused because CertifyClientOptions.IsReadOnly is set.");
+		}
+
 		// The default content header being set by refit seems to be "Content-Type: application/json; charset=utf-8"
 		// Certify does NOT like this - needs to just be "application/json" otherwise you'll get an HTML response with "HTTP Error 400. The request has an invalid header name."
 		request.Content?.Headers.ContentType = new MediaTypeHeaderValue("application/json");
