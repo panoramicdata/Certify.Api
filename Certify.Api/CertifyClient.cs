@@ -54,7 +54,8 @@ public class CertifyClient : IDisposable
 		_httpClient = new HttpClient(
 			new AuthenticatedHttpClientHandler(
 				apiKey ?? throw new ArgumentNullException(nameof(apiKey)),
-				apiSecret ?? throw new ArgumentNullException(nameof(apiSecret))
+				apiSecret ?? throw new ArgumentNullException(nameof(apiSecret)),
+				options
 				))
 		{
 			// This address should NOT end in "/" as the interface method paths are added to the end of this and Refit requires they start with "/"
