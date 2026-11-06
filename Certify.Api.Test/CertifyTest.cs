@@ -7,6 +7,7 @@ using Xunit;
 
 namespace Certify.Api.Test;
 
+[Trait("Category", "IntegrationReadOnly")]
 public abstract class CertifyTest : IDisposable
 {
 	private bool disposedValue;
