@@ -4,6 +4,8 @@
 
 A .NET NuGet package for the [Certify](https://www.certify.com/) expense management API.
 
+Supports .NET 11.0.
+
 [![Nuget](https://img.shields.io/nuget/v/Certify.Api)](https://www.nuget.org/packages/Certify.Api/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -56,7 +58,7 @@ var activeUsers = await client.Users.GetAllAsync(
 
 ## Requirements
 
-- .NET 10.0 or later
+- .NET 11.0 or later
 
 ## License
 
