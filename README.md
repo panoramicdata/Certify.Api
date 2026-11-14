@@ -2,6 +2,8 @@
 
 # Certify.Api
 
+> **Need help with APIs or .NET?** Panoramic Data are experts in APIs and .NET, and we can help with your development. [Contact us](https://www.panoramicdata.com/contact-us) or see our [software services](https://www.panoramicdata.com/services/software).
+
 A .NET NuGet package for the [Certify](https://www.certify.com/) expense management API.
 
 Supports .NET 11.0.
