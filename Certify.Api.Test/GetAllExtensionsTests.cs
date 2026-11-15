@@ -16,8 +16,8 @@ public class GetAllExtensionsTests
 {
 	private const int _pageIndex = 4;
 
-	private static Func<object?[], object?> Pages(Func<uint?, ExpensePage> pages)
-		=> args => Task.FromResult(pages(FakeProxy.Number(args, _pageIndex)));
+	private static Func<object?[], object?> Pages(Func<uint?, ExpensePage> pageFor)
+		=> args => Task.FromResult(pageFor(FakeProxy.Number(args, _pageIndex)));
 
 	private static ExpensePage Page(uint totalPageCount, uint totalRecordCount, params Expense[] items)
 		=> new() { Expenses = [.. items], TotalPageCount = totalPageCount, TotalRecordCount = totalRecordCount };
