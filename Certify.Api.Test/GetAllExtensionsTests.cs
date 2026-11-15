@@ -35,13 +35,13 @@ public class GetAllExtensionsTests
 				throw new NotSupportedException(method);
 			}
 
-			StartDates.Add((string?)args[0]);
-			EndDates.Add((string?)args[1]);
-			BatchIds.Add((string?)args[2]);
-			Processed.Add((uint?)args[3]);
-			Pages.Add((uint?)args[4]);
-			IncludeDisapproved.Add((uint?)args[5]);
-			return PageFactory((uint?)args[4]);
+			StartDates.Add(FakeProxy.Text(args, 0));
+			EndDates.Add(FakeProxy.Text(args, 1));
+			BatchIds.Add(FakeProxy.Text(args, 2));
+			Processed.Add(FakeProxy.Number(args, 3));
+			Pages.Add(FakeProxy.Number(args, 4));
+			IncludeDisapproved.Add(FakeProxy.Number(args, 5));
+			return PageFactory(FakeProxy.Number(args, 4));
 		}
 	}
 
@@ -98,11 +98,9 @@ public class GetAllExtensionsTests
 
 		RecordingExpenses expenses = new()
 		{
-			PageFactory = page => page switch
-			{
-				1 => Task.FromResult(Page(2, 2, ids.Take(2).Select(x => new Expense { Id = x }))),
-				_ => Task.FromResult(Page(2, 3, new[] { new Expense { Id = ids[2] } }))
-			}
+			PageFactory = page => page == 1
+				? Task.FromResult(Page(2, 2, ids.Take(2).Select(x => new Expense { Id = x })))
+				: Task.FromResult(Page(2, 3, new[] { new Expense { Id = ids[2] } }))
 		};
 
 		var result = await expenses.Api.GetAllAsync(CancellationToken.None);

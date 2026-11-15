@@ -31,10 +31,10 @@ public class GetAllUsersAndGldsExtensionsTests
 				throw new NotSupportedException(method);
 			}
 
-			Usernames.Add((string?)args[0]);
-			Active.Add((uint?)args[1]);
-			Roles.Add((string?)args[2]);
-			return PageFactory((uint?)args[3]);
+			Usernames.Add(FakeProxy.Text(args, 0));
+			Active.Add(FakeProxy.Number(args, 1));
+			Roles.Add(FakeProxy.Text(args, 2));
+			return PageFactory(FakeProxy.Number(args, 3));
 		}
 	}
 
@@ -114,9 +114,9 @@ public class GetAllUsersAndGldsExtensionsTests
 				throw new NotSupportedException(method);
 			}
 
-			Names.Add((string?)args[1]);
-			Codes.Add((string?)args[2]);
-			Active.Add((uint?)args[3]);
+			Names.Add(FakeProxy.Text(args, 1));
+			Codes.Add(FakeProxy.Text(args, 2));
+			Active.Add(FakeProxy.Number(args, 3));
 			return PageFactory((uint)args[0]!);
 		}
 	}

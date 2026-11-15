@@ -36,15 +36,15 @@ public class GetAllExpensesExtensionsTests
 				throw new NotSupportedException(method);
 			}
 
-			ApprovalCodes.Add((string?)args[0]);
-			StartDates.Add((string?)args[1]);
-			EndDates.Add((string?)args[2]);
-			BatchIds.Add((string?)args[3]);
-			Processed.Add((uint?)args[5]);
-			Reimbursed.Add((string?)args[6]);
-			ReimbursedStartDates.Add((string?)args[7]);
-			ReimbursedEndDates.Add((string?)args[8]);
-			return PageFactory((uint?)args[4]);
+			ApprovalCodes.Add(FakeProxy.Text(args, 0));
+			StartDates.Add(FakeProxy.Text(args, 1));
+			EndDates.Add(FakeProxy.Text(args, 2));
+			BatchIds.Add(FakeProxy.Text(args, 3));
+			Processed.Add(FakeProxy.Number(args, 5));
+			Reimbursed.Add(FakeProxy.Text(args, 6));
+			ReimbursedStartDates.Add(FakeProxy.Text(args, 7));
+			ReimbursedEndDates.Add(FakeProxy.Text(args, 8));
+			return PageFactory(FakeProxy.Number(args, 4));
 		}
 	}
 

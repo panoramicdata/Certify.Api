@@ -16,6 +16,10 @@ public class FakeProxy : DispatchProxy
 		return proxy;
 	}
 
+	public static string? Text(object?[] args, int index) => (string?)args[index];
+
+	public static uint? Number(object?[] args, int index) => (uint?)args[index];
+
 	protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
 		=> _handler(targetMethod!.Name, args ?? []);
 }
