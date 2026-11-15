@@ -13,8 +13,13 @@ namespace Certify.Api.Test;
 
 public class GetAllExtensionsTests
 {
-	private sealed class RecordingExpenses : IExpenses
+	private sealed class RecordingExpenses
 	{
+		public RecordingExpenses()
+			=> Api = FakeProxy.Create<IExpenses>(Handle);
+
+		public IExpenses Api { get; }
+
 		public List<string?> StartDates { get; } = new();
 		public List<string?> EndDates { get; } = new();
 		public List<string?> BatchIds { get; } = new();
@@ -23,26 +28,21 @@ public class GetAllExtensionsTests
 		public List<uint?> IncludeDisapproved { get; } = new();
 		public Func<uint?, Task<ExpensePage>> PageFactory { get; set; } = _ => Task.FromResult(EmptyPage());
 
-		public Task<ExpensePage> GetPageAsync(
-			string? startDate,
-			string? endDate,
-			string? batchId,
-			uint? processed,
-			uint? page,
-			uint? includeDisapproved,
-			CancellationToken cancellationToken = default)
+		private object? Handle(string method, object?[] args)
 		{
-			StartDates.Add(startDate);
-			EndDates.Add(endDate);
-			BatchIds.Add(batchId);
-			Processed.Add(processed);
-			Pages.Add(page);
-			IncludeDisapproved.Add(includeDisapproved);
-			return PageFactory(page);
-		}
+			if (method != nameof(IExpenses.GetPageAsync))
+			{
+				throw new NotSupportedException(method);
+			}
 
-		public Task<ExpensePage> GetAsync(Guid id, string? batchId, CancellationToken cancellationToken = default)
-			=> Task.FromResult(EmptyPage());
+			StartDates.Add((string?)args[0]);
+			EndDates.Add((string?)args[1]);
+			BatchIds.Add((string?)args[2]);
+			Processed.Add((uint?)args[3]);
+			Pages.Add((uint?)args[4]);
+			IncludeDisapproved.Add((uint?)args[5]);
+			return PageFactory((uint?)args[4]);
+		}
 	}
 
 	private static ExpensePage EmptyPage()
@@ -58,7 +58,7 @@ public class GetAllExtensionsTests
 	{
 		var expenses = new RecordingExpenses { PageFactory = _ => Task.FromResult(Page(1, 1, new[] { new Expense { Id = Guid.NewGuid() } })) };
 
-		var result = await expenses.GetAllAsync(CancellationToken.None);
+		var result = await expenses.Api.GetAllAsync(CancellationToken.None);
 
 		result.Should().HaveCount(1);
 		expenses.StartDates.Should().ContainSingle().Which.Should().BeNull();
@@ -82,7 +82,7 @@ public class GetAllExtensionsTests
 			IncludeDisapproved = 0
 		};
 
-		await expenses.GetAllAsync(filter, CancellationToken.None);
+		await expenses.Api.GetAllAsync(filter, CancellationToken.None);
 
 		expenses.StartDates.Should().ContainSingle().Which.Should().Be("2024-01-01");
 		expenses.EndDates.Should().ContainSingle().Which.Should().Be("2024-12-31");
@@ -105,7 +105,7 @@ public class GetAllExtensionsTests
 			}
 		};
 
-		var result = await expenses.GetAllAsync(CancellationToken.None);
+		var result = await expenses.Api.GetAllAsync(CancellationToken.None);
 
 		result.Select(x => x.Id).Should().Equal(ids);
 		expenses.Pages.Should().Equal(1u, 2u);
@@ -116,7 +116,7 @@ public class GetAllExtensionsTests
 	{
 		var expenses = new RecordingExpenses { PageFactory = _ => Task.FromResult(Page(1, 99, new[] { new Expense { Id = Guid.NewGuid() } })) };
 
-		var act = () => expenses.GetAllAsync(CancellationToken.None);
+		var act = () => expenses.Api.GetAllAsync(CancellationToken.None);
 
 		await act.Should().ThrowAsync<PageCountMismatchException>();
 	}
