@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Certify.Api.Test;
 
@@ -38,6 +39,15 @@ public class FakeProxy : DispatchProxy
 	/// <summary>The filter arguments of a recorded call: everything but the page number and the cancellation token.</summary>
 	public static List<object?> Filters(object?[] args, int pageIndex)
 		=> [.. args.Where((_, index) => index != pageIndex && index != args.Length - 1)];
+
+	/// <summary>Runs <paramref name="act"/> against a fake and returns the filter arguments of its single GetPageAsync call.</summary>
+	public static async Task<List<object?>> FilterSentAsync<T>(Func<T, Task> act, Func<object?[], object?> respond, int pageIndex)
+		where T : class
+	{
+		var calls = new List<object?[]>();
+		await act(RecordPages<T>(calls, respond));
+		return Filters(calls.Single(), pageIndex);
+	}
 
 	public static string? Text(object?[] args, int index) => (string?)args[index];
 
