@@ -23,6 +23,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Refit" />
+    <PackageReference Include="Refit.Reflection" />
     <None Remove="Icon.png" />
     <None Include="Icon.png" Pack="true" PackagePath="" />
     <None Include="..\README.md" Link="README.md" Pack="true" PackagePath="\" />
