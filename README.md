@@ -1,4 +1,4 @@
-[![Codacy Badge](https://app.codacy.com/project/badge/grade/Certify.Api)](https://app.codacy.com/gh/panoramicdata/Certify.Api/dashboard)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b1d2fb8f83c14a5695c002c45ed4fa42)](https://app.codacy.com/gh/panoramicdata/Certify.Api/dashboard)
 
 # Certify.Api
 
